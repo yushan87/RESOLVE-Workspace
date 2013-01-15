@@ -38,7 +38,7 @@
  *)
 
 Concept Character_Template;
-    uses Std_Boolean_Fac, Std_Integer_Fac;
+    uses Std_Boolean_Fac, Std_Integer_Fac, Integer_Theory;
 
     Definition Last_Char_Num: N;
     Constraint Last_Char_Num > 0;
