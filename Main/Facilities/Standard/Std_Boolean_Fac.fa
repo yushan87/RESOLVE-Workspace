@@ -1,0 +1,4 @@
+
+Facility Std_Boolean_Fac 
+    is Boolean_Template
+    realized by Std_Boolean_Realiz;

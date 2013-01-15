@@ -1,0 +1,4 @@
+
+Facility Std_Char_Str_Fac 
+    is Char_Str_Template
+    realized by Std_Char_Str_Realiz;

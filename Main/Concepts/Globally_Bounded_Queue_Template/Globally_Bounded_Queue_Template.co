@@ -1,0 +1,20 @@
+Concept Globally_Bounded_Queue_Template(type Entry);
+    uses Modified_String_Theory;
+-- Global memory bound constraints are specified in performance profiles
+
+    Type Family Queue is modeled by Str(Entry);
+    exemplar Q;
+    initialization ensures Q = empty_string;
+ 
+    Operation Enqueue(alters E: Entry; updates Q: Queue);
+        ensures Q = #Q o <#E>;
+ 
+    Operation Dequeue(replaces R: Entry; updates Q: Queue);
+        requires Q /= empty_string;
+        ensures #Q = <R> o Q;
+
+    Operation Is_Empty(restores Q: Queue): Boolean;
+     ensures Is_Empty = (Q = empty_string);
+
+    Operation Clear (clears Q: Queue);
+end Globally_Bounded_Queue_Template;

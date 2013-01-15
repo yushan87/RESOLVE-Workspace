@@ -1,0 +1,66 @@
+Concept Communally_Bounded_List_Template( type Entry; eval Initial_Capacity: Integer );
+					uses Std_Integer_Fac, Modified_String_Theory;
+				requires Initial_Capacity > 0 and Remaining_Cap = Initial_Capacity; 
+-- and_entails Initial_Capacity: N;
+-- CB is shorthand for Communally_Bounded
+
+		Var Remaining_Cap: N;
+
+		Facility_Initialization 
+			ensures Remaining_Cap = Initial_Capacity;
+
+		Family List_Position is modeled by Cart_Prod
+							Prec, Rem: Str(Entry);
+						   end;
+			exemplar P;
+			initialization
+				ensures P.Prec = empty_string and P.Rem = empty_string;
+			finalization 
+				updates Remaining_Cap;
+				ensures Remaining_Cap = #Remaining_Cap + |P.Prec o P.Rem|;
+
+		Oper Advance( updates P: List_Position );
+			requires P.Rem /= empty_string;
+			ensures P.Prec o P.Rem = #P.Prec o #P.Rem and |P.Prec| = |#P.Prec| + 1;
+
+		Oper Reset( updates P: List_Position );
+			ensures P.Prec = empty_string and P.Rem = #P.Prec o #P.Rem;
+
+		Oper Length_of_Rem( restores P: List_Position ): Integer;
+			ensures Length_of_Rem = ( |P.Rem| );
+
+		Oper Insert( clears New_Entry: Entry; updates P: List_Position );
+			updates Remaining_Cap;
+			requires Remaining_Cap > 0;
+			ensures P.Prec = #P.Prec and P.Rem = <#New_Entry> o #P.Rem and 
+				Remaining_Cap = #Remaining_Cap - 1;
+
+		Oper Rmng_Capacity(): Integer; 
+			ensures Rmng_Capacity = ( Remaining_Cap );
+
+		Oper Remove( replaces Entry_Removed: Entry; updates P: List_Position );
+			updates Remaining_Cap;
+			requires P.Rem /= empty_string;
+			ensures P.Prec = #P.Prec and #P.Rem = <Entry_Removed> o P.Rem and 
+				Remaining_Cap = #Remaining_Cap + 1;
+
+		Oper Advance_to_End( updates P: List_Position );
+			ensures P.Prec = #P.Prec o #P.Rem and 
+				P.Rem = empty_string;
+
+		Oper Swap_Remainders( updates P, Q: List_Position );
+			ensures P.Prec = #P.Prec and Q.Prec = #Q.Prec
+				and P.Rem = #Q.Rem and Q.Rem = #P.Rem;
+
+		Oper Swap_Prev_Entry_w( updates E: Entry; updates P: List_Position );
+			requires true;
+			ensures P.Rem = #P.Rem and (there exists A: Str(Entry), #P.Prec = A o <E> and P.Prec = A o <#E>);
+
+		Oper Length_of_Prec( restores P: List_Position ): Integer;
+			ensures Length_of_Prec = |P.Prec|;
+
+		Oper Clear( clears P: List_Position );
+			updates Remaining_Cap;
+			ensures Remaining_Cap = #Remaining_Cap + |#P.Prec| + |#P.Rem|;
+
+end Communally_Bounded_List_Template;
