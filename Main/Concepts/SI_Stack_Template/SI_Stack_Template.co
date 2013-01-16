@@ -5,7 +5,7 @@ Concept SI_Stack_Template(type Entry; evaluates Max_Depth: Integer);
     Var Self: Str(Entry); 
         constraint |Self| <= Max_Depth;
         Facility_Initialization 
-		ensures Self = empty_string;
+		ensures Self = Empty_String;
 
     Operation Push(alters E: Entry); 
         updates Self;

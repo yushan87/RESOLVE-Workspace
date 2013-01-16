@@ -3,17 +3,17 @@ Concept Globally_Bounded_Stack_Template(type Entry);
 -- Global memory bound constraints are specified in performance profiles
     Type Family Stack is modeled by Str(Entry);
         exemplar S;
-        initialization ensures S = empty_string;
+        initialization ensures S = Empty_String;
 
     Operation Push(alters E: Entry; updates S: Stack); 
         ensures  S = <#E> o #S;
 
     Operation Pop(replaces R: Entry; updates S: Stack);
-        requires S /= empty_string;
+        requires S /= Empty_String;
         ensures #S = <R> o S;
 
     Operation Is_Empty(restores S : Stack) : Boolean;
-        ensures Is_Empty = (S = empty_string);
+        ensures Is_Empty = (S = Empty_String);
 
     Operation Clear(clears S: Stack);
 end Globally_Bounded_Stack_Template;

@@ -4,17 +4,17 @@ Concept Globally_Bounded_Queue_Template(type Entry);
 
     Type Family Queue is modeled by Str(Entry);
     exemplar Q;
-    initialization ensures Q = empty_string;
+    initialization ensures Q = Empty_String;
  
     Operation Enqueue(alters E: Entry; updates Q: Queue);
         ensures Q = #Q o <#E>;
  
     Operation Dequeue(replaces R: Entry; updates Q: Queue);
-        requires Q /= empty_string;
+        requires Q /= Empty_String;
         ensures #Q = <R> o Q;
 
     Operation Is_Empty(restores Q: Queue): Boolean;
-     ensures Is_Empty = (Q = empty_string);
+     ensures Is_Empty = (Q = Empty_String);
 
     Operation Clear (clears Q: Queue);
 end Globally_Bounded_Queue_Template;
