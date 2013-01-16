@@ -8,7 +8,7 @@ Realization Queue_Location_Linking_Realiz for Globally_Bounded_Queue_Template;
 
 	definition Str_Info(first: Z, refContext : Z -> Z,
 			contentsContext : Z -> Entry): Str(Entry) = 
-		{{empty_string if first = Void;
+		{{Empty_String if first = Void;
 		  <contentsContext(first)> o 
 		  	Str_Info(refContext(first), refContext, 			contentsContext) otherwise;}};
 

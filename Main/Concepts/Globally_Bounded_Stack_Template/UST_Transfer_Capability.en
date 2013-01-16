@@ -2,6 +2,6 @@ Enhancement UST_Transfer_Capability for Globally_Bounded_Stack_Template;
 
 	Operation Transfer(updates Source      : Stack;
 	                   replaces  Destination : Stack);
-		ensures Source = empty_string and Destination = #Source;
+		ensures Source = Empty_String and Destination = #Source;
 
 end UST_Transfer_Capability;

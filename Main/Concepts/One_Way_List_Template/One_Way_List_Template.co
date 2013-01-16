@@ -14,17 +14,17 @@ Concept Communally_Bounded_List_Template( type Entry; eval Initial_Capacity: Int
 						   end;
 			exemplar P;
 			initialization
-				ensures P.Prec = empty_string and P.Rem = empty_string;
+				ensures P.Prec = Empty_String and P.Rem = Empty_String;
 			finalization 
 				updates Remaining_Cap;
 				ensures Remaining_Cap = #Remaining_Cap + |P.Prec o P.Rem|;
 
 		Oper Advance( updates P: List_Position );
-			requires P.Rem /= empty_string;
+			requires P.Rem /= Empty_String;
 			ensures P.Prec o P.Rem = #P.Prec o #P.Rem and |P.Prec| = |#P.Prec| + 1;
 
 		Oper Reset( updates P: List_Position );
-			ensures P.Prec = empty_string and P.Rem = #P.Prec o #P.Rem;
+			ensures P.Prec = Empty_String and P.Rem = #P.Prec o #P.Rem;
 
 		Oper Length_of_Rem( restores P: List_Position ): Integer;
 			ensures Length_of_Rem = ( |P.Rem| );
@@ -40,13 +40,13 @@ Concept Communally_Bounded_List_Template( type Entry; eval Initial_Capacity: Int
 
 		Oper Remove( replaces Entry_Removed: Entry; updates P: List_Position );
 			updates Remaining_Cap;
-			requires P.Rem /= empty_string;
+			requires P.Rem /= Empty_String;
 			ensures P.Prec = #P.Prec and #P.Rem = <Entry_Removed> o P.Rem and 
 				Remaining_Cap = #Remaining_Cap + 1;
 
 		Oper Advance_to_End( updates P: List_Position );
 			ensures P.Prec = #P.Prec o #P.Rem and 
-				P.Rem = empty_string;
+				P.Rem = Empty_String;
 
 		Oper Swap_Remainders( updates P, Q: List_Position );
 			ensures P.Prec = #P.Prec and Q.Prec = #Q.Prec

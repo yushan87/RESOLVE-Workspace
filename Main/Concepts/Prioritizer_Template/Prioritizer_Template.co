@@ -17,7 +17,7 @@ Concept Prioritizer_Template( type Entry; evaluates Max_Capacity: Integer; defin
 
     Operation Add_Entry(alters E: Entry; updates P: Prioritizer);
         requires Total_Entry_Ct(P) < Max_Capacity and P.Accepting;
-        ensures P.Entry_Count = lambda F: Entry.({{#P.Entry_Count(F) + 1 if F = #E; #P.Entry_Count(F) otherwise;}}) and
+        ensures P.Entry_Count = lambda (F: Entry).({{#P.Entry_Count(F) + 1 if F = #E; #P.Entry_Count(F) otherwise;}}) and
                 P.Accepting;
 
     Operation Change_Mode(updates P: Prioritizer);
@@ -30,12 +30,12 @@ Concept Prioritizer_Template( type Entry; evaluates Max_Capacity: Integer; defin
     Operation Remove_A_Smallest_Entry(replaces S: Entry;
                                       updates P: Prioritizer);
         requires Total_Entry_Ct(P) > 0 and not P.Accepting; 
-        ensures P.Entry_Count = lambda F: Entry.({{#P.Entry_Count(F) - 1 if F = S; #P.Entry_Count(F) otherwise;}}) and
+        ensures P.Entry_Count = lambda (F: Entry).({{#P.Entry_Count(F) - 1 if F = S; #P.Entry_Count(F) otherwise;}}) and
             Lesser_Entry_Ct(S, P) = 0 and not P.Accepting;
 
     Operation Remove_Any_Entry(replaces E: Entry; updates P: Prioritizer);
         requires Total_Entry_Ct(P) > 0;
-        ensures P.Entry_Count = lambda F: Entry.({{#P.Entry_Count(F) - 1 if F = E; #P.Entry_Count(F) otherwise;}}) and 
+        ensures P.Entry_Count = lambda (F: Entry).({{#P.Entry_Count(F) - 1 if F = E; #P.Entry_Count(F) otherwise;}}) and 
             P.Accepting = #P.Accepting;
                 
     Operation Is_Accepting(restores P: Prioritizer): Boolean;

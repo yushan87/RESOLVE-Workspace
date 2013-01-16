@@ -8,7 +8,7 @@ Enhancement Averaging_Capability(Definition AsInteger(e : Entry) : N)
 			|Q| < max_int / 2 and
 			0 <= Fold_String_Right(Sum, 0, Map(Q, AsInteger)) <= 
 				max_int and
-			Q /= empty_string;
+			Q /= Empty_String;
 		ensures Average = 
 			Fold_String_Right(Sum, 0, Map(Q, AsInteger)) / |Q|;
 

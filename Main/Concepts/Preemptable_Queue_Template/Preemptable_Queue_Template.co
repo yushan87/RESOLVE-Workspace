@@ -5,7 +5,7 @@ Concept Preemptable_Queue_Template(type Entry; evaluates Max_Length: Integer);
     Type Family P_Queue is modeled by Str(Entry);
     exemplar Q;
     constraint |Q| <= Max_Length;
-    initialization ensures Q = empty_string;
+    initialization ensures Q = Empty_String;
  
     Operation Enqueue(alters E: Entry; reassigns Q: P_Queue);
         requires |Q| < Max_Length;
