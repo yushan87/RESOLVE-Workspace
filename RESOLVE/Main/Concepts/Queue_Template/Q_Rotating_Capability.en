@@ -1,0 +1,5 @@
+Enhancement Q_Rotating_Capability for Queue_Template;
+    Operation Rotate_by (evaluates k: Integer; updates Q: Queue);
+    	requires 0 <= k and k <= |Q|;
+		ensures Q = Prt_Btwn(k, |#Q|, #Q) o Prt_Btwn(0, k, #Q);
+end Q_Rotating_Capability;

@@ -1,8 +1,0 @@
-Concept Simple_Number_Template;
-    uses Std_Boolean_Fac, Simple_Number_Theory;
-
-    Type Family Number is modeled by Num;
-        exemplar i;
-        initialization ensures i = 0;
-
-end Simple_Number_Template;
