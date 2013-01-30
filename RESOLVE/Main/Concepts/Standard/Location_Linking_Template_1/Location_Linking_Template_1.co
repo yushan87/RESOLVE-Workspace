@@ -5,7 +5,7 @@ Concept Location_Linking_Template_1(type Info);
 	Var Content: Z -> Info;
 	Var Ref: Z -> Z;
 
-	Facility_Initialization ensures for all L: Z, Info.Is_Initial(Content(L)) and Ref(L) = Void;
+	--Facility_Initialization ensures for all L: Z, Info.Is_Initial(Content(L)) and Ref(L) = Void;
 
 	Type Family Position is modeled by Z;
 		exemplar P;
