@@ -48,28 +48,28 @@ Realization Array_Realiz for Stack_Template;
             0 <= S.Top <= Max_Depth;
         correspondence
             Conc.S = Reverse(Concatenate(S.Contents, 
-		Max_Depth));
+		S.Top));
 
     Procedure Push(alters E: Entry; updates S: Stack);
         S.Top := S.Top + 1;
         E :=: S.Contents[S.Top];
-    end Push;
+    end;
 
     Procedure Pop(replaces R: Entry; updates S: Stack); 
         R :=: S.Contents[S.Top];
         S.Top := S.Top - 1;
-    end Pop;
+    end;
 
     Procedure Depth(preserves S: Stack): Integer;
         Depth := S.Top;
-    end Depth;
+    end;
 
     Procedure Rem_Capacity(preserves S: Stack): Integer;
         Rem_Capacity := Max_Depth - S.Top;
-    end Rem_Capacity;
+    end;
 
     Procedure Clear(clears S: Stack);
         S.Top := 0;
-    end Clear;
+    end;
 
-end Array_Realiz;
+end;
