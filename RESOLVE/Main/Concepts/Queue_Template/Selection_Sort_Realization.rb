@@ -4,7 +4,7 @@ Realization Selection_Sort_Realization(
 				: Boolean;
 				ensures Compare = LEQV(E1, E2);)
 		for Sorting_Capability of Queue_Template;
-	uses Modified_String_Theory;
+	uses String_Theory;
 
 	Procedure Sort(updates Q : Queue);
 		Var Sorted_Queue : Queue;

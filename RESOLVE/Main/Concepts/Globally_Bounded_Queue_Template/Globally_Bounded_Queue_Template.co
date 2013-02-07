@@ -1,5 +1,5 @@
 Concept Globally_Bounded_Queue_Template(type Entry);
-    uses Modified_String_Theory;
+    uses String_Theory;
 -- Global memory bound constraints are specified in performance profiles
 
     Type Family Queue is modeled by Str(Entry);

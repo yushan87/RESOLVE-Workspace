@@ -2,7 +2,7 @@
 
 Theory Multi_Set_Theory;
 		uses Boolean_Theory, Set_Theory, Integer_Theory, 
-			Modified_String_Theory;
+			String_Theory;
 
 	Local Math Type Gamma;
 	Math Type MultiSet: SSet -> SSet;

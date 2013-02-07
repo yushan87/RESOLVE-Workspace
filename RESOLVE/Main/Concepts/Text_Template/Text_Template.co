@@ -1,5 +1,5 @@
 Concept Text_Template;
-    uses Modified_String_Theory;
+    uses String_Theory;
 
 --    Defines Max_Size: N;
 --    constraints Max_Size > 0;

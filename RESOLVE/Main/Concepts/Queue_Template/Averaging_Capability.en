@@ -1,6 +1,6 @@
 Enhancement Averaging_Capability(Definition AsInteger(e : Entry) : N)
 	for Queue_Template;
-	uses Modified_String_Theory;
+	uses String_Theory;
 	requires For all e : Entry, min_int <= AsInteger(e) <= max_int;
 
 	Operation Average(restores Q : Queue) : Integer;
