@@ -1,5 +1,5 @@
 Theory Binary_Iterator_Theory;
-		uses Integer_Theory, Modified_String_Theory;
+		uses Integer_Theory, String_Theory;
 
 	Definition Iterative_Apply(Start : (R : MType), 
 		Value_Function : Z -> (V : MType), 

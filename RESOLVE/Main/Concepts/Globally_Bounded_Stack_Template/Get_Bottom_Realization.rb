@@ -1,6 +1,6 @@
 Realization Get_Bottom_Realization for Get_Bottom_Capability of 
 		Globally_Bounded_Stack_Template;
-	uses Modified_String_Theory;
+	uses String_Theory;
 
 	Procedure Get_Bottom(updates S : Stack; updates E : Entry);
 		Var S_Temp : Stack;

@@ -1,5 +1,5 @@
 Concept Preemptable_Queue_Template(type Entry; evaluates Max_Length: Integer);
-    uses Modified_String_Theory;
+    uses String_Theory;
     requires Max_Length > 0;
  
     Type Family P_Queue is modeled by Str(Entry);

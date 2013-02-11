@@ -1,5 +1,5 @@
 Concept Communally_Bounded_List_Template( type Entry; eval Initial_Capacity: Integer );
-					uses Std_Integer_Fac, Modified_String_Theory;
+					uses Std_Integer_Fac, String_Theory;
 				requires Initial_Capacity > 0 and Remaining_Cap = Initial_Capacity; 
 -- and_entails Initial_Capacity: N;
 -- CB is shorthand for Communally_Bounded

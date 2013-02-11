@@ -1,5 +1,5 @@
 Concept Globally_Bounded_List_Template( type Entry);
-					uses Modified_String_Theory;
+					uses String_Theory;
 
 		Type Family List is modeled by Cart_Prod
 							Prec, Rem: Str(Entry);

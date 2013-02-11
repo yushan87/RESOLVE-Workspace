@@ -2,8 +2,6 @@ Concept Static_Array_Template(type Entry; evaluates Lower_Bound, Upper_Bound: In
     uses Std_Integer_Fac, Integer_Theory;
     requires (Lower_Bound <= Upper_Bound);
 
-	Definition Is_Initial(E : Entity) : B;
-
     Type Family Static_Array is modeled by (Z -> Entry);
         exemplar A;
       constraint true;

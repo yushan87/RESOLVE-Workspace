@@ -5,7 +5,7 @@ Realization Multi_Set_Based_Selection_Sort_Realization(
 				requires Is_Total_Preordering(LEQV);
 				ensures Compare = LEQV(E1, E2);)
 		for Multi_Set_Based_Sorting_Capability of Queue_Template;
-	uses Modified_String_Theory, Multi_Set_Theory;
+	uses String_Theory, Multi_Set_Theory;
 
 	Operation Remove_Min(updates Q : Queue; replaces Min : Entry);
 		requires |Q| /= 0;

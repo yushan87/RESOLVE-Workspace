@@ -38,7 +38,7 @@
  *)
 
 Concept Char_Str_Template;
-    uses Modified_String_Theory, Std_Boolean_Fac, 
+    uses String_Theory, Std_Boolean_Fac, 
         Std_Character_Fac, Std_Integer_Fac, Integer_Theory;
 
     Definition Max_Char_Str_Len: N;

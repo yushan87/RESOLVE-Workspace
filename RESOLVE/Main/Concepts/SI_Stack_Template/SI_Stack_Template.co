@@ -1,5 +1,5 @@
 Concept SI_Stack_Template(type Entry; evaluates Max_Depth: Integer);
-    uses Modified_String_Theory;
+    uses String_Theory;
     requires Max_Depth > 0;
 
     Var Self: Str(Entry); 

@@ -39,87 +39,155 @@
 
 
 Theory String_Theory;
-    uses Boolean_Theory, Set_Theory, Natural_Number_Theory, Integer_Theory;
+    uses Integer_Theory;
 
-    Local Math Type Gamma;
+	--The type of all strings of heterogenous type
+	Definition SStr : MType;
+	Definition Empty_String : SStr;
 
-    Math Type Str: SSet -> SSet;
+	--A function that restricts SStr to the type of all strings of some homogenous
+	--type
+	Definition Str : MType -> MType;
 
-    Definition empty_string: Str(Gamma);
+	Type Theorem Empty_String_In_All_Strs:
+		For all T : MType,
+			Empty_String : Str(T);
 
-    Definition ext: Str(Gamma) x Gamma -> Str(Gamma);
+	Type Theorem All_Strs_In_SStr:
+		For all T : MType,
+		For all S : Str(T),
+			S : SStr;
 
-    --------------------------------------------------------------
+	--If R is a subset of T, then Str(R) is a subset of Str(T)
+	Type Theorem Str_Subsets:
+		For all T : MType,
+		For all R : Powerset(T),
+		For all s : Str(R),
+			s : Str(T);
 
-    Inductive Definition (s: Str(Gamma)) o (t: Str(Gamma)): Str(Gamma) is
-        (i)  s o empty_string = s;
-        (ii) For all x: Gamma, s o ext(t, x) = ext(s o t, x);
+	--String length
+	Definition |(s : SStr)| : N;
 
-    Inductive Definition |(s: Str(Gamma))|: N is
-        (i)  |empty_string| = 0;
-        (ii) For all x: Gamma, |ext(s, x)| = suc(|s|);
-        
-    Definition <(x: Gamma)>: Str(Gamma) = (ext(empty_string, x));
+	--String concatenation
+	--Definition (s : Str(U : MType)) o (t : Str(U)) : Str(U);
+	Definition (s : SStr) o (t : SStr) : SStr;
 
-    Inductive Definition Rev(s: Str(Gamma)): Str(Gamma) is
-        (i)  Rev(empty_string) = empty_string;
-        (ii) For all x: Gamma, Rev(ext(s, x)) = <x> o Rev(s);
+	Type Theorem Concatenation_Preserves_Generic_Type:
+		For all T : MType,
+		For all U, V : Str(T),
+			U o V : Str(T);
 
-    --Definition Occurs_Ct(x: Gamma, s: Str(Gamma)): N = 0;
+	--Definition Reverse(s : Str(U : MType)) : Str(U);
 
-    Inductive Definition Occurs_Ct(x: Gamma, s: Str(Gamma)): N is
-        (i)  Occurs_Ct(x, empty_string) = 0;
-        (ii) For all y: Gamma, Occurs_Ct(x, ext(s, y)) = {{
-                 Occurs_Ct(x, s) + 1 if x = y;
-                 Occurs_Ct(x, s)     if x /= y;
-             }}; 
+	Definition Reverse(s : SStr) : SStr;
 
-    Inductive Definition (s: Str(Gamma)) ** (n: Z): Str(Gamma) is
-        (i)  s**0 = empty_string;
-        (ii) s**NB(NB(n)) = s**n o s;
+	Type Theorem Reverse_Preserves_Generic_Type:
+		For all T : MType,
+		For all S : Str(T),
+			Reverse(S) : Str(T);
 
-    Definition (s: Str(Gamma)) is_prefix_of (t: Str(Gamma)): B =
-        There exists u: Str(Gamma) such that (s o u) = t;
+	--Singleton string
+	Definition <(e : (U : MType))> : Str(U);
 
-    Definition (s: Str(Gamma)) is_suffix_of (t: Str(Gamma)): B =
-        There exists u: Str(Gamma) such that (u o s) = t;
+	Definition Is_Permutation(s : Str(U : MType), t : Str(U)) : B;
 
-    Definition (s: Str(Gamma)) is_substring_of (t: Str(Gamma)): B =
-        There exists u, v: Str(Gamma) such that (u o s o v) = t;
+	--Determines if for every pairing of elements from s and t, the given predicate
+	--holds
+	Definition Is_Universally_Related(s : Str(U : MType), t : Str(U),
+			f : (U * U) -> B) : B;
 
-    Definition (s: Str(Gamma)) is_permutation_of (t: Str(Gamma)): B =
-        For all x: Gamma, Occurs_Ct(x, s) = Occurs_Ct(x, t);
-        
-    Definition Is_prefix(p: Str(Gamma), q:Str(Gamma)):B =
-		 (there exists u: Str(Gamma),(p o u) = q);
-		 
-	Definition Is_Suffix(p: Str(Gamma), q:Str(Gamma)):B =
-		 (there exists u: Str(Gamma), (u o p) = q);
-	
-	Definition Is_Substring(p: Str(Gamma), q:Str(Gamma)):B =
-		 (there exists u,v: Str(Gamma), (u o p o v) = q);
+	Definition Substring(s : Str(U : MType), startInclusive : Z, length : Z) :
+		Str(U);
 
-      Definition Is_Permutation(s: Str(Gamma), t: Str(Gamma)): B =
-        For all x: Gamma, Occurs_Ct(x, s) = Occurs_Ct(x, t);
+	Definition Element_At(i : Z, s : Str(U : MType)) : U;
 
-	Definition Prt_Btwn(m,n: N, q:Str(Gamma)):Str(Gamma) = q;
+	---------------------------------------------------------------
+	-- Empty String Theorems                                     --
+	---------------------------------------------------------------
+	Theorem Reverse_Empty_String:
+		Reverse(Empty_String) = Empty_String;
 
-	Definition Symb(q:Str(Gamma)):Gamma = true;
+	Theorem Empty_String_Concatenation_Right:
+		For all S : SStr,
+			S o Empty_String = S;
 
-	-- added the following for selection sort example verification with Isabelle
+	Theorem Empty_String_Concatenation_Left:
+		For all S : SStr,
+			Empty_String o S = S;
 
-	Definition IsSubstring(p: Str(Gamma), q:Str(Gamma)):B =
-		 (there exists u,v: Str(Gamma), (u o p o v) = q);
+	---------------------------------------------------------------
+	-- String Length Theorems                                    --
+	---------------------------------------------------------------
+	Theorem Same_String_Same_Length:
+		For all S, T : SStr,
+			S = T implies |S| = |T|;
 
-      Definition IsPermutation(s: Str(Gamma), t: Str(Gamma)): B =
-        For all x: Gamma, Occurs_Ct(x, s) = Occurs_Ct(x, t);
+	Theorem String_Length_Boundary:
+		For all S, T : SStr,
+		For all i : Z,
+			|S o T| <= i implies
+				|S| <= i and
+				|T| <= i;
 
-	Definition PrtBtwn(m,n: N, q:Str(Gamma)):Str(Gamma) = q;
+	Theorem String_Length_Boundary_Singleton_Left:
+		For all S : SStr,
+		For all E : Entity,
+		For all i : Z,
+			|<E> o S| <= i implies
+				|S| < i;
 
-	Definition DeString(q:Str(Gamma)):Gamma = true;
+	Theorem String_Length_Hack_1:
+		For all U, V : SStr,
+		For all E : Entity,
+		For all i : Z,
+			|U o (<E> o V)| <= i implies
+				|U| < i and
+				|V| < i;
 
-	Theorem S1: For all s:Str(Gamma), Rev(Rev(s)) = s;
-	Theorem S2: For all s:Str(Gamma), for all e:Gamma, 
-		Rev(s o <e>) = <e> o Rev(s);
+	Theorem Reverse_Irrelevant_In_Length:
+		For all S : SStr,
+			|Reverse(S)| = |S|;
 
-end String_Theory;
+	Theorem Concatenate_Singleton_Increases_Length_Left:
+		For all S : SStr,
+		For all E : Entity,
+			(|S| < |<E> o S|) = true;
+
+	Theorem Concatenate_Singleton_Increases_Length_Right:
+		For all S : SStr,
+		For all E : Entity,
+			(|S| < |S o <E>|) = true;
+
+	Theorem Zero_Length_Implies_Empty_String:
+		For all S : SStr,
+			(|S| = 0) implies S = Empty_String;
+
+	Theorem Length_Concatenation:
+		For all U, V : SStr,
+			|U o V| = |U| + |V|;
+
+	---------------------------------------------------------------
+	-- Singleton String Theorems                                 --
+	---------------------------------------------------------------
+	Theorem Reverse_Of_Singleton:
+		For all E : Entity,
+			Reverse(<E>) = <E>;
+
+	---------------------------------------------------------------
+	-- Reverse Theorems                                          --
+	---------------------------------------------------------------
+	Theorem Concatenation_Under_Reverse:
+		For all U, V : SStr,
+			Reverse(U o V) = Reverse(V) o Reverse(U);
+
+	Theorem Reverse_Inverts_Itself:
+		For all S : SStr,
+			Reverse(Reverse(S)) = S;
+
+	---------------------------------------------------------------
+	-- Concatenation Theorems                                    --
+	---------------------------------------------------------------
+	Theorem Concatenation_Associative:
+		For all U, V, W : SStr,
+			(U o V) o W = U o (V o W);
+end;
