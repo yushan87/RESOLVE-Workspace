@@ -38,7 +38,7 @@
  *)
 
 
-Theory Boolean_Theory;
+Precis Boolean_Theory;
     -- all definitions are syntactic place holders
 
 	Type Theorem Cart_Prod_Thingy:

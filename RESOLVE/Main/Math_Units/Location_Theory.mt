@@ -1,5 +1,5 @@
 
-Theory Location_Theory;
+Precis Location_Theory;
 
     Math Type Location: SSet;
 

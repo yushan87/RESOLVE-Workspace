@@ -38,7 +38,7 @@
  *)
 
 
-Theory String_Theory;
+Precis String_Theory;
     uses Integer_Theory;
 
 	--The type of all strings of heterogenous type

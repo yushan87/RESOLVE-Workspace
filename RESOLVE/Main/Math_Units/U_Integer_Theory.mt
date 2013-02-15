@@ -37,7 +37,7 @@
  * The Ohio State University.
  *)
 
-Theory U_Integer_Theory;
+Precis U_Integer_Theory;
     uses Boolean_Theory, Set_Theory;
 
     -- all definitions are syntactic place holders

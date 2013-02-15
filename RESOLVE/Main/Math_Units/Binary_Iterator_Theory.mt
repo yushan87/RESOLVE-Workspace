@@ -1,4 +1,4 @@
-Theory Binary_Iterator_Theory;
+Precis Binary_Iterator_Theory;
 		uses Integer_Theory, String_Theory;
 
 	Definition Iterative_Apply(Start : (R : MType), 
