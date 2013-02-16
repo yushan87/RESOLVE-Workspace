@@ -2,15 +2,16 @@ Concept Globally_Bounded_List_Template( type Entry);
 					uses String_Theory;
 
 		Type Family List is modeled by Cart_Prod
-							Prec, Rem: Str(Entry);
-						   end;
+			Prec, Rem: Str(Entry);
+		end;
 			exemplar P;
 			initialization
 				ensures P.Prec = Empty_String and P.Rem = Empty_String;
 
 		Oper Advance( upd P: List );
 			requires P.Rem /= Empty_String;
-			ensures P.Prec = #P.Prec o Prt_Btwn(0, 1, #P.Rem) and P.Rem = Prt_Btwn(1, |#P.Rem|, #P.Rem);
+			ensures P.Prec = #P.Prec o Substring(#P.Rem, 0, 1) and 
+				P.Rem = Substring(#P.Rem, 1, |#P.Rem| - 1);
 
 		Oper Reset( upd P: List );
 			ensures P.Prec = Empty_String and P.Rem = #P.Prec o #P.Rem;
@@ -24,8 +25,8 @@ Concept Globally_Bounded_List_Template( type Entry);
 		Oper Remove( rpl Entry_Removed: Entry; upd P: List );
 			requires P.Rem /= Empty_String;
 			ensures P.Prec = #P.Prec and
-				Entry_Removed = DeString(Prt_Btwn(0, 1, #P.Rem)) and
-				P.Rem =  Prt_Btwn(1, |#P.Rem|, #P.Rem);
+				Entry_Removed = Element_At(1, #P.Rem) and
+				P.Rem =  Substring(#P.Rem, 1, |#P.Rem| - 1);
 
 		Oper Advance_to_End( upd P: List );
 			ensures P.Prec = #P.Prec o #P.Rem and 

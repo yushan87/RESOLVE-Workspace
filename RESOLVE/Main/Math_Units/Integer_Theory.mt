@@ -93,4 +93,69 @@ Precis Integer_Theory;
 
 	Definition isEven(i : Z) : B = true;
 
+	---------------------------------------------------------------
+	-- Relation Theorems                                         --
+	---------------------------------------------------------------
+
+	Theorem NN_Not_Zero_Addition_Right_LET:
+		For all n, m : N, 
+		For all i : Z,
+			n + m <= i and m /= 0 implies n < i;
+
+	Theorem Even_More_LT:
+		For all i, j, k : Z,
+			i + j <= k and j > 0 implies i < k;
+
+	Theorem Greater_Than_Zero_Not_Equal_Zero:
+		For all i : Z,
+			i > 0 implies i /= 0;
+
+	Theorem Not_Equal_Syntax:
+		For all i, j : Z,
+			not(i = j) = (i /= j);
+
+	Theorem GET_And_Not_Equal_GT:
+		For all i, j : Z,
+			i >= j and i /= j implies i > j;
+
+	Theorem Bound_1_1:
+		For all i, j : Z,
+			(i + 1 <= j) = (i < j);
+
+	Theorem Bound_1_2:
+		For all i, j : Z,
+			(i <= j - 1) = (i < j);
+
+	Theorem Bound_1_3:
+		For all i, j : Z,
+			(i - 1 >= j) = (i > j);
+
+	Theorem Bound_N_1:
+		For all i, j, k : Z,
+			(i + j <= k) and j >= 0 implies i <= k;
+
+	Theorem Balance:
+		For all i, j, k : Z,
+			(i + k) + (j - k) = (i + j);
+
+	Theorem Easy_Less_Than:
+		For all i : Z,
+			i - 1 < i;
+
+	Theorem LET_Both:
+		For all i, j, k : Z,
+			i <= j and k > j implies i < k;
+
+	---------------------------------------------------------------
+	-- Zero Theorems                                             --
+	---------------------------------------------------------------
+
+	Theorem Zero_Property_Right:
+		For all i : Z,
+			i + 0 = i;
+
+	Theorem Zero_Property_Left:
+		For all i : Z,
+			0 + i = i;
+
 end Integer_Theory;
