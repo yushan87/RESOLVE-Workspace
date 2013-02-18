@@ -37,7 +37,7 @@
  * The Ohio State University.
  *)
 
-Theory Integer_Theory;
+Precis Integer_Theory;
     uses Boolean_Theory, Set_Theory;
 
 	(* Note that the type Z is built-in.  No need to introduce it here. *)

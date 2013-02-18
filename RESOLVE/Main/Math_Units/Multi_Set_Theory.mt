@@ -1,6 +1,6 @@
 
 
-Theory Multi_Set_Theory;
+Precis Multi_Set_Theory;
 		uses Boolean_Theory, Set_Theory, Integer_Theory, 
 			String_Theory;
 

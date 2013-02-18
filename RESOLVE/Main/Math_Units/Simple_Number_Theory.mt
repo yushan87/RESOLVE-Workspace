@@ -1,7 +1,7 @@
 
 (* This is intended as a bare-bones alternative to Integers or Natural
  * Numbers for use in example. *)
-Theory Simple_Number_Theory;
+Precis Simple_Number_Theory;
 		uses Boolean_Theory, Set_Theory;
 
 	Math Type Num: SSet;

@@ -37,7 +37,7 @@
  * The Ohio State University.
  *)
 
-Theory String_Theory;
+Precis String_Theory;
     uses Boolean_Theory, Set_Theory, Natural_Number_Theory;
 
     -- all definitions are syntactic place holders

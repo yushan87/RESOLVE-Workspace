@@ -37,7 +37,7 @@
  * The Ohio State University.
  *)
 
-Theory Set_Theory;
+Precis Set_Theory;
     uses Boolean_Theory;
 
 	Definition Set : (MType -> Powerset(SSet));

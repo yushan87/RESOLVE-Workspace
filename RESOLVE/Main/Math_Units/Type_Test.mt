@@ -1,4 +1,4 @@
-Theory Type_Test;
+Precis Type_Test;
 
 	(*********
 	 * Types *

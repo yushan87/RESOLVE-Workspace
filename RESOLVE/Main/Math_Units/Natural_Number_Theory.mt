@@ -37,7 +37,7 @@
  * The Ohio State University.
  *)
 
-Theory Natural_Number_Theory;
+Precis Natural_Number_Theory;
     uses Boolean_Theory;
 
     -- all definitions are syntactic place holders
