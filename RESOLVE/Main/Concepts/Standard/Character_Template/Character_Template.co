@@ -62,13 +62,13 @@ Concept Character_Template;
         ensures Less_Or_Equal = ( c1 <= c2 );
 
     Operation Less(evaluates c1, c2: Character): Boolean;
-        ensures Less = ( c1 <= c2 );
+        ensures Less = ( c1 < c2 );
 
     Operation Greater_Or_Equal(evaluates c1, c2: Character): Boolean;
         ensures Greater_Or_Equal = ( c1 >= c2 );
 
     Operation Greater(evaluates c1, c2: Character): Boolean;
-        ensures Greater = ( c1 >= c2 );
+        ensures Greater = ( c1 > c2 );
 
     Operation Replica(restores c: Character): Character;
         ensures Replica = ( c );
