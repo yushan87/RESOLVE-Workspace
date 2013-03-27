@@ -1,5 +1,5 @@
 Concept Static_Array_Template(type Entry; evaluates Lower_Bound, Upper_Bound: Integer);
-    uses Std_Integer_Fac, Integer_Theory;
+    uses Std_Integer_Fac, Integer_Theory, Conditional_Function_Theory;
     requires (Lower_Bound <= Upper_Bound);
 
     Type Family Static_Array is modeled by (Z -> Entry);
@@ -10,16 +10,54 @@ Concept Static_Array_Template(type Entry; evaluates Lower_Bound, Upper_Bound: In
 
     Operation Swap_Entry(updates A: Static_Array; updates E: Entry; evaluates i: Integer); 
         requires Lower_Bound <= i  and i <= Upper_Bound;
-	  ensures E = #A(i) and A = lambda (j : Z).({{#E if j = i; #A(j) otherwise;}});
+	  ensures E = #A(i) and A = lambda (j : Z).(
+		{{#E if j = i;
+		  #A(j) otherwise;}});
 
-    Operation Swap_Two_Entries(updates A: Static_Array; evaluates i, j: Integer); 
+(*
+    Operation Swap_Entry(updates A: Static_Array; updates E: Entry; evaluates i: Integer); 
+        requires Lower_Bound <= i  and i <= Upper_Bound;
+	  ensures E = #A(i) and A = lambda (j : Z).(CF(
+		lambda (k : Z).(#E), 
+		lambda (k : Z).(#A(k)), 
+		lambda (k : Z).(k = i))(j));
+*)
+	  
+	  (*
+	  ensures E = #A(i) and A = lambda (j : Z).({{#E if j = i; #A(j) otherwise;}});
+	  *)
+
+    (*
+	Operation Swap_Two_Entries(updates A: Static_Array; evaluates i, j: Integer); 
         requires Lower_Bound <= i  and i <= Upper_Bound and
                     Lower_Bound <= j  and j <= Upper_Bound;
-        ensures A = lambda (k : Z).({{#A(j) if k = i; #A(i) if k = j; #A(k) otherwise;}});
+		ensures A = lambda (k : Z).(
+			CF(
+				lambda(i : Z).(#A(i)),
+				lambda(i : Z).(#A(i)),				
+				lambda(i : Z).(k = i)));
+		*)
+        (*
+		ensures A = lambda (k : Z).({{#A(j) if k = i; #A(i) if k = j; #A(k) otherwise;}});
+		*)
 
     Operation Assign_Entry(updates A: Static_Array; evaluates Exp: Entry; evaluates i: Integer);
         requires Lower_Bound <= i  and i <= Upper_Bound;
+	ensures A = lambda (j : Z).({{
+		Exp if j = i;
+		#A(j) otherwise;}});
+
+		(*
+    Operation Assign_Entry(updates A: Static_Array; evaluates Exp: Entry; evaluates i: Integer);
+        requires Lower_Bound <= i  and i <= Upper_Bound;
+	ensures A = lambda (j : Z).(CF(
+		lambda (k : Z).(Exp), 
+		lambda (k : Z).(#A(k)), 
+		lambda (k : Z).(k = i))(j));
+*)
+		(*
         ensures A = lambda (j : Z).({{Exp if j = i; #A(j) otherwise;}});
+		*)
 
     Operation Entry_Replica(restores A: Static_Array; evaluates i: Integer): Entry;
         requires Lower_Bound <= i  and i <= Upper_Bound;

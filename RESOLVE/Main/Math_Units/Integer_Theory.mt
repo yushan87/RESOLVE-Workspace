@@ -94,17 +94,31 @@ Precis Integer_Theory;
 	Definition isEven(i : Z) : B = true;
 
 	---------------------------------------------------------------
+	-- Obvious Theorems                                          --
+	---------------------------------------------------------------
+	Theorem Zero_Less_Than_One: 0 < 1;
+	Theorem One_Greater_Than_Zero: 1 > 0;
+
+	---------------------------------------------------------------
 	-- Relation Theorems                                         --
 	---------------------------------------------------------------
+
+	Theorem NN_Not_Greater_Than_Zero:
+		For all n : N,
+			not(n > 0) = (n = 0);
 
 	Theorem NN_Not_Zero_Addition_Right_LET:
 		For all n, m : N, 
 		For all i : Z,
 			n + m <= i and m /= 0 implies n < i;
 
-	Theorem Even_More_LT:
+	Theorem Even_More_LT_1:
 		For all i, j, k : Z,
 			i + j <= k and j > 0 implies i < k;
+
+	Theorem Even_More_LT_2:
+		For all i, j, k : Z,
+			i + j <= k and i > 0 implies j < k;
 
 	Theorem Greater_Than_Zero_Not_Equal_Zero:
 		For all i : Z,
@@ -146,6 +160,70 @@ Precis Integer_Theory;
 		For all i, j, k : Z,
 			i <= j and k > j implies i < k;
 
+	Theorem Less_Than_Equal_Self:
+		For all i : Z,
+			i <= i;
+
+	Theorem Switch_1:
+		For all i, j : Z,
+			(i > j) = (j < i);
+
+	Theorem Switch_2:
+		For all i, j : Z,
+			(i >= j) = (j <= i);
+
+	Theorem Weaken_1:
+		For all i, j : Z,
+			i > j implies i >= j;
+
+	Theorem Weaken_2:
+		For all i, j : Z,
+			i < j implies i <= j;
+
+	Theorem LET_Transitive:
+		For all i, j, k : Z,
+			i <= j and j <= k implies i <= k;
+
+	Theorem Mixed_Transitive_1:
+		For all i, j, k : Z,
+			i < j and j <= k implies i < k;
+
+	Theorem Off_by_One_1:
+		For all i, j : Z,
+			(i <= j) = (i < j + 1);
+
+	Theorem Off_by_One_2:
+		For all i, j : Z,
+			(i < j) = (i + 1 <= j);
+
+	Theorem Off_by_One_3:
+		For all i, j : Z,
+			(i < j) = (i <= j - 1);
+
+	Theorem Subtract_One_from_both_LET:
+		For all i, j, k : Z,
+			(i <= j) = ((i - 1) <= (j - 1));
+
+	Theorem Subtract_One_Still_Less:
+		For all i, j : Z,
+			i <= j implies i - 1 <= j;
+
+	Theorem Subtract_Positive_Still_Less:
+		For all i, j, k : Z,
+			i <= j and k >= 0 implies i - k <= j;
+
+	Theorem LET_But_Not_Equal_1:
+		For all i, j : Z,
+			i <= j and j /= i implies i < j;
+
+	Theorem Cheap_LEQ_Theorem_1:
+		For all i, j, k : Z,
+			k <= j and i <= 0 implies i <= j - k;
+
+	Theorem Subtact_Makes_Less:
+		For all i, j, k : Z,
+			i = j - k and k > 0 implies i < j;
+
 	---------------------------------------------------------------
 	-- Zero Theorems                                             --
 	---------------------------------------------------------------
@@ -157,5 +235,25 @@ Precis Integer_Theory;
 	Theorem Zero_Property_Left:
 		For all i : Z,
 			0 + i = i;
+
+	Theorem Zero_Minus_Property:
+		For all i : Z,
+			i - 0 = i;
+
+	---------------------------------------------------------------
+	-- Arithmetic                                                --
+	---------------------------------------------------------------
+
+	Theorem Plus_Minus:
+		For all i, j : Z,
+			i + j - j = i;
+
+	Theorem Minus_Itself:
+		For all i : Z,
+			i - i = 0;
+
+	Theorem Subtract_Both_Sides_LET:
+		For all i, j : Z,
+			i <= j implies 0 <= j - i;
 
 end Integer_Theory;

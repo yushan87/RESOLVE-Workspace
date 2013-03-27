@@ -89,12 +89,12 @@ Precis String_Theory;
 	--Singleton string
 	Definition <(e : (U : MType))> : Str(U);
 
-	Definition Is_Permutation(s : Str(U : MType), t : Str(U)) : B;
+	Definition Is_Permutation(s : SStr, t : SStr) : B;
 
 	--Determines if for every pairing of elements from s and t, the given predicate
 	--holds
-	Definition Is_Universally_Related(s : Str(U : MType), t : Str(U),
-			f : (U * U) -> B) : B;
+	Definition Is_Universally_Related(s : SStr, t : SStr, 
+		f : (Entity * Entity) -> B) : B;
 
 	Definition Substring(s : Str(U : MType), startInclusive : Z, length : Z) :
 		Str(U);
@@ -151,12 +151,12 @@ Precis String_Theory;
 	Theorem Concatenate_Singleton_Increases_Length_Left:
 		For all S : SStr,
 		For all E : Entity,
-			(|S| < |<E> o S|) = true;
+			(|S| < |<E> o S|);
 
 	Theorem Concatenate_Singleton_Increases_Length_Right:
 		For all S : SStr,
 		For all E : Entity,
-			(|S| < |S o <E>|) = true;
+			(|S| < |S o <E>|);
 
 	Theorem Zero_Length_Implies_Empty_String:
 		For all S : SStr,
@@ -165,6 +165,18 @@ Precis String_Theory;
 	Theorem Length_Concatenation:
 		For all U, V : SStr,
 			|U o V| = |U| + |V|;
+
+	Theorem Get_Rid_Of_Singleton_1:
+		For all S, T : SStr,
+		For all e : Entity,
+			(|S o <e>| = |T|) implies
+				(|S| < |T|);
+
+	Theorem Get_Rid_Of_Singleton_2:
+		For all S, T : SStr,
+		For all e : Entity,
+			(|<e> o S| = |T|) implies
+				(|S| < |T|);
 
 	---------------------------------------------------------------
 	-- Singleton String Theorems                                 --
@@ -190,4 +202,90 @@ Precis String_Theory;
 	Theorem Concatenation_Associative:
 		For all U, V, W : SStr,
 			(U o V) o W = U o (V o W);
+
+	---------------------------------------------------------------
+	-- Permutation Theorems                                      --
+	---------------------------------------------------------------
+	Theorem Identity_Permutation:
+		For all S : SStr,
+			Is_Permutation(S, S);
+
+	Theorem Permutation_Lengths:
+		For all S, T : SStr,
+			Is_Permutation(S, T) implies |S| = |T|;
+
+	Theorem Permutation_Extension_1:
+		For all S, T, U, V : SStr,
+			Is_Permutation(S, T) and
+			Is_Permutation(T o U, V) implies
+				Is_Permutation(S o U, V);
+
+	Theorem Permutation_Shell_Game_1:
+		For all S, T, U, V : SStr,
+			Is_Permutation(S o (T o U), V) =
+				Is_Permutation((S o U) o T, V);
+
+	Theorem Permutation_Shell_Game_2:
+		For all S, T : SStr,
+			Is_Permutation(S o T, T o S);
+
+	Theorem Permutation_Shell_Game_3:
+		For all S, T, U, V, W : SStr,
+			Is_Permutation((S o (T o U)) o V, W) =
+				Is_Permutation(((S o V) o U) o T, W);
+
+	Theorem Permutation_Commutative:
+		For all S, T : SStr,
+			Is_Permutation(S, T) = Is_Permutation(T, S);
+
+	---------------------------------------------------------------
+	-- Universal Relations Theorems                              --
+	---------------------------------------------------------------
+	Theorem Empty_String_Universally_Related_1:
+		For all T : MType,
+		For all S : Str(T),
+		For all f : (T * T) -> B,
+			Is_Universally_Related(Empty_String, S, f);
+
+	Theorem Empty_String_Universally_Related_2:
+		For all T : MType,
+		For all S : Str(T),
+		For all f : (T * T) -> B,
+			Is_Universally_Related(S, Empty_String, f);
+
+	Theorem Universally_Related_Distributes_1:
+		For all f : (Entity * Entity) -> B,
+		For all S, T, U : SStr,
+			Is_Universally_Related(S o T, U, f) implies
+				Is_Universally_Related(S, U, f) and
+				Is_Universally_Related(T, U, f);
+
+	Theorem Universally_Related_Distributes_2:
+		For all f : (Entity * Entity) -> B,
+		For all S, T, U : SStr,
+			Is_Universally_Related(S, U, f) and
+			Is_Universally_Related(T, U, f) implies
+				Is_Universally_Related(S o T, U, f);
+
+	Theorem Permutation_Maintains_Universal_Relation_1:
+		For all f : (Entity * Entity) -> B,
+		For all S, T, U : SStr,
+			Is_Universally_Related(S, T, f) and
+			Is_Permutation(U, T) implies
+				Is_Universally_Related(S, U, f);
+
+	Theorem Permutation_Maintains_Universal_Relation_2:
+		For all f : (Entity * Entity) -> B,
+		For all S, T, U : SStr,
+			Is_Universally_Related(S, T, f) and
+			Is_Permutation(U, S) implies
+				Is_Universally_Related(U, T, f);
+
+	Theorem Universal_Relation_Transitivity_1:
+		For all f : (Entity * Entity) -> B,
+		For all S : SStr,
+		For all e1, e2 : Entity,
+			f(e1, e2) and Is_Universally_Related(<e2>, S, f) implies
+				Is_Universally_Related(<e1>, S, f);
+
 end;
