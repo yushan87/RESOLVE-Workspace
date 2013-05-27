@@ -1,5 +1,4 @@
 Realization Iterative_Alt_Int_Mult_Realiz for Alt_Int_Mult_Capability of Integer_Template;
-	uses Std_Boolean_Fac;
 
 	Procedure Multiply(alters I, J: Integer; replaces K: Integer);
 		While (Is_Not_Zero(I))

@@ -1,5 +1,5 @@
 Enhancement Adding_Capability for Integer_Template;
-	uses Integer_Theory, Std_Integer_Fac;
+	uses Integer_Theory;
 
     Operation Add_to(updates i:Integer; evaluates j:Integer);
         requires min_int <= i + j and i + j <= max_int and j >= 0;

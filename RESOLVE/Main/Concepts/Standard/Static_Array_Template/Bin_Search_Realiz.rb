@@ -2,7 +2,6 @@ Realization Bin_Search_Realiz(
       operation Are_Ordered(restores x,y: Entry): Boolean;
          ensures Are_Ordered = (LEQ(x,y));
       )for Search_Capability of Static_Array_Template;
-	uses Std_Boolean_Fac;
 
     Operation Are_Equal(restores x, y: Entry): Boolean;
 	ensures Are_Equal = (x = y);

@@ -2,7 +2,6 @@ Realization Bool_Bin_Search_Realiz (
 	Operation Are_Ordered(restores x,y: Entry): Boolean;
 		ensures Are_Ordered = true;
 ) for Bool_Search_Capability of Static_Array_Template;
-	uses Std_Boolean_Fac;
 
 (*
     Operation Are_Ordered(restores x,y: Entry): Boolean;

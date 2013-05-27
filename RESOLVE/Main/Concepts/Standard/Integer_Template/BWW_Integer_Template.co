@@ -1,6 +1,6 @@
 
 Concept Integer_Template;
-    uses Integer_Theory, Std_Boolean_Fac;
+    uses Integer_Theory;
     requires min <= 0 < max;
 
     Definition min: Z;

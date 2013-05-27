@@ -1,5 +1,5 @@
 Realization Int_Max_Realiz for Int_Max_Capability of Integer_Template;
-	uses Std_Boolean_Fac;
+
     -- This code is intentionally faulty; generate VCs and find the bug.
 	Procedure Find_Max(restores I: Integer; restores J: Integer; replaces K: Integer);
 		If (I > J) then

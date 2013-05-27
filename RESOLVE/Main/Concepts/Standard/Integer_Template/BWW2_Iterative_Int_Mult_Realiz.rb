@@ -1,5 +1,4 @@
 Realization BWW2_Iterative_Int_Mult_Realiz for BWW_Int_Mult_Capability of Integer_Template;
-	uses Std_Boolean_Fac;
 
 	Procedure Multiply(clears i: Integer; updates j: Integer);
 		Var s, z: Integer;

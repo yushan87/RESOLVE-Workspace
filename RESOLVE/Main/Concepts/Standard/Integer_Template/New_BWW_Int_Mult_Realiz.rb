@@ -1,5 +1,4 @@
 Realization New_BWW_Int_Mult_Realiz for New_BWW_Int_Mult_Capability of Integer_Template;
-	uses Std_Boolean_Fac;
 
 	Procedure Multiply(updates i: Integer; restores j: Integer);
 		Var p, nj, z: Integer;

@@ -1,5 +1,4 @@
 Concept Location_Linking_Template_1(type Info);
-	uses Std_Integer_Fac, Std_Boolean_Fac;
 
 	Definition Void: Z;
 	Var Content: Z -> Info;

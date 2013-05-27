@@ -1,5 +1,4 @@
 Realization Restoring_Int_Mult_Realiz for Restoring_Int_Mult_Capability of Integer_Template;
-	uses Std_Boolean_Fac;
 
 	Procedure Multiply(restores I: Integer; updates J: Integer);
 		Var K: Integer;

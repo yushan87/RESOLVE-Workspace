@@ -1,5 +1,4 @@
 Concept Seq_Input_Template;
-   uses Std_Char_Str_Fac;
 
    Type Family Seq_Input is modeled by B;
       exemplar f;
