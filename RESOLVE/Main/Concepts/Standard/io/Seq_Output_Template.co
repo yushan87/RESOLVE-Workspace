@@ -1,5 +1,4 @@
 Concept Seq_Output_Template;
-   uses Std_Char_Str_Fac;
 
    Type Family Seq_Output is modeled by B;
       exemplar f;

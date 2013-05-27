@@ -1,5 +1,4 @@
 Realization Int_Assign_Clear_2_Realiz for Clear_2_Capability of Stack_Template;
-	uses Std_Boolean_Fac;
 
 	Procedure Clear_2(updates S: Stack);
 		Var Next_Entry: Entry;

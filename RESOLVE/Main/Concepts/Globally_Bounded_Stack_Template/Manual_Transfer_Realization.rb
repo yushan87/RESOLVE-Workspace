@@ -1,6 +1,5 @@
 Realization Manual_Transfer_Realization for UST_Transfer_Capability of 
 		Globally_Bounded_Stack_Template;
-	uses Std_Boolean_Fac;
 
 	Definition D : Z = Sum i : Z where i > 0 and i < 10, i;
 

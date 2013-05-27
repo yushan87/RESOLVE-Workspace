@@ -5,7 +5,6 @@ Realization Obvious_CC_Realiz
 
     ) 
 for Copy_Capability of Stack_Template;
-    uses Std_Boolean_Fac;
 
     Procedure Copy_Stack(replaces S_Copy: Stack; restores S_Orig: Stack);
         Var Next_Entry, Entry_Copy: Entry;

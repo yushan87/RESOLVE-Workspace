@@ -1,5 +1,4 @@
 Realization Shifting_Realiz for Shifting_Capability of Static_Array_Template;
-	uses Std_Boolean_Fac;
 
     Procedure Shift_All(updates A: Static_Array);
 	Var Temp: Entry;

@@ -1,5 +1,4 @@
 Realization Recursive_Add_Realiz for Add_Capability of Integer_Template;
-	uses Std_Boolean_Fac;
 
 	Recursive Procedure Add(updates i: Integer; restores j: Integer);
 		decreasing |j|;

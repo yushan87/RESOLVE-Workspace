@@ -1,5 +1,5 @@
 Concept Stack_Template(type Entry; evaluates Max_Depth: Integer);
-        uses Std_Integer_Fac, String_Theory, Integer_Theory;
+        uses String_Theory, Integer_Theory;
         requires Max_Depth > 0;
 
     Type Family Stack is modeled by Str(Entry);

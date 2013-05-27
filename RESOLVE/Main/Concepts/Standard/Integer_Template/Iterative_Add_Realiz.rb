@@ -1,5 +1,4 @@
 Realization Iterative_Add_Realiz for Add_Capability of Integer_Template;
-	uses Std_Boolean_Fac;
 
 	Procedure Add(updates i: Integer; restores j: Integer);
 		Var nj, z: Integer;

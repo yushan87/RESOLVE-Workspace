@@ -1,5 +1,4 @@
 Realization Iterative_Int_Do_Nothing_Realiz for Int_Do_Nothing_Capability of Integer_Template;
-	uses Std_Boolean_Fac;
 
 	Procedure Do_Nothing(restores I: Integer);
 		Var J, K: Integer;

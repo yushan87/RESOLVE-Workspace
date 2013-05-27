@@ -1,6 +1,5 @@
 Realization Obvious_Flip_Realization for Flip_Capability of 
 		Globally_Bounded_Stack_Template;
-	uses Std_Boolean_Fac;
 
 	Procedure Flip(updates S: Stack);
 		Var S_Reversed: Stack;
