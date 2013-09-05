@@ -243,6 +243,21 @@ Precis Integer_Theory;
 	---------------------------------------------------------------
 	-- Arithmetic                                                --
 	---------------------------------------------------------------
+	
+	Theorem Commutative_1:
+        For all i, j : Z, (i + j) = (j + i);
+
+	Theorem Commutative_2:
+        For all i, j : Z, (i * j) = (j * i);
+
+	Theorem Associative_1:
+        For all i, j, k : Z, (i + j) + k = i + (j + k);
+
+	Theorem Associative_2:
+        For all i, j, k : Z, (i * j) * k = i * (j * k);
+
+    Theorem Distributive:
+        For all i, j, k : Z, i * (j + k) = (i * j) + (i * k);
 
 	Theorem Plus_Minus:
 		For all i, j : Z,
