@@ -1,4 +1,5 @@
 Facility Int_Swap_Example_Fac;
+	uses Integer_Template;
 
     Operation Exchange(updates I: Integer; updates J: Integer);
         ensures I = #J and J = #I;
@@ -11,6 +12,7 @@ Facility Int_Swap_Example_Fac;
     end Exchange;
 
     Operation Exchange2(updates I: Integer; updates J: Integer);
+		requires min_int <= (I + J) and (I + J) <= max_int;
         ensures I = #J and J = #I;
     Procedure
         I := I + J;
@@ -18,6 +20,7 @@ Facility Int_Swap_Example_Fac;
         I := I - J;
     end Exchange2;
 
+	(*
     Operation Main();
     Procedure
         Var X, Y: Integer;
@@ -38,5 +41,5 @@ Facility Int_Swap_Example_Fac;
         Write("The second number is:");
         Write(Y);
         Write_Line("------------"); 
-    end Main;
+    end Main; *)
 end Int_Swap_Example_Fac;
