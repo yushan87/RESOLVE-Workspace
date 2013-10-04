@@ -43,10 +43,6 @@ Precis Integer_Theory;
 	(* Note that the type Z is built-in.  No need to introduce it here. *)
 
 	Definition N : Powerset(Z);
-
-	Definition 0: N;
-	Definition 1: N;
-
 	Definition z : Z;
 
 	Type Theorem N_Subset_of_Z:
@@ -56,6 +52,18 @@ Precis Integer_Theory;
     Definition neg: Z -> Z;
 
     Definition suc: Z -> Z;
+	
+	(* Temporary fix for numbers 0 to 9 *)
+	Definition 0 : N;
+	Definition 1 : N;
+	Definition 2 : N;
+	Definition 3 : N;
+	Definition 4 : N;
+	Definition 5 : N;
+	Definition 6 : N;
+	Definition 7 : N;
+	Definition 8 : N;
+	Definition 9 : N;
 
     --------------------------------------------------------------
 
