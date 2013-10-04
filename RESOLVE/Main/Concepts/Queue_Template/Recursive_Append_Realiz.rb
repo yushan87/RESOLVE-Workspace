@@ -3,7 +3,7 @@ Realization Recursive_Append_Realiz for Append_Capability of Queue_Template;
         decreasing |Q|;
 
       Var E: Entry;
-      If (Length (Q) /= 0) then
+      If ( Is_Not_Zero(Length(Q)) ) then
           Dequeue(E,Q);
           Enqueue(E,P);
           Append(P,Q);
