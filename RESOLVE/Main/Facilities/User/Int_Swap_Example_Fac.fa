@@ -1,5 +1,5 @@
 Facility Int_Swap_Example_Fac;
-	uses Integer_Template;
+    uses Integer_Template;
 
     Operation Exchange(updates I: Integer; updates J: Integer);
         ensures I = #J and J = #I;
@@ -19,7 +19,7 @@ Facility Int_Swap_Example_Fac;
         I := I - J;
     end Exchange2;
 
-	(*
+    (*
     Operation Main();
     Procedure
         Var X, Y: Integer;
