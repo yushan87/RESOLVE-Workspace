@@ -3,7 +3,7 @@ Realization Recursive_Flipping_Realiz for Flipping_Capability of Queue_Template;
         decreasing |Q|;
 
         Var E: Entry;
-        If (Length(Q) /= 0) then
+        If ( Is_Not_Zero(Length(Q)) ) then
             Dequeue(E, Q);
             Flip(Q);
             Enqueue(E, Q);
