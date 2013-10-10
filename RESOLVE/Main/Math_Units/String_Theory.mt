@@ -158,9 +158,9 @@ Precis String_Theory;
 		For all E : Entity,
 			(|S| < |S o <E>|);
 
-	Theorem Zero_Length_Implies_Empty_String:
+	Theorem Zero_Length_Empty_String:
 		For all S : SStr,
-			(|S| = 0) implies S = Empty_String;
+			(|S| = 0) = (S = Empty_String);
 
 	Theorem Length_Concatenation:
 		For all U, V : SStr,
