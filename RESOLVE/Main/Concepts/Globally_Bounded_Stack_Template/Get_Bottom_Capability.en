@@ -1,8 +1,7 @@
 Enhancement Get_Bottom_Capability for Globally_Bounded_Stack_Template;
-	uses String_Theory;
 
 	Operation Get_Bottom(updates S : Stack; updates E : Entry);
-		requires |#S| > 0;
+		requires not (S = Empty_String);
 		ensures #S = S o <E>;
 
 end Get_Bottom_Capability;

@@ -1,7 +1,5 @@
 Enhancement Transfer_Capability for Globally_Bounded_Stack_Template;
 
---	Definition Foo(D : SSet) : Boolean;
-
 	Operation Transfer(clears   Source      : Stack;
 	                   replaces Destination : Stack);
 		ensures Destination = #Source;

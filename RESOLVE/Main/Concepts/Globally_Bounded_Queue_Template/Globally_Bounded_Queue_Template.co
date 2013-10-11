@@ -10,7 +10,7 @@ Concept Globally_Bounded_Queue_Template(type Entry);
         ensures Q = #Q o <#E>;
  
     Operation Dequeue(replaces R: Entry; updates Q: Queue);
-        requires Q /= Empty_String;
+        requires not(Q = Empty_String);
         ensures #Q = <R> o Q;
 
     Operation Is_Empty(restores Q: Queue): Boolean;

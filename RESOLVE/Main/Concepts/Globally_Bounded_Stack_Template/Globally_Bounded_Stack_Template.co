@@ -6,10 +6,10 @@ Concept Globally_Bounded_Stack_Template(type Entry);
         initialization ensures S = Empty_String;
 
     Operation Push(alters E: Entry; updates S: Stack); 
-        ensures  S = <#E> o #S;
+        ensures S = <#E> o #S;
 
     Operation Pop(replaces R: Entry; updates S: Stack);
-        requires S /= Empty_String;
+        requires not(S = Empty_String);
         ensures #S = <R> o S;
 
     Operation Is_Empty(restores S : Stack) : Boolean;
