@@ -3,7 +3,7 @@ Realization Recursive_List_Flipping_Realiz for List_Flipping_Capability of Globa
         decreasing |P.Rem|;
 
         Var E: Entry;
-        If (not Is_Rem_Empty(P)) then
+        If ( Not(Is_Rem_Empty(P)) ) then
             Remove (E, P);
             Flip_Rem(P);
             Insert(E, P);

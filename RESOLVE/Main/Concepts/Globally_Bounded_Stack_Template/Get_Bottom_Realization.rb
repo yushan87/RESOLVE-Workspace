@@ -1,11 +1,10 @@
 Realization Get_Bottom_Realization for Get_Bottom_Capability of 
 		Globally_Bounded_Stack_Template;
-	uses String_Theory;
-
+	
 	Procedure Get_Bottom(updates S : Stack; updates E : Entry);
 		Var S_Temp : Stack;
 		Var E_Temp : Entry;
-		While (not Is_Empty(S))
+		While ( Not(Is_Empty(S)) )
 			changing S, S_Temp, E_Temp;
 			maintaining #S = Reverse(S_Temp) o S; 
 			decreasing |S|;
@@ -14,7 +13,7 @@ Realization Get_Bottom_Realization for Get_Bottom_Capability of
 			Push(E_Temp, S_Temp);
 		end;
 		Pop(E, S_Temp);
-		While (not Is_Empty(S_Temp))
+		While ( Not(Is_Empty(S_Temp)) )
 			changing S, S_Temp, E_Temp;
 			maintaining #S = Reverse(S_Temp) o S o <E>;
 			decreasing |S_Temp|;

@@ -1,12 +1,11 @@
-Realization UST_Obvious_Flip_Realization for Flip_Capability of 
+Realization Obvious_Flipping_Realiz for Flipping_Capability of 
 		Globally_Bounded_Stack_Template;
 
 	Procedure Flip(updates S: Stack);
 		Var S_Reversed: Stack;
 		Var Next_Entry: Entry;
 
-		While (not Is_Empty(S))
-			changing S, S_Reversed, Next_Entry;
+		While ( Not(Is_Empty(S)) )
 			maintaining #S = Reverse(S_Reversed) o S;
 			decreasing |S|;
 		do
@@ -15,4 +14,4 @@ Realization UST_Obvious_Flip_Realization for Flip_Capability of
 		end;
 		S_Reversed :=: S;
 	end Flip;
-end UST_Obvious_Flip_Realization;
+end Obvious_Flipping_Realiz;

@@ -9,7 +9,7 @@ Concept Globally_Bounded_List_Template( type Entry);
 				ensures P.Prec = Empty_String and P.Rem = Empty_String;
 
 		Oper Advance( upd P: List );
-			requires P.Rem /= Empty_String;
+			requires not(P.Rem = Empty_String);
 			ensures P.Prec = #P.Prec o Substring(#P.Rem, 0, 1) and 
 				P.Rem = Substring(#P.Rem, 1, |#P.Rem| - 1);
 
@@ -23,7 +23,7 @@ Concept Globally_Bounded_List_Template( type Entry);
 			ensures P.Prec = #P.Prec and P.Rem = <#New_Entry> o #P.Rem;
 
 		Oper Remove( rpl Entry_Removed: Entry; upd P: List );
-			requires P.Rem /= Empty_String;
+			requires not(P.Rem = Empty_String);
 			ensures P.Prec = #P.Prec and
 				Entry_Removed = Element_At(1, #P.Rem) and
 				P.Rem =  Substring(#P.Rem, 1, |#P.Rem| - 1);
