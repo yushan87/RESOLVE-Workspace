@@ -2,6 +2,8 @@ Enhancement Averaging_Capability(Definition AsInteger(e : Entry) : N)
 	for Queue_Template;
 	uses String_Theory;
 	requires For all e : Entry, min_int <= AsInteger(e) <= max_int;
+	
+	(* Note: Under Construction! *)
 
 	Operation Average(restores Q : Queue) : Integer;
 		requires |Q| < |min_int| / 2 and

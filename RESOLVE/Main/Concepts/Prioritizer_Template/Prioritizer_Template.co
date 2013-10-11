@@ -1,5 +1,7 @@
 Concept Prioritizer_Template( type Entry; evaluates Max_Capacity: Integer; definition LEQV(x,y: Entry): B);
     requires Max_Capacity > 0 and Is_Total_Preordering(LEQV);
+	
+	(* Note: Under Construction! *)
 
     --------------------------------------------------------------
 

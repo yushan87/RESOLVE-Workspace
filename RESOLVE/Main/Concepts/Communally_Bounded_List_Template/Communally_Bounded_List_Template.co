@@ -2,6 +2,8 @@ Concept Communally_Bounded_List_Template( type Entry; eval Initial_Capacity: Int
 	uses String_Theory;
 	requires Initial_Capacity > 0;
 	
+	(* Note: Under Construction! *)
+	
 	Var Remaining_Cap: N;
 
 	Facility_Initialization

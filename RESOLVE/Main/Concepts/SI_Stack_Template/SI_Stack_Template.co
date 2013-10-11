@@ -1,6 +1,8 @@
 Concept SI_Stack_Template(type Entry; evaluates Max_Depth: Integer);
     uses String_Theory;
     requires Max_Depth > 0;
+	
+	(* Note: Under Construction! *)
 
     Var Self: Str(Entry); 
         constraint |Self| <= Max_Depth;

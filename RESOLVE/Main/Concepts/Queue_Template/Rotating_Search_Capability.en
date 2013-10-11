@@ -1,7 +1,0 @@
-Enhancement Rotating_Search_Capability for Queue_Template;
-    Operation Rotate_and_Find (restores Given_Entry: Entry; updates Q: Queue);
-		ensures ((<Given_Entry> is_substring_of #Q) implies 
- 				(there exists a, b: Str(Entry) such that #Q = a o <Given_Entry> o b and  
- 				 Q = <Given_Entry> o b o a)) and 
-			((not <Given_Entry> is_substring_of #Q) implies (Q = #Q));
-end Rotating_Search_Capability;

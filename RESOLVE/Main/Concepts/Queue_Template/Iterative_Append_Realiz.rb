@@ -1,7 +1,7 @@
 Realization Iterative_Append_Realiz for Append_Capability of Queue_Template;
     Procedure Append(updates P: Queue; clears Q: Queue);
         Var E: Entry;
-        While (Length(Q) /= 0)
+        While ( Is_Not_Zero(Length(Q)) )
           maintaining (P o Q = #P o #Q);
           decreasing |Q|;
         do

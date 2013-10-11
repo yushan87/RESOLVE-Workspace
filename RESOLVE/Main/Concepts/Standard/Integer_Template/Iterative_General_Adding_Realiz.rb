@@ -1,4 +1,4 @@
-Realization Iterative_Add_Realiz for Add_Capability of Integer_Template;
+Realization Iterative_General_Adding_Realiz for Add_Capability of Integer_Template;
 
 	Procedure Add(updates i: Integer; restores j: Integer);
 		Var nj, z: Integer;
@@ -20,5 +20,5 @@ Realization Iterative_Add_Realiz for Add_Capability of Integer_Template;
 		end;
 		j :=: nj;
 	end Add;
-end Iterative_Add_Realiz;
+end Iterative_General_Adding_Realiz;
 

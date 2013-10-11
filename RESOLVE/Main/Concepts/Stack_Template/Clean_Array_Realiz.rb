@@ -1,5 +1,7 @@
 Realization Clean_Array_Realiz for Stack_Template;
 
+    (* Note: Under Construction! *)
+
     Definition Array_is_Clean(SR: Stack): B =
         For all i: Integer, if SR.Top < i <= Max_Depth
         then Entry.Is_Initial(SR.Contents(i));

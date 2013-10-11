@@ -2,6 +2,8 @@ Realization Combined_Merge_Sort_Realiz(
       operation Are_Ordered(restores x,y: Entry): Boolean;
          ensures Are_Ordered = (LEQV(x,y));
       )for Merge_and_Sort_Capabilities of Queue_Template;
+
+    (* Note: Under Construction! *)
  
     Procedure Merge_Q(clears Q: Queue; updates R: Queue);
       Var Merger: Queue; 

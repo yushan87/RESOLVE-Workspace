@@ -5,6 +5,8 @@ Enhancement Multi_Set_Based_Sorting_Capability(
 	uses String_Theory, Multi_Set_Theory;
 	requires Is_Total_Preordering(LEQV);
 
+	(* Note: Under Construction! *)
+
 	Operation Sort(updates Q : Queue);
 		ensures Is_Conformal_With(LEQV, Q) and 
 			StringToMultiSet(#Q) = StringToMultiSet(Q);

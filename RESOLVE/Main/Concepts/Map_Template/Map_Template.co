@@ -1,5 +1,7 @@
 Concept Map_Template (Type Key; Type Info; evaluates Max_Size: Integer);
 	requires 0 < Max_Size;
+	
+	(* Note: Under Construction! *)
 
 	Type Family Map is modeled by
 		Cart_Prod
