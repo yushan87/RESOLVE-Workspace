@@ -1,5 +1,7 @@
 Concept Location_Linking_Template_1(type Info);
 
+	(* Note: Under Construction! *)
+
 	Definition Void: Z;
 	Var Content: Z -> Info;
 	Var Ref: Z -> Z;

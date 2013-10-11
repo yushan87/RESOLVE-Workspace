@@ -1,6 +1,8 @@
 Concept Basic_Map_Template (Type Key; Type Info; evaluates Max_Size: Integer;
 								definition Default_Info: Info);
 	requires 0 < Max_Size;
+	
+	(* Note: Under Construction! *)
 
 	Definition Dev_Ct (M: Map): N = 
 			||{ k: Key, M(k) /= Default_Info}||; 

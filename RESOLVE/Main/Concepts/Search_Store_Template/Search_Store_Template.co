@@ -1,5 +1,7 @@
 Concept Search_Store_Template (Type Key; evaluates Max_Capacity: Integer);
     requires Max_Capacity > 0;
+	
+	(* Note: Under Construction! *)
 
     Type Family Store is modeled by powerset(Key); 
     	exemplar S;

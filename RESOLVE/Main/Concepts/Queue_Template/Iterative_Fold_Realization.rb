@@ -4,6 +4,8 @@ Realization Iterative_Fold_Realization(
 				ensures soFar = Combined(#soFar, next);) 
 		for Fold_Capability of Queue_Template;
 
+    (* Note: Under Construction! *)
+
 	Procedure Fold_Right(updates Accumulator : T; restores List : Queue);
 		Var Included : Queue;
 		Var Cur_Entry : Entry;

@@ -38,6 +38,9 @@
  *)
 
 Realization Circular_Array_Realiz for Queue_Template;
+    
+    (* Note: Under Construction! *)
+	
     Type Queue = Record
             Contents: Array 0..Max_Length - 1 of Entry;
             Front, Length: Integer;

@@ -3,6 +3,8 @@ Realization Folding_Average_Realization(
 				ensures I = AsInteger(E) and 
 					0 <= AsInteger(E) <= max_int;)
 		for Averaging_Capability of Queue_Template;
+		
+    (* Note: Under Construction! *)
 
 	Procedure Average(restores Q : Queue) : Integer;
 		Var Cur_Entry : Entry;
