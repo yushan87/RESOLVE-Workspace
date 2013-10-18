@@ -264,8 +264,8 @@ Precis Integer_Theory;
 	Theorem Associative_2:
         For all i, j, k : Z, (i * j) * k = i * (j * k);
 		
-    Theorem Distributive:
-        For all i, j, k : Z, i * (j + k) = (i * j) + (i * k);
+	Theorem Distributive:
+		For all i, j, k : Z, i * (j + k) = (i * j) + (i * k);
 
 	Theorem Plus_Minus:
 		For all i, j : Z,
