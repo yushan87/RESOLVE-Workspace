@@ -1,2 +1,0 @@
-
-Files in this directory are math units intended as self-contained demonstrations of the capabilities of Clemson RESOLVE's integrated prover.  Run the compiler on these files with the -vcs and -altprove flags on.
