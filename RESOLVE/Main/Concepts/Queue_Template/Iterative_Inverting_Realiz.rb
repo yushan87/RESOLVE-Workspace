@@ -1,9 +1,9 @@
-Realization Iterative_Flipping_Realiz for Flipping_Capability of Queue_Template;
+Realization Iterative_Inverting_Realiz for Inverting_Capability of Queue_Template;
 
 	Facility SF is Stack_Template(Entry, Max_Length)
 		realized by Array_Realiz;
 
-	Procedure Flip (updates Q: Queue);
+	Procedure Invert (updates Q: Queue);
 		Var S: SF.Stack;
 		Var Next_Entry: Entry;
 
@@ -22,5 +22,5 @@ Realization Iterative_Flipping_Realiz for Flipping_Capability of Queue_Template;
 			Pop(Next_Entry, S);
 			Enqueue(Next_Entry, Q);
 		end;
-	end Flip;
-end Iterative_Flipping_Realiz;
+	end Invert;
+end Iterative_Inverting_Realiz;
