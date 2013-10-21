@@ -1,11 +1,9 @@
-Realization Obvious_Flipping_Realiz for Flipping_Capability of 
-		Globally_Bounded_Stack_Template;
-
+Realization Obvious_Flipping_Realiz for Flipping_Capability of Stack_Template;
 	Procedure Flip(updates S: Stack);
 		Var Temp: Stack;
 		Var Next_Entry: Entry;
 
-		While ( Not(Is_Empty(S)) )
+		While (Depth(S) /= 0)
 			maintaining #S = Reverse(Temp) o S;
 			decreasing |S|;
 		do
