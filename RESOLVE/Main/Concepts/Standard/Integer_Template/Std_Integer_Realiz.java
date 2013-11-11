@@ -179,6 +179,7 @@ public class Std_Integer_Realiz extends RESOLVE_BASE implements Integer_Template
 
   public void Read(Integer_Template.Integer i) {
 	((Std_Integer_Realiz.Integer)i).val = TextIO.getInt();
+	TextIO.getln();
   } 
 
   public void Write(Integer_Template.Integer i) {
