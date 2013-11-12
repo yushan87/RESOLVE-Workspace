@@ -135,6 +135,7 @@ public class Std_Boolean_Realiz extends RESOLVE_BASE implements Boolean_Template
 
   public void Read(Boolean_Template.Boolean b) {
 	((Std_Boolean_Realiz.Boolean)b).val = TextIO.getBoolean();
+	TextIO.getln();
   } 
 
   public void Write(Boolean_Template.Boolean b) {

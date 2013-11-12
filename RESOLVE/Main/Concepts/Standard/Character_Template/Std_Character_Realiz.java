@@ -139,6 +139,7 @@ public class Std_Character_Realiz extends RESOLVE_BASE implements Character_Temp
 
   public void Read(Character_Template.Character c) {
 	((Std_Character_Realiz.Character)c).val = TextIO.getChar();
+	TextIO.getln();
   } 
 
   public void Write(Character_Template.Character c) {
