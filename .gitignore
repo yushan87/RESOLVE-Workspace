@@ -2,31 +2,37 @@
 # Compiled source #
 ###################
 
-#Java (Compiler Generated)
+# Java (Compiler Generated)
 *.java
 *.jar
 
-#VCs
+# VCs
 *.asrt
 
-#Proofs
+# Proofs
 *.proof
 
-#AST graphs
+# AST graphs
 *.ast
+
+###################
+# User Facilities #
+###################
+
+RESOLVE/Main/Facilities/User/*
 
 ###################
 # Temporary Files #
 ###################
 
-#gedit
+# gedit
 *~
 
 ###################
 # Other VCS Files #
 ###################
 
-#subversion
+# Subversion
 .svn/
 
 ###########################
@@ -47,11 +53,13 @@ nbactions*.xml
 #######################
 # Per-Developer Files #
 #######################
+
 developer.properties
 
 ######################
 # OS generated files #
 ######################
+
 .DS_Store
 .DS_Store?
 ._*
