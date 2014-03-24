@@ -6,9 +6,10 @@ Realization Queue_Based_Realiz for Text_Template;
         realized by Circular_Array_Realiz;
 
     Type Text = Record
-        Contents: QF. Queue;
-    end;
-    correspondence Conc.S = S.Contents;
+			Contents: QF. Queue;
+		end;
+		correspondence Conc.S = S.Contents;
+	end;
  
     Procedure Add(restores C: Character; updates S: Text);
         Var Temp: Character;

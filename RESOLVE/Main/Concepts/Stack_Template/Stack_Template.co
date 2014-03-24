@@ -6,6 +6,7 @@ Concept Stack_Template(type Entry; evaluates Max_Depth: Integer);
         exemplar S;
         constraint |S| <= Max_Depth;
         initialization ensures S = Empty_String;
+	end;
 
     Operation Push(alters E: Entry; updates S: Stack); 
         requires |S| < Max_Depth;

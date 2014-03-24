@@ -7,6 +7,7 @@ Concept Static_Array_Template(type Entry; evaluates Lower_Bound, Upper_Bound: In
 		constraint true;
 			initialization ensures 
 			for all i: Z, Entry.Is_Initial(A(i));
+	end;
 
     Operation Swap_Entry(updates A: Static_Array; updates E: Entry; evaluates i: Integer); 
         requires Lower_Bound <= i  and i <= Upper_Bound;

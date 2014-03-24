@@ -5,6 +5,7 @@ Concept Globally_Bounded_Stack_Template(type Entry);
 	Type Family Stack is modeled by Str(Entry);
 		exemplar S;
 		initialization ensures S = Empty_String;
+	end;
 
 	Operation Push(alters E: Entry; updates S: Stack); 
 		ensures S = <#E> o #S;

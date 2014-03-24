@@ -51,6 +51,7 @@ Realization Array_Realiz for Stack_Template;
         correspondence
             Conc.S = Reverse(Concatenate(S.Contents, 
 		S.Top));
+	end;
 
     Procedure Push(alters E: Entry; updates S: Stack);
         S.Top := S.Top + 1;

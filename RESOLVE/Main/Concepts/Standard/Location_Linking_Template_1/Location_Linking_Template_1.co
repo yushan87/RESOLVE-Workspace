@@ -11,6 +11,7 @@ Concept Location_Linking_Template_1(type Info);
 	Type Family Position is modeled by Z;
 		exemplar P;
 		initialization ensures P = Void;
+	end;
 
 	Operation Take_New_Location(updates P: Position);
 		ensures P /= Void;

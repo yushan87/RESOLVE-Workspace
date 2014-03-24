@@ -2,7 +2,8 @@ Realization Skeleton_Realiz for Globally_Bounded_Stack_Template;
     uses Location_Linking_Template_1;
 
     Type Stack = Integer;
-    correspondence Conc.S = Empty_String;
+		correspondence Conc.S = Empty_String;
+	end;
 
     Procedure Pop(replaces R: Entry; updates S: Stack);
 

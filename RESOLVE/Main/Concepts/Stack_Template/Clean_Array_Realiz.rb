@@ -15,6 +15,7 @@ Realization Clean_Array_Realiz for Stack_Template;
         correspondence
             Conc.S = Reverse(Concatenation i: Z
             where 1 <= i <= S.Top, <S.Contents(i)>);
+	end;
 
     Procedure Push(alters E: Entry; updates S: Stack);
         S.Top := S.Top + 1;

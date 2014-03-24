@@ -48,6 +48,7 @@ Concept Character_Template;
 		constraints c < Last_Char_Num;
 		initialization 
 			ensures c = 0;
+	end;
 
     Operation Char_to_Int(evaluates c: Character): Integer;
         ensures Char_to_Int = ( c );

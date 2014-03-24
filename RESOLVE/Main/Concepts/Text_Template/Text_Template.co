@@ -6,10 +6,11 @@ Concept Text_Template;
 --    Defines Max_Size: N;
 --    constraints Max_Size > 0;
 
-    Type Family Text is modeled by Str(N);
-    exemplar S;
---    constraint |S| <= Max_Size;
-    initialization ensures S = Empty_String;
+	Type Family Text is modeled by Str(N);
+		exemplar S;
+		--constraint |S| <= Max_Size;
+		initialization ensures S = Empty_String;
+	end;
  
     Operation Add(restores C: Character; updates S: Text);
 --        requires |S| < Max_Size;

@@ -50,6 +50,7 @@ Concept Integer_Template;
         exemplar i;
         constraint min_int <= i <= max_int;
         initialization ensures i = 0;
+	end;
 
     Operation Is_Zero(evaluates i: Integer): Boolean;
         ensures	Is_Zero = ( i = 0 );

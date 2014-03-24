@@ -3,9 +3,10 @@ Realization Stack_Based_Realiz for Globally_Bounded_List_Template;
     Facility SF is Globally_Bounded_Stack_Template(Entry)
             realized by Array_Realiz;
 
-    	Type List = Record
-		Left: SF.Stack;
-		Right: SF.Stack;
+    Type List is represented by Record
+			Left: SF.Stack;
+			Right: SF.Stack;
+		end;
 	end;
 
 	Procedure Advance( upd P: List );
@@ -52,13 +53,16 @@ Realization Stack_Based_Realiz for Globally_Bounded_List_Template;
 
 	end;
 	
+	Procedure Is_Prec_Empty( rest P: List ): Boolean;
 	
-		Procedure Is_Prec_Empty( rest P: List ): Boolean;
-		end;		
-		Procedure Is_Rem_Empty( rest P: List ): Boolean;
-		end;
+	end;		
+	
+	Procedure Is_Rem_Empty( rest P: List ): Boolean;
+	
+	end;
 
-		Procedure Clear( clr P: List );
-		end;
+	Procedure Clear( clr P: List );
+	
+	end;
 
 end Stack_Based_Realiz;

@@ -47,6 +47,7 @@ Concept Char_Str_Template;
         constraints |s| <= Max_Char_Str_Len;
         initialization 
 		ensures s = Empty_String;
+	end;
 
     (*Operation Char_Str_for(evaluates c: Character): Char_Str;
         ensures Char_Str_for = ( <c> );*)
