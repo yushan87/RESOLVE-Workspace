@@ -14,6 +14,8 @@ Realization Init_Array_Realiz for Stack_Template;
         initialization
            S.Top := 1;
         end;
+	end;
+	
     Procedure Push(alters E: Entry; updates S: Stack);
         E :=: S.Contents[S.Top];
         S.Top := S.Top + 1;

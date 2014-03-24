@@ -13,36 +13,36 @@ Realization Location_Linking_Realiz for Globally_Bounded_Stack_Template;
 			contentsContext : Z -> Entry): Str(Entry) = 
 		{{Empty_String if first = Void;
 		  <contentsContext(first)> o 
-		  	Str_Info(refContext(first), refContext, 			contentsContext) otherwise;}};
+		  	Str_Info(refContext(first), refContext, contentsContext) otherwise;}};
 
     Facility Entry_Ptr_Fac is Location_Linking_Template_1(Entry) 
         realized by Std_Location_Linking_Realiz;
 
     Type Stack is represented by Entry_Ptr_Fac.Position;
-
-    convention Is_Void_Reachable(S, Ref);
-    correspondence Conc.S = Str_Info(S, Content, Ref);
+		convention Is_Void_Reachable(S, Ref);
+		correspondence Conc.S = Str_Info(S, Content, Ref);
+	end;
 	
     Procedure Pop(replaces R: Entry; updates S: Stack);
-	Var Temp: Position;
+		Var Temp: Position;
 
-	Swap_Info(S, R);
-	Follow_Link(S);
+		Swap_Info(S, R);
+		Follow_Link(S);
     end Pop;
 
     Procedure Push(alters E: Entry; updates S: Stack); 
-	Var Temp: Position;
+		Var Temp: Position;
 
-	Take_New_Location(Temp);
-	Swap_Info(Temp, E);
-	Redirect_Link(Temp, S);
-	Relocate_to(Temp, S);
+		Take_New_Location(Temp);
+		Swap_Info(Temp, E);
+		Redirect_Link(Temp, S);
+		Relocate_to(Temp, S);
     end Push;
 
     Procedure Is_Empty(restores S : Stack) : Boolean;
-	Var Temp: Position;
+		Var Temp: Position;
 
-	Is_Empty := Is_At_Void(S);
+		Is_Empty := Is_At_Void(S);
     end Is_Empty;
 
     Procedure Clear(clears S: Stack);

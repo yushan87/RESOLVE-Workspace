@@ -5,6 +5,7 @@ Concept Globally_Bounded_Queue_Template(type Entry);
 	Type Family Queue is modeled by Str(Entry);
 		exemplar Q;
 		initialization ensures Q = Empty_String;
+	end;
  
 	Operation Enqueue(alters E: Entry; updates Q: Queue);
 		ensures Q = #Q o <#E>;

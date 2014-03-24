@@ -2,11 +2,12 @@ Concept Globally_Bounded_List_Template( type Entry);
 					uses String_Theory;
 
 		Type Family List is modeled by Cart_Prod
-			Prec, Rem: Str(Entry);
-		end;
+				Prec, Rem: Str(Entry);
+			end;
 			exemplar P;
 			initialization
 				ensures P.Prec = Empty_String and P.Rem = Empty_String;
+		end;
 
 		Oper Advance( upd P: List );
 			requires not(P.Rem = Empty_String);

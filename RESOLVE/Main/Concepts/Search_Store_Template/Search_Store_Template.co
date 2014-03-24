@@ -7,6 +7,7 @@ Concept Search_Store_Template (Type Key; evaluates Max_Capacity: Integer);
     	exemplar S;
 		constraint ||S|| <= Max_Capacity;
             initialization ensures S = {};
+	end;
 
 	Oper Add (restores k: Key; updates S: Store);
 		requires ||S|| < Max_Capacity and k is_not_in S;

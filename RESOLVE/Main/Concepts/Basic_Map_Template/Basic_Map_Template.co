@@ -9,10 +9,9 @@ Concept Basic_Map_Template (Type Key; Type Info; evaluates Max_Size: Integer;
 
 	Type Family Map is modeled by (Key -> Info); 
 		exemplar M;
-
 		constraint Dev_Ct (M) <= Max_Size;
-
         initialization ensures Dev_Ct (M) = 0;
+	end;
 
 	Oper Define (restores k: Key; alters I: Info; updates M: Map);
 		requires	Dev_Ct (M) < Max_Size and 

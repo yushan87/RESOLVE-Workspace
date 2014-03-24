@@ -3,9 +3,10 @@ Concept Preemptable_Queue_Template(type Entry; evaluates Max_Length: Integer);
     requires Max_Length > 0;
  
     Type Family P_Queue is modeled by Str(Entry);
-    exemplar Q;
-    constraint |Q| <= Max_Length;
-    initialization ensures Q = Empty_String;
+		exemplar Q;
+		constraint |Q| <= Max_Length;
+		initialization ensures Q = Empty_String;
+	end;
  
     Operation Enqueue(alters E: Entry; reassigns Q: P_Queue);
         requires |Q| < Max_Length;
@@ -22,9 +23,7 @@ Concept Preemptable_Queue_Template(type Entry; evaluates Max_Length: Integer);
     Operation Swap_Last_Entry(updates E: Entry; updates Q: P_Queue);
         requires |Q| /= 0;
         ensures Q = Prt_Btwn(0, |#Q| - 1, #Q) o <#E> and
-                E = DeString(Prt_Btwn(|#Q| - 1, |#Q|, #Q)); 
-		
-		
+                E = DeString(Prt_Btwn(|#Q| - 1, |#Q|, #Q));
 
     Operation Length(restores Q: P_Queue): Integer;
         ensures Length = (|Q|);

@@ -3,9 +3,10 @@ Concept Queue_Template(type Entry; evaluates Max_Length: Integer);
     requires Max_Length > 0;
  
     Type Family Queue is modeled by Str(Entry);
-    exemplar Q;
-    constraint |Q| <= Max_Length;
-    initialization ensures Q = Empty_String;
+		exemplar Q;
+		constraint |Q| <= Max_Length;
+		initialization ensures Q = Empty_String;
+	end;
  
     Operation Enqueue(alters E: Entry; updates Q: Queue);
         requires |Q| < Max_Length;

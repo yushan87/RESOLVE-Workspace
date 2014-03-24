@@ -52,6 +52,7 @@ Realization Circular_Array_Realiz for Queue_Template;
             Conc.Q = (Concatenation i: Z
             where Q.Front <= i <= Q.Front + Q.Length - 1,
             {<Q.Contents(i mod Max_Length)>});
+	end;
        
     Procedure Enqueue(alters E: Entry; updates Q: Queue);
         Q.Contents[(Q.Front + Q.Length) mod Max_Length] :=: E;
