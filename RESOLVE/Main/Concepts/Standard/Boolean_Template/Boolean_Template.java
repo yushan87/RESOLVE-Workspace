@@ -23,4 +23,3 @@ public interface Boolean_Template extends RESOLVE_INTERFACE {
     public void Write_Line(Boolean_Template.Boolean b);
     Boolean createBoolean();
 }
-s
