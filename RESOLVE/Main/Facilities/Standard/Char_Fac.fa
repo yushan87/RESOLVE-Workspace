@@ -1,6 +1,0 @@
-
-Facility Char_Fac;
-	Facility Std_Character_Fac 
-    		is Char_Template
-    		realized by Std_Character_Realiz;
-end Char_Fac;
