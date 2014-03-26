@@ -21,5 +21,4 @@ public interface Boolean_Template extends RESOLVE_INTERFACE {
     public void Read(Boolean_Template.Boolean b);
     public void Write(Boolean_Template.Boolean b);
     public void Write_Line(Boolean_Template.Boolean b);
-    Boolean createBoolean();
 }
