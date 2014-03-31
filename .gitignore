@@ -19,7 +19,7 @@
 # User Facilities #
 ###################
 
-RESOLVE/Main/Facilities/User/*
+RESOLVE/Main/Facilities/User/*.fa
 
 ###################
 # Temporary Files #
@@ -48,7 +48,6 @@ nbactions*.xml
 *.ipr
 *.iws
 .idea/
-
 
 #######################
 # Per-Developer Files #
