@@ -96,7 +96,7 @@ Precis String_Theory;
 	Definition Is_Universally_Related(s : SStr, t : SStr, 
 		f : (Entity * Entity) -> B) : B;
 
-	Definition Substring(s : Str(U : MType), startInclusive : Z, length : Z) :
+	Definition Prt_Btwn(s : Str(U : MType), startInclusive : Z, length : Z) :
 		Str(U);
 
 	Definition Element_At(i : Z, s : Str(U : MType)) : U;
