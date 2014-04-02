@@ -48,6 +48,7 @@ Precis String_Theory;
 	--A function that restricts SStr to the type of all strings of some homogenous
 	--type
 	Definition Str : MType -> MType;
+	Definition Empty_String_In(T : MType) : Str(T);
 
 	Type Theorem Empty_String_In_All_Strs:
 		For all T : MType,
@@ -96,10 +97,27 @@ Precis String_Theory;
 	Definition Is_Universally_Related(s : SStr, t : SStr, 
 		f : (Entity * Entity) -> B) : B;
 
-	Definition Prt_Btwn(s : Str(U : MType), startInclusive : Z, length : Z) :
-		Str(U);
+	Definition Substring(s : SStr, startInclusive : Z, length : Z) :
+		SStr;
 
-	Definition Element_At(i : Z, s : Str(U : MType)) : U;
+	Definition Element_At(i : Z, s : SStr) : Entity;
+
+	Type Theorem Element_At_Extracts_Generic_Type:
+		For all T : MType,
+		For all S : Str(T),
+		For all i : Z,
+			Element_At(i, S) : Str(T);
+
+	Definition Exists_Between(E : Entity, S : SStr, From : Z, To : Z) : B;
+
+	---------------------------------------------------------------
+	-- String Equality Theorems                                  --
+	---------------------------------------------------------------
+	Theorem Structure_Equality:
+		For all S, T : SStr,
+		For all E, F : Entity,
+			(S o <E> = T o <F>) implies ((S = T) and (E = F));
+
 
 	---------------------------------------------------------------
 	-- Empty String Theorems                                     --
@@ -118,16 +136,32 @@ Precis String_Theory;
 	---------------------------------------------------------------
 	-- String Length Theorems                                    --
 	---------------------------------------------------------------
+	Theorem Stringleton_Length_One:
+		For all e : Entity,
+			|<e>| = 1;
+
 	Theorem Same_String_Same_Length:
 		For all S, T : SStr,
 			S = T implies |S| = |T|;
 
-	Theorem String_Length_Boundary:
+	Theorem String_Length_Boundary_1:
 		For all S, T : SStr,
 		For all i : Z,
 			|S o T| <= i implies
 				|S| <= i and
 				|T| <= i;
+
+	Theorem String_Length_Boundary_2:
+		For all S, T : SStr,
+		For all i : Z,
+			|S o T| < i implies
+				|S| < i and
+				|T| < i;
+
+	Theorem Lenght_Concatenate_Singleton:
+		For all S : SStr,
+		For all e : Entity,
+			|S o <e>| = |S| + 1;
 
 	Theorem String_Length_Boundary_Singleton_Left:
 		For all S : SStr,
@@ -147,6 +181,11 @@ Precis String_Theory;
 	Theorem Reverse_Irrelevant_In_Length:
 		For all S : SStr,
 			|Reverse(S)| = |S|;
+
+	Theorem Concatenate_Singleton_Greater_Than_Zero_Length:
+		For all S : SStr,
+		For all E : Entity,
+			|(S o <E>)| > 0;
 
 	Theorem Concatenate_Singleton_Increases_Length_Left:
 		For all S : SStr,
@@ -177,6 +216,25 @@ Precis String_Theory;
 		For all e : Entity,
 			(|<e> o S| = |T|) implies
 				(|S| < |T|);
+
+	Theorem Length_Relation_1:
+		For all S, T, U : SStr,
+			|S o T| = |U| and |S| > 0 implies
+				|T| < |U|;
+
+	Theorem Length_Relation_2:
+		For all S : SStr,
+		For all e : Entity,
+		For all i, j : Z,
+			|S o <e>| = i and i <= j implies |S| < j;
+
+	Theorem Concat_Length_Not_Zero_Left:
+		For all U, V, W : SStr,
+			U o V = W and |U| /= 0 implies |V| < |W|;
+
+	Theorem Concat_Length_Not_Zero_Right:
+		For all U, V, W : SStr,
+			U o V = W and |V| /= 0 implies |U| < |W|;
 
 	---------------------------------------------------------------
 	-- Singleton String Theorems                                 --
@@ -242,15 +300,13 @@ Precis String_Theory;
 	-- Universal Relations Theorems                              --
 	---------------------------------------------------------------
 	Theorem Empty_String_Universally_Related_1:
-		For all T : MType,
-		For all S : Str(T),
-		For all f : (T * T) -> B,
+		For all S : SStr,
+		For all f : (Entity * Entity) -> B,
 			Is_Universally_Related(Empty_String, S, f);
 
 	Theorem Empty_String_Universally_Related_2:
-		For all T : MType,
-		For all S : Str(T),
-		For all f : (T * T) -> B,
+		For all S : SStr,
+		For all f : (Entity * Entity) -> B,
 			Is_Universally_Related(S, Empty_String, f);
 
 	Theorem Universally_Related_Distributes_1:
@@ -263,9 +319,23 @@ Precis String_Theory;
 	Theorem Universally_Related_Distributes_2:
 		For all f : (Entity * Entity) -> B,
 		For all S, T, U : SStr,
+			Is_Universally_Related(S, T o U, f) implies
+				Is_Universally_Related(S, T, f) and
+				Is_Universally_Related(S, U, f);
+
+	Theorem Universally_Related_Distributes_3:
+		For all f : (Entity * Entity) -> B,
+		For all S, T, U : SStr,
 			Is_Universally_Related(S, U, f) and
 			Is_Universally_Related(T, U, f) implies
 				Is_Universally_Related(S o T, U, f);
+
+	Theorem Universally_Related_Distributes_4:
+		For all f : (Entity * Entity) -> B,
+		For all S, T, U : SStr,
+			Is_Universally_Related(S, T, f) and
+			Is_Universally_Related(S, U, f) implies
+				Is_Universally_Related(S, T o U, f);
 
 	Theorem Permutation_Maintains_Universal_Relation_1:
 		For all f : (Entity * Entity) -> B,
@@ -288,4 +358,44 @@ Precis String_Theory;
 			f(e1, e2) and Is_Universally_Related(<e2>, S, f) implies
 				Is_Universally_Related(<e1>, S, f);
 
+	Theorem Universally_Related_Singletons:
+		For all e1, e2 : Entity,
+		For all f : (Entity * Entity) -> B,
+			f(e1, e2) = Is_Universally_Related(<e1>, <e2>, f);
+
+	---------------------------------------------------------------
+	-- Exists_Between Theorems                                   --
+	---------------------------------------------------------------
+	Theorem Exists_Between_No_Window_1:
+		For all e : Entity,
+		For all S : SStr,
+		For all i : Z,
+			Exists_Between(e, S, i, i - 1) = false;
+
+	Theorem Exists_Between_No_Window_2:
+		For all e : Entity,
+		For all S : SStr,
+		For all i : Z,
+			Exists_Between(e, S, i + 1, i) = false;
+
+	Theorem Exists_Between_Decomposition:
+		For all e : Entity,
+		For all S : SStr,
+		For all i, j, x, y : Z,
+			x >= y - 1 implies
+				((Exists_Between(e, S, i, x) or
+				Exists_Between(e, S, y, j)) =
+					Exists_Between(e, S, i, j));
+
+	---------------------------------------------------------------
+	-- Substring Theorems                                        --
+	---------------------------------------------------------------
+	Theorem Substring_Length:
+		For all S : SStr,
+		For all n : N,
+			|Substring(S, n, |S| - n)| = |S| - n;
+
+	Theorem Structure_1:
+		For all S : SStr,
+			<Element_At(0, S)> o Substring(S, 1, (|S| - 1)) = S;
 end;

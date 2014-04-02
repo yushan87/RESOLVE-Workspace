@@ -1,7 +1,7 @@
 Realization Get_Bottom_Realization for Get_Bottom_Capability of 
 		Globally_Bounded_Stack_Template;
 	
-	Procedure Get_Bottom(updates S : Stack; updates E : Entry);
+	Procedure Get_Bottom(updates E : Entry; updates S : Stack);
 		Var S_Temp : Stack;
 		Var E_Temp : Entry;
 		While ( Not(Is_Empty(S)) )
