@@ -393,9 +393,9 @@ Precis String_Theory;
 	Theorem Substring_Length:
 		For all S : SStr,
 		For all n : N,
-			|Substring(S, n, |S| - n)| = |S| - n;
+			|Prt_Btwn(S, n, |S| - n)| = |S| - n;
 
 	Theorem Structure_1:
 		For all S : SStr,
-			<Element_At(0, S)> o Substring(S, 1, (|S| - 1)) = S;
+			<Element_At(0, S)> o Prt_Btwn(S, 1, (|S| - 1)) = S;
 end;
