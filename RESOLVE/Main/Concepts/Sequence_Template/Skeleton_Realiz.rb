@@ -4,6 +4,7 @@ Realization Skeleton_Realiz for Sequence_Template;
 			Dummy1: Integer;
 			Dummy2: Integer;      
 		end;
+		correspondence true;
 	end;
     
 	Procedure Insert_after(evaluates Pos: Integer; alters E: Entry; updates S: Sequence);
