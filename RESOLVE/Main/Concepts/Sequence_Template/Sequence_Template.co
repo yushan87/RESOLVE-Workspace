@@ -6,16 +6,16 @@ Concept Sequence_Template(type Entry; evaluates Max_Length: Integer);
 		exemplar S;
 		constraint |S| <= Max_Length;
 		initialization ensures S = Empty_String;
-    end;
+	end;
 
 	Operation Insert_after(evaluates Pos: Integer; alters E: Entry; updates S: Sequence);
 		requires 0 <= Pos and Pos <= |S| and |S| < Max_Length;
-		ensures S = (Prt_Btwn(#S, 0, Pos) o <#E>) o Prt_Btwn(#S, Pos, |#S|);
+		ensures S = (Prt_Btwn(0, Pos, #S) o <#E>) o Prt_Btwn(Pos, |#S|, #S);
  
 	Operation Remove_after(evaluates Pos: Integer; replaces R: Entry; updates S: Sequence);
-        requires 0 <= Pos and Pos < |S| and |S| > 0;
-        ensures S = (Prt_Btwn(#S, 0, Pos) o Prt_Btwn(#S, Pos + 1, |#S|)) and 
-				R = Element_At(0, Prt_Btwn(#S, Pos, Pos + 1));
+		requires 0 <= Pos and Pos < |S| and |S| > 0;
+		ensures S = (Prt_Btwn(0, Pos, #S) o Prt_Btwn(Pos + 1, |#S|, #S)) and 
+				R = DeString(Prt_Btwn(Pos, Pos + 1, #S));
 
 	Operation Length(restores S: Sequence): Integer;
 		ensures Length = (|S|);

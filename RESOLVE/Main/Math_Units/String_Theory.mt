@@ -97,9 +97,8 @@ Precis String_Theory;
 	Definition Is_Universally_Related(s : SStr, t : SStr, 
 		f : (Entity * Entity) -> B) : B;
 
-	Definition Prt_Btwn(s : SStr, startInclusive : Z, length : Z) :
-		SStr;
-
+	Definition Prt_Btwn(m : Z, n : Z, s : SStr) : SStr;
+	Definition DeString(s : SStr) : Entity;
 	Definition Element_At(i : Z, s : SStr) : Entity;
 
 	Type Theorem Element_At_Extracts_Generic_Type:
@@ -107,6 +106,11 @@ Precis String_Theory;
 		For all S : Str(T),
 		For all i : Z,
 			Element_At(i, S) : Str(T);
+			
+	Type Theorem DeString_Extracts_Generic_Type:
+		For all T : MType,
+		For all S : Str(T),
+			DeString(S) : Str(T);
 
 	Definition Exists_Between(E : Entity, S : SStr, From : Z, To : Z) : B;
 
@@ -393,9 +397,9 @@ Precis String_Theory;
 	Theorem Substring_Length:
 		For all S : SStr,
 		For all n : N,
-			|Prt_Btwn(S, n, |S| - n)| = |S| - n;
+			|Prt_Btwn(n, |S| - n, S)| = |S| - n;
 
 	Theorem Structure_1:
 		For all S : SStr,
-			<Element_At(0, S)> o Prt_Btwn(S, 1, (|S| - 1)) = S;
+			<Element_At(0, S)> o Prt_Btwn(1, (|S| - 1), S) = S;
 end;
