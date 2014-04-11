@@ -1,27 +1,9 @@
-
 Realization Selection_Sort_Realization(
 			Operation Compare(restores E1, E2 : Entry) 
 				: Boolean;
 				ensures Compare = LEQV(E1, E2);)
 		for Sorting_Capability of Queue_Template;
 	uses String_Theory;
-
-	Procedure Sort(updates Q : Queue);
-		Var Sorted_Queue : Queue;
-		Var Lowest_Remaining : Entry;
-
-		While (Length(Q) > 0)
-			changing Q, Sorted_Queue, Lowest_Remaining;
-			maintaining Is_Permutation(Q o Sorted_Queue, #Q) and
-				Is_Conformal_With(LEQV, Sorted_Queue) and 
-				Is_Universally_Related(Sorted_Queue, Q, LEQV);
-			decreasing |Q|;
-		do
-			Remove_Min(Q, Lowest_Remaining);
-			Enqueue(Lowest_Remaining, Sorted_Queue);
-		end;
-		Q :=: Sorted_Queue;
-	end Sort;
 
 	Operation Remove_Min(updates Q : Queue; replaces Min : Entry);
 		requires |Q| /= 0;
@@ -47,5 +29,22 @@ Realization Selection_Sort_Realization(
 		end;
 		New_Queue :=: Q;
 	end Remove_Min;
+	
+	Procedure Sort(updates Q : Queue);
+		Var Sorted_Queue : Queue;
+		Var Lowest_Remaining : Entry;
+
+		While (Length(Q) > 0)
+			changing Q, Sorted_Queue, Lowest_Remaining;
+			maintaining Is_Permutation(Q o Sorted_Queue, #Q) and
+				Is_Conformal_With(LEQV, Sorted_Queue) and 
+				Is_Universally_Related(Sorted_Queue, Q, LEQV);
+			decreasing |Q|;
+		do
+			Remove_Min(Q, Lowest_Remaining);
+			Enqueue(Lowest_Remaining, Sorted_Queue);
+		end;
+		Q :=: Sorted_Queue;
+	end Sort;
 
 end Selection_Sort_Realization;

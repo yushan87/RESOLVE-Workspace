@@ -5,23 +5,6 @@ Realization Selection_Sort_Realization(
 		for Sorting_Capability of Globally_Bounded_Queue_Template;
 	uses String_Theory;
 
-	Procedure Sort(updates Q : Queue);
-		Var Sorted_Queue : Queue;
-		Var Lowest_Remaining : Entry;
-
-		While ( Not(Is_Empty(Q)) )
-			changing Q, Sorted_Queue, Lowest_Remaining;
-			maintaining Is_Permutation(Q o Sorted_Queue, #Q) and
-				Is_Conformal_With(LEQV, Sorted_Queue) and 
-				Is_Universally_Related(Sorted_Queue, Q, LEQV);
-			decreasing |Q|;
-		do
-			Remove_Min(Q, Lowest_Remaining);
-			Enqueue(Lowest_Remaining, Sorted_Queue);
-		end;
-		Q :=: Sorted_Queue;
-	end Sort;
-
 	Operation Remove_Min(updates Q : Queue; replaces Min : Entry);
 		requires |Q| /= 0;
 		ensures Is_Permutation(Q o <Min>, #Q) and
@@ -46,5 +29,22 @@ Realization Selection_Sort_Realization(
 		end;
 		New_Queue :=: Q;
 	end Remove_Min;
+	
+	Procedure Sort(updates Q : Queue);
+		Var Sorted_Queue : Queue;
+		Var Lowest_Remaining : Entry;
+
+		While ( Not(Is_Empty(Q)) )
+			changing Q, Sorted_Queue, Lowest_Remaining;
+			maintaining Is_Permutation(Q o Sorted_Queue, #Q) and
+				Is_Conformal_With(LEQV, Sorted_Queue) and 
+				Is_Universally_Related(Sorted_Queue, Q, LEQV);
+			decreasing |Q|;
+		do
+			Remove_Min(Q, Lowest_Remaining);
+			Enqueue(Lowest_Remaining, Sorted_Queue);
+		end;
+		Q :=: Sorted_Queue;
+	end Sort;
 
 end Selection_Sort_Realization;
