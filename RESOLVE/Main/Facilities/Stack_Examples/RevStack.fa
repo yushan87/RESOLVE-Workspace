@@ -2,42 +2,43 @@
 Facility RevStack;
 	uses String_Theory;
 	
-	Facility Rev_Stack_Fac is Stack_Template(Char_Str, 4)
+	Facility Rev_Stack_Fac is Stack_Template(Char_Str, 1)
 		realized by Array_Realiz;
 
 	Operation Read_Stack(replaces S: Stack);
 	Procedure
 		Var CS: Char_Str;
-		Var I: Integer;
+		Var RC: Integer;
 
 		Clear(S);
-		While (I < 4)
-			changing CS, I, S;
-			maintaining true;
-			decreasing 4 - I;
+		RC := Rem_Capacity(S);
+		While (Is_Not_Zero(RC))
+			changing CS, RC, S;
+			maintaining |S| = 1 - RC;
+			decreasing RC;
 		do
 			Read(CS);
 			Push(CS, S);
-			Increment(I);
+			RC := Rem_Capacity(S);
 		end;
 	end Read_Stack;
 
 	Operation Write_Stack(clears S: Stack);
 	Procedure
 		Var CS: Char_Str;
-		Var I, D: Integer;
+		Var D: Integer;
 
 		D := Depth(S);
-		While (I < D)
-			changing CS, I, S;
-			maintaining true;
-			decreasing 4 - I;
+		While (Is_Not_Zero(D))
+			changing CS,D, S;
+			maintaining D = |S|;
+			decreasing D;
 		do
 			Pop(CS, S);
 			Write_Line(CS);
-			Increment(I);
+			D := Depth(S);
 		end;
-	end Write_Stack;
+	end Write_Stack; 
 
 	Operation Main();
 	Procedure
@@ -47,5 +48,5 @@ Facility RevStack;
 		Write_Stack(S);
 		Write_Line("CLEARED STACK");
 		Write_Stack(S);
-	end Main;
+	end Main; 
 end RevStack;

@@ -101,186 +101,155 @@ Precis Integer_Theory;
 
 	Definition isEven(i : Z) : B = true;
 
-	---------------------------------------------------------------
-	-- Obvious Theorems                                          --
-	---------------------------------------------------------------
-	Theorem Zero_Less_Than_One: 0 < 1;
-	Theorem One_Greater_Than_Zero: 1 > 0;
+	Theorem Commutativity_Addition:
+		For all i, j: Z,
+			(i + j) = (j + i);
 
-	---------------------------------------------------------------
-	-- Relation Theorems                                         --
-	---------------------------------------------------------------
+    Theorem Commutativity_Multiplication:
+		For all i, j: Z,
+			(i * j) = (j * i);
 
-	Theorem NN_Not_Greater_Than_Zero:
-		For all n : N,
-			not(n > 0) = (n = 0);
+    Theorem Associativity_Addition:
+        For all i, j ,k: Z,
+            (i + (j + k)) = ((i + j) + k);
 
-	Theorem NN_Not_Zero_Addition_Right_LET:
-		For all n, m : N, 
-		For all i : Z,
-			n + m <= i and m /= 0 implies n < i;
+    Theorem Associativity_Multiplication:
+        For all i, j ,k: Z,
+            (i * (j * k)) = ((i * j) * k);
 
-	Theorem Even_More_LT_1:
-		For all i, j, k : Z,
-			i + j <= k and j > 0 implies i < k;
+    Theorem Distributivity_Multiplication_over_Addition:
+        For all i, j, k: Z,
+            (i * (j + k)) = ((i * j) + (i * k));
+		-- Left distributivity is implied by commutativity
 
-	Theorem Even_More_LT_2:
-		For all i, j, k : Z,
-			i + j <= k and i > 0 implies j < k;
+    Theorem Distributivity_Subtraction_over_Addition:
+        For all i, j: Z,
+            (i - (i + j)) = (0 - j);
 
-	Theorem Greater_Than_Zero_Not_Equal_Zero:
-		For all i : Z,
-			i > 0 implies i /= 0;
+    Theorem Zero_Addition:
+        For all i: Z,
+            (i + 0) = i;
 
-	Theorem Not_Equal_Syntax:
-		For all i, j : Z,
-			not(i = j) = (i /= j);
+    Theorem Subtraction:
+        For all i: Z,
+            (i - i) = 0;
 
-	Theorem GET_And_Not_Equal_GT:
-		For all i, j : Z,
-			i >= j and i /= j implies i > j;
+    Theorem One:
+        For all i: Z,
+            (i * 1) = i;
 
-	Theorem Bound_1_1:
-		For all i, j : Z,
-			(i + 1 <= j) = (i < j);
+    Theorem Two:
+        (1 + 1) = 2;
 
-	Theorem Bound_1_2:
-		For all i, j : Z,
-			(i <= j - 1) = (i < j);
+    Theorem Zero_One_Order:
+        0 < 1;
 
-	Theorem Bound_1_3:
-		For all i, j : Z,
-			(i - 1 >= j) = (i > j);
+    Theorem Additive_Inverse:
+        For all i, j: Z,
+            (i - j = 0) = (i = j);
+        -- converse is also true, but there is no point to matching i = j
 
-	Theorem Bound_N_1:
-		For all i, j, k : Z,
-			(i + j <= k) and j >= 0 implies i <= k;
+    Theorem Multiplicative_Inverse:
+        For all i, j: Z,
+            (i * j = 1) implies i = 1 / j;
 
-	Theorem Balance:
-		For all i, j, k : Z,
-			(i + k) + (j - k) = (i + j);
+    --- Syntactic definitions of <=
+    Theorem LT_to_LTE:
+        For all i, j: Z,
+            (i < j) = (i + 1 <= j);
 
-	Theorem Easy_Less_Than:
-		For all i : Z,
-			i - 1 < i;
+    Theorem GT_to_LTE:
+        For all i, j: Z,
+            (i > j) = (j + 1 <= i);
 
-	Theorem LET_Both:
-		For all i, j, k : Z,
-			i <= j and k > j implies i < k;
+    Theorem GTE_to_LTE:
+        For all i, j: Z,
+            (i >= j) = (j <= i);
 
-	Theorem Less_Than_Equal_Self:
-		For all i : Z,
-			i <= i;
+    Theorem Not_LTE_to_LTE:
+        For all i, j: Z,
+            not(i <= j) = (j + 1 <= i);
 
-	Theorem Switch_1:
-		For all i, j : Z,
-			(i > j) = (j < i);
+    Theorem NEQ:
+        For all i, j: Z,
+            not(i = j) = (i /= j);
 
-	Theorem Switch_2:
-		For all i, j : Z,
-			(i >= j) = (j <= i);
+    Theorem NEQ_is_Symmetric:
+        For all i, j: Z,
+            (i /= j) = (j /= i);
 
-	Theorem Weaken_1:
-		For all i, j : Z,
-			i > j implies i >= j;
+    --- Order Theorems for Z
+    Theorem Trichotomy_1:
+        For all i,j : Z,
+            For all p,q: B,
+                ((i < j) = p and (i = j) = q) implies ((p /= q) or (i > j and p = false));
 
-	Theorem Weaken_2:
-		For all i, j : Z,
-			i < j implies i <= j;
+    Theorem Trichotomy_2:
+		For all i,j : Z,
+			For all p,q: B,
+				((i < j) = p and (i > j) = q) implies ((p /= q) or (i = j and p = false));
 
-	Theorem LET_Transitive:
-		For all i, j, k : Z,
-			i <= j and j <= k implies i <= k;
+    Theorem Trichotomy_3:
+		For all i,j : Z,
+			For all p,q: B,
+				((i > j) = p and (i = j) = q) implies ((p /= q) or (i < j and p = false));
 
-	Theorem Mixed_Transitive_1:
-		For all i, j, k : Z,
-			i < j and j <= k implies i < k;
+    Theorem Not_LTE_Plus_1:
+        For all i: Z,
+            ((i + 1) <= i) = false;
 
-	Theorem Off_by_One_1:
-		For all i, j : Z,
-			(i <= j) = (i < j + 1);
+    Theorem Addition_For_Inequalities:
+        For all i, j, k: Z,
+            (i + k <= j + k) = (i <= j);
 
-	Theorem Off_by_One_2:
-		For all i, j : Z,
-			(i < j) = (i + 1 <= j);
+    Theorem Subtraction_For_Inequalities_1:
+        For all i, j, k: Z,
+            (i - k <= j - k) = (i <= j);
 
-	Theorem Off_by_One_3:
-		For all i, j : Z,
-			(i < j) = (i <= j - 1);
+    Theorem Subtraction_For_Inequalities_2:
+        For all i, j, k: Z,
+            (i - j <= i - k) = (k <= j);
 
-	Theorem Subtract_One_from_both_LET:
-		For all i, j, k : Z,
-			(i <= j) = ((i - 1) <= (j - 1));
+    Theorem LTE_is_Transitive:
+        For all i, j, k: Z,
+            ((i <= j) and (j <= k)) implies (i <= k);
 
-	Theorem Subtract_One_Still_Less:
-		For all i, j : Z,
-			i <= j implies i - 1 <= j;
+    Theorem LTE_is_Antisymmetric:
+        For all i, j: Z,
+            ((i <= j) and (j <= i)) implies (i = j);
 
-	Theorem Subtract_Positive_Still_Less:
-		For all i, j, k : Z,
-			i <= j and k >= 0 implies i - k <= j;
+    Theorem LTE_is_Reflexive:
+        For all i: Z,
+            (i <= i) = true;
 
-	Theorem LET_But_Not_Equal_1:
-		For all i, j : Z,
-			i <= j and j /= i implies i < j;
+	-- Sketchy theorems
+    Theorem LTE_and_NE:
+        For all i, j: Z,
+            ((i <= j) and (i /= j)) implies (i + 1 <= j);
 
-	Theorem Cheap_LEQ_Theorem_1:
-		For all i, j, k : Z,
-			k <= j and i <= 0 implies i <= j - k;
+    Theorem LTE_Subtract_One:
+        For all i, j, k: Z,
+            ((i + 1)  <= j) implies (i <= j);
 
-	Theorem Subtact_Makes_Less:
-		For all i, j, k : Z,
-			i = j - k and k > 0 implies i < j;
+    Theorem LTE_Add_One:
+        For all i, j: Z,
+            (1 <= j) implies (2 <= j + 1);
 
-	---------------------------------------------------------------
-	-- Zero Theorems                                             --
-	---------------------------------------------------------------
+    Theorem Addition_Subtraction_Cancellation:
+        For all i, j: Z,
+            ((i + j) - j) = i;
 
-	Theorem Zero_Property_Right:
-		For all i : Z,
-			i + 0 = i;
+    Theorem Minus_Two:
+        For all i, j: Z,
+            ((i - 1) - 1) = (i - 2);
 
-	Theorem Zero_Property_Left:
-		For all i : Z,
-			0 + i = i;
+    Theorem Equality_Inference_1:
+        For all iz :Z,
+            For all p: B,
+                ((iz = iz) = p) implies (p = true);
 
-	Theorem Zero_Minus_Property:
-		For all i : Z,
-			i - 0 = i;
-
-	---------------------------------------------------------------
-	-- Arithmetic                                                --
-	---------------------------------------------------------------
-	
-	Theorem Commutative_1:
-        For all i, j : Z, (i + j) = (j + i);
-
-	Theorem Commutative_2:
-        For all i, j : Z, (i * j) = (j * i);
-
-	Theorem Associative_1:
-        For all i, j, k : Z, (i + j) + k = i + (j + k);
-
-	Theorem Associative_2:
-        For all i, j, k : Z, (i * j) * k = i * (j * k);
-		
-	Theorem Distributive:
-		For all i, j, k : Z, i * (j + k) = (i * j) + (i * k);
-
-	Theorem Plus_Minus:
-		For all i, j : Z,
-			i + j - j = i;
-	
-	Theorem Minus_Plus:
-		For all i, j : Z,
-			i - j + j = i;
-
-	Theorem Minus_Itself:
-		For all i : Z,
-			i - i = 0;
-
-	Theorem Subtract_Both_Sides_LET:
-		For all i, j : Z,
-			i <= j implies 0 <= j - i;
+    Theorem Equality_Inference_2:
+            For all iz, j :Z,
+                ((iz = j) = true) implies (iz = j);
 
 end Integer_Theory;
