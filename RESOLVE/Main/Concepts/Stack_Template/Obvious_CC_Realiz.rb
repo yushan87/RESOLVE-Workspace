@@ -12,7 +12,7 @@ for Copying_Capability of Stack_Template;
 
 		D := Depth(S_Orig);
 		While (Is_Not_Zero(D))
-			changing Next_Entry, S_Orig, S_Reversed;
+			changing Next_Entry, S_Orig, S_Reversed, D;
 			maintaining #S_Orig = Reverse(S_Reversed) o S_Orig and
 						D = |S_Orig|;
 			decreasing |S_Orig|;
@@ -26,7 +26,7 @@ for Copying_Capability of Stack_Template;
 		
 		D := Depth(S_Reversed);
 		While (Is_Not_Zero(D))
-			changing Entry_Copy, Next_Entry, S_Copy, S_Orig, S_Reversed;
+			changing Entry_Copy, Next_Entry, S_Copy, S_Orig, S_Reversed, D;
 			maintaining S_Copy = S_Orig and
 						#S_Orig = Reverse(S_Reversed) o S_Orig and
 						D = |S_Reversed|;
