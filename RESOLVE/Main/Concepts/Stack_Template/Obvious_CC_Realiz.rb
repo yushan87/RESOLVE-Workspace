@@ -8,6 +8,7 @@ for Copying_Capability of Stack_Template;
 	Procedure Copy_Stack(replaces S_Copy: Stack; restores S_Orig: Stack);
 		Var Next_Entry, Entry_Copy: Entry;
 		Var S_Reversed: Stack;
+		Var D: Integer;
 
 		D := Depth(S_Orig);
 		While (Is_Not_Zero(D))
