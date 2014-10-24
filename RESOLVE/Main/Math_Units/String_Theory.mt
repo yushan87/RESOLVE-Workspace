@@ -68,6 +68,9 @@ Precis String_Theory;
 
 	--String length
 	Definition |(s : SStr)| : N;
+	
+	--Big Pi (Iterated Concatenation)
+	Definition Iterated_Concatenation(l : Z, m : Z, F: Z->SStr): SStr;
 
 	--String concatenation
 	--Definition (s : Str(U : MType)) o (t : Str(U)) : Str(U);

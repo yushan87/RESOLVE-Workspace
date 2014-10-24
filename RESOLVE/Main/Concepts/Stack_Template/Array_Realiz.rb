@@ -49,8 +49,8 @@ Realization Array_Realiz for Stack_Template;
         convention
             0 <= S.Top <= Max_Depth;
         correspondence
-            Conc.S = Reverse(Concatenate(S.Contents, 
-		S.Top));
+            Conc.S = Reverse(Iterated_Concatenation(1, S.Top, 
+                        lambda(i : Z).(<S.Contents(i)>)));
 	end;
 
     Procedure Push(alters E: Entry; updates S: Stack);
@@ -74,5 +74,5 @@ Realization Array_Realiz for Stack_Template;
     Procedure Clear(clears S: Stack);
         S.Top := 0;
     end;
-
+	
 end;
