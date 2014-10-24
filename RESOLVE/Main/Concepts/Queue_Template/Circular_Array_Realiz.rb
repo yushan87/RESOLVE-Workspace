@@ -43,30 +43,29 @@ Realization Circular_Array_Realiz for Queue_Template;
 	
     Type Queue = Record
             Contents: Array 0..Max_Length - 1 of Entry;
-            Front, Length: Integer;
+            Prefront, Length: Integer;
         end;
         convention
-            0 <= Q.Front < Max_Length and
+            0 <= Q.Prefront < Max_Length and
                 0 <= Q.Length <= Max_Length;
         correspondence
-            Conc.Q = (Concatenation i: Z
-            where Q.Front <= i <= Q.Front + Q.Length - 1,
-            {<Q.Contents(i mod Max_Length)>});
+            Conc.Q = Iterated_Concatenation(Q.Prefront + 1, Q.Prefront + Q.Length, 
+                        lambda(i : Z).(<Q.Contents(i mod Max_Length)>));
 	end;
        
-    Procedure Enqueue(alters E: Entry; updates Q: Queue);
-        Q.Contents[(Q.Front + Q.Length) mod Max_Length] :=: E;
+    Procedure Enqueue(alters E: Entry; updates Q: Queue);		
         Q.Length := Q.Length + 1;
+        Q.Contents[(Q.Prefront + Q.Length) mod Max_Length] :=: E;
     end Enqueue;
 
     Procedure Dequeue(replaces R: Entry; updates Q: Queue);
-        Q.Contents[Q.Front] :=: R;
-        Q.Front := (Q.Front + 1) mod Max_Length;
-        Q.Length := Q.Length -1;
+		Q.Prefront := (Q.Prefront + 1) mod Max_Length;
+        Q.Contents[Q.Prefront] :=: R;        
+        Q.Length := Q.Length - 1;
     end Dequeue;
 
     Procedure Swap_First_Entry(updates E: Entry; updates Q: Queue);
-      Q.Contents[Q.Front] :=: E;
+        Q.Contents[ (Q.Prefront + 1) mod Max_Length ] :=: E;
     end Swap_First_Entry;
 
     Procedure Length(restores Q: Queue): Integer;
@@ -78,9 +77,8 @@ Realization Circular_Array_Realiz for Queue_Template;
     end Rem_Capacity;
 
     Procedure Clear(clears Q: Queue);
-       Q.Front := 0; Q.Length := 0;
+       Q.Prefront := 0;
+       Q.Length := 0;
     end Clear;
 
 end Circular_Array_Realiz;
-
-

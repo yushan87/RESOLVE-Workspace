@@ -9,11 +9,10 @@ Facility RevStack;
 	Procedure
 		Var CS: Char_Str;
 		Var RC: Integer;
-		Var Zero: Integer;
 
 		Clear(S);
 		RC := Rem_Capacity(S);
-		While (Greater(RC, Zero))
+		While (RC > 0)
 			changing CS, RC, S;
 			maintaining |S| = 1 - RC;
 			decreasing RC;
@@ -30,7 +29,7 @@ Facility RevStack;
 		Var D: Integer;
 
 		D := Depth(S);
-		While (Is_Not_Zero(D))
+		While (D /= 0)
 			changing CS, D, S;
 			maintaining D = |S|;
 			decreasing D;
@@ -45,9 +44,9 @@ Facility RevStack;
 	Procedure
 		Var S: Stack;
 		Read_Stack(S);
-		--Write_Line("REVERSED ORDER");
+		Write_Line("REVERSED ORDER");
 		Write_Stack(S);
-		--Write_Line("CLEARED STACK");
+		Write_Line("CLEARED STACK");
 		Write_Stack(S);
 	end Main; 
 end RevStack;
