@@ -1,0 +1,4 @@
+Enhancement Writing_Capability for Queue_Template;
+    Operation Write_Part_Queue(evaluates Num: Integer; updates Q: Queue);
+        requires 0 <= Num and Num <= |Q|;
+end Writing_Capability;
