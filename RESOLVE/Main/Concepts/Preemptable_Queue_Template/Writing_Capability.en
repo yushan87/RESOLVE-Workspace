@@ -1,4 +1,5 @@
 Enhancement Writing_Capability for Preemptable_Queue_Template;
     Operation Write_Part_Queue(evaluates Num: Integer; updates Q: P_Queue);
         requires 0 <= Num and Num <= |Q|;
+        ensures #Num + |Q| = |#Q|; -- and Std_Output o Q = #Std_Ouput o #Q
 end Writing_Capability;
