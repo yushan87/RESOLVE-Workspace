@@ -1,4 +1,0 @@
-Enhancement Copying_Capability for Queue_Template;
-    Operation Copy_Queue(restores Q: Queue; replaces Q_Copy: Queue);
-        ensures Q_Copy = Q;
-end Copying_Capability;
