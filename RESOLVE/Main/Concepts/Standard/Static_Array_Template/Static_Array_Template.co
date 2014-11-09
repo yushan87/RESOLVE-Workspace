@@ -2,32 +2,33 @@ Concept Static_Array_Template(type Entry; evaluates Lower_Bound, Upper_Bound: In
     uses Integer_Theory, Conditional_Function_Theory;
     requires (Lower_Bound <= Upper_Bound);
 
+    Definition Array_All_Initial(F: Z -> Entry): B = for all i: Z, Entry.Is_Initial(F(i));
+	
     Type Family Static_Array is modeled by (Z -> Entry);
         exemplar A;
-		constraint true;
-			initialization ensures 
-			for all i: Z, Entry.Is_Initial(A(i));
-	end;
+        constraint true;
+        initialization ensures Array_All_Initial(A);
+    end;
 
     Operation Swap_Entry(updates A: Static_Array; updates E: Entry; evaluates i: Integer); 
         requires Lower_Bound <= i  and i <= Upper_Bound;
-		ensures E = #A(i) and A = lambda (j : Z).(
-			{{#E if j = i;
-			  #A(j) otherwise;}});
+        ensures E = #A(i) and A = lambda (j : Z).(
+                    {{#E if j = i;
+                    #A(j) otherwise;}});
 
-	Operation Swap_Two_Entries(updates A: Static_Array; evaluates i, j: Integer); 
+    Operation Swap_Two_Entries(updates A: Static_Array; evaluates i, j: Integer); 
         requires Lower_Bound <= i  and i <= Upper_Bound and
-                    Lower_Bound <= j  and j <= Upper_Bound;
-		ensures A = lambda (k : Z).(
-			{{#A(j) if k = i; 
-			  #A(i) if k = j; 
-			  #A(k) otherwise;}});
+                 Lower_Bound <= j  and j <= Upper_Bound;
+        ensures A = lambda (k : Z).(
+                    {{#A(j) if k = i; 
+                    #A(i) if k = j; 
+                    #A(k) otherwise;}});
 
     Operation Assign_Entry(updates A: Static_Array; evaluates Exp: Entry; evaluates i: Integer);
         requires Lower_Bound <= i  and i <= Upper_Bound;
-		ensures A = lambda (j : Z).(
-			{{Exp if j = i;
-			  #A(j) otherwise;}});
+        ensures A = lambda (j : Z).(
+                    {{Exp if j = i;
+                    #A(j) otherwise;}});
 
     Operation Entry_Replica(restores A: Static_Array; evaluates i: Integer): Entry;
         requires Lower_Bound <= i  and i <= Upper_Bound;
