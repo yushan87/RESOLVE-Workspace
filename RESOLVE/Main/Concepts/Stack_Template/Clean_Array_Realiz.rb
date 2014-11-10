@@ -30,11 +30,11 @@ Realization Clean_Array_Realiz for Stack_Template;
         S.Top := S.Top - 1; 
     end Pop;
 
-    Procedure Depth(preserves S: Stack): Integer;
+    Procedure Depth(restores S: Stack): Integer;
         Depth := S.Top;
     end Depth;
 
-    Procedure Rem_Capacity(preserves S: Stack): Integer;
+    Procedure Rem_Capacity(restores S: Stack): Integer;
         Rem_Capacity := Max_Depth - S.Top;
     end Rem_Capacity;
 	
