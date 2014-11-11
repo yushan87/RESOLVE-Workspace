@@ -2,12 +2,13 @@ Concept Static_Array_Template(type Entry; evaluates Lower_Bound, Upper_Bound: In
     uses Integer_Theory, Conditional_Function_Theory;
     requires (Lower_Bound <= Upper_Bound);
 
-    Definition Array_All_Initial(F: Z -> Entry): B = for all i: Z, Entry.Is_Initial(F(i));
+    Definition Array_Is_Initial_in_Range (F: Z -> Entry, start, finish: Z): B = 
+        for all i: Z, (start <= i and i <= finish) implies Entry.Is_Initial(F(i));
 	
     Type Family Static_Array is modeled by (Z -> Entry);
         exemplar A;
         constraint true;
-        initialization ensures Array_All_Initial(A);
+        initialization ensures Array_Is_Initial_in_Range(A, Lower_Bound, Upper_Bound);
     end;
 
     Operation Swap_Entry(updates A: Static_Array; updates E: Entry; evaluates i: Integer); 

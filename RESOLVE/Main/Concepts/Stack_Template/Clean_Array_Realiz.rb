@@ -2,19 +2,15 @@ Realization Clean_Array_Realiz for Stack_Template;
 
     (* Note: Under Construction! *)
 
-    Definition Array_is_Clean(SR: Stack): B =
-        For all i: Integer, if SR.Top < i <= Max_Depth
-        then Entry.Is_Initial(SR.Contents(i));
-
     Type Stack is represented by Record
             Contents: Array 1..Max_Depth of Entry;
             Top: Integer;
         end;
         convention
-            0 <= S.Top <= Max_Depth and Array_is_Clean(S);
+            0 <= S.Top <= Max_Depth;
         correspondence
-            Conc.S = Reverse(Concatenation i: Z
-            where 1 <= i <= S.Top, <S.Contents(i)>);
+            Conc.S = Reverse(Iterated_Concatenation(1, S.Top, 
+                        lambda(i : Z).(<S.Contents(i)>)));
 	end;
 
     Procedure Push(alters E: Entry; updates S: Stack);
@@ -40,19 +36,19 @@ Realization Clean_Array_Realiz for Stack_Template;
 	
     Operation Clear_Entry(clears E: Entry);
     Procedure
-		Var Temp: Entry;
-		E :=: Temp;
+        Var Temp: Entry;
+        E :=: Temp;
     end Clear_Entry;
 	
     Procedure Clear(clears S: Stack);
-      While (S.Top > 0)  
-		changing S;
-      	maintaining Array_is_Clean(S);
-      	decreasing S.Top;
-      do
-        Clear_Entry(S.Contents[S.Top]);
-        S.Top := S.Top - 1;
-      end;
+        While (S.Top > 0)  
+            changing S;
+            maintaining S.Top <= Max_Depth;
+            decreasing S.Top;
+        do
+            Clear_Entry(S.Contents[S.Top]);
+            S.Top := S.Top - 1;
+        end;
     end Clear;
 
 end Clean_Array_Realiz;

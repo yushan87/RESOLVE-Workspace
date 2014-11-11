@@ -7,10 +7,10 @@ Realization Init_Array_Realiz for Stack_Template;
             Top: Integer;
         end;
         convention
-            1 <= S.Top <= Max_Depth+1;
+            1 <= S.Top <= Max_Depth + 1;
         correspondence
-            Conc.S = Reverse(Concatenation i: Integer
-            where 1 <= i <= S.Top-1, <S.Contents(i)>);
+            Conc.S = Reverse(Iterated_Concatenation(1, S.Top-1, 
+                        lambda(i : Z).(<S.Contents(i)>)));
         initialization
            S.Top := 1;
         end;
@@ -27,11 +27,13 @@ Realization Init_Array_Realiz for Stack_Template;
     end Pop;
 
     Procedure Depth(restores S: Stack): Integer;
-        Depth := S.Top-1;
+        Depth := S.Top - 1;
     end Depth;
 
     Procedure Rem_Capacity(restores S: Stack): Integer;
-        Rem_Capacity := Max_Depth + 1 - S.Top;
+        Var Temp: Integer;
+        Temp := Max_Depth + 1;
+        Rem_Capacity := Temp - S.Top;
     end Rem_Capacity;
 
     Procedure Clear(clears S: Stack);
