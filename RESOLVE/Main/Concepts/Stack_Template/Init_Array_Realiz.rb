@@ -31,7 +31,7 @@ Realization Init_Array_Realiz for Stack_Template;
     end Depth;
 
     Procedure Rem_Capacity(restores S: Stack): Integer;
-		Var Temp: Integer;
+        Var Temp: Integer;
         Temp := Max_Depth + 1;
         Rem_Capacity := Temp - S.Top;
     end Rem_Capacity;

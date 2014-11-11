@@ -54,25 +54,25 @@ Realization Circular_Array_Realiz for Queue_Template;
 	end;
        
     Procedure Enqueue(alters E: Entry; updates Q: Queue);
-		Var Temp: Integer;
+        Var Temp: Integer;
         Q.Length := Q.Length + 1;
-		Temp := Q.Prefront + Q.Length;
-		Temp := Temp mod Max_Length;
+        Temp := Q.Prefront + Q.Length;
+        Temp := Temp mod Max_Length;
         Q.Contents[Temp] :=: E;
     end Enqueue;
 
     Procedure Dequeue(replaces R: Entry; updates Q: Queue);
-		Var Temp: Integer;
-		Temp := Q.Prefront + 1;
+        Var Temp: Integer;
+        Temp := Q.Prefront + 1;
 		Q.Prefront := Temp mod Max_Length;
         Q.Contents[Q.Prefront] :=: R;        
         Q.Length := Q.Length - 1;
     end Dequeue;
 
     Procedure Swap_First_Entry(updates E: Entry; updates Q: Queue);
-		Var Temp: Integer;
-		Temp := Q.Prefront + 1;
-		Temp := Temp mod Max_Length;
+        Var Temp: Integer;
+        Temp := Q.Prefront + 1;
+        Temp := Temp mod Max_Length;
         Q.Contents[Temp] :=: E;
     end Swap_First_Entry;
 
