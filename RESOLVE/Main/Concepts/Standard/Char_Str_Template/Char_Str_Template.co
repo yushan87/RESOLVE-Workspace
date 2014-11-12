@@ -53,10 +53,10 @@ Concept Char_Str_Template;
         ensures Char_Str_for = ( <c> );*)
 
     Operation Are_Equal(evaluates s1, s2: Char_Str): Boolean;
-        ensures (s1 = s2);
+        ensures Are_Equal = (s1 = s2);
 
     Operation Are_Not_Equal(evaluates s1, s2: Char_Str): Boolean;
-        ensures (s1 /= s2);
+        ensures Are_Not_Equal = (s1 /= s2);
 
     Operation Merger(evaluates s1, s2: Char_Str): Char_Str;
         ensures Merger = (s1 o s2);
