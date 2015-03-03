@@ -3,7 +3,7 @@ Realization Recursive_Inverting_Realiz for Inverting_Capability of Queue_Templat
         decreasing |Q|;
 
         Var E: Entry;
-		Var Len: Integer;
+        Var Len: Integer;
 
         Len := Length(Q);
         If ( Len /= 0 ) then
