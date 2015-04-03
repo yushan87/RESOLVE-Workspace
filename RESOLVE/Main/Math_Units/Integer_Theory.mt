@@ -54,8 +54,8 @@ Precis Integer_Theory;
     Definition suc: Z -> Z;
 	
 	(* Temporary fix for numbers 0 to 9 *)
-	Definition 0 : N;
-	Definition 1 : N;
+	Definition 0 : Z;
+	Definition 1 : Z;
 	Definition 2 : N;
 	Definition 3 : N;
 	Definition 4 : N;
@@ -114,7 +114,11 @@ Precis Integer_Theory;
 	Theorem NN_Not_Greater_Than_Zero:
 		For all n : N,
 			not(n > 0) = (n = 0);
-
+			
+	Theorem Z_Not_Greater_Than_Zero:
+		For all n : Z,
+			not(n > 0) = (n <= 0);
+			
 	Theorem NN_Not_Zero_Addition_Right_LET:
 		For all n, m : N, 
 		For all i : Z,
@@ -288,5 +292,8 @@ Precis Integer_Theory;
 
 	Theorem Distribute_Negative_2:
 		For all i, j, k : Z, i - (j - k) = i - j + k;
+		
+	Theorem Distribute_Negative_3:
+		For all i, j : Z, i - (i - j) =j;
 
 end Integer_Theory;

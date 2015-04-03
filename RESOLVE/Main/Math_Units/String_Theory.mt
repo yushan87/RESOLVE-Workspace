@@ -67,7 +67,18 @@ Precis String_Theory;
 			s : Str(T);
 
 	--String length
-	Definition |(s : SStr)| : N;
+	Definition |(s : SStr)| : Z;
+	
+	Theorem Non_Neg_Length_1:
+		For all s : SStr,
+		For all i : Z,
+			|s| = i implies 0 <= i;
+		
+	Theorem Non_Neg_Length_2:
+		For all s : SStr,
+		For all i : Z,
+			|s| = i and not(i > 0) implies 0 = i;
+			
 	
 	--Big Pi (Iterated Concatenation)
 	Definition Iterated_Concatenation(l : Z, m : Z, F: Z->SStr): SStr;
@@ -206,7 +217,7 @@ Precis String_Theory;
 
 	Theorem Zero_Length_Empty_String:
 		For all S : SStr,
-			(|S| = 0) = (S = Empty_String);
+			(|S| = 0) implies (S = Empty_String);
 
 	Theorem Length_Concatenation:
 		For all U, V : SStr,
@@ -405,4 +416,6 @@ Precis String_Theory;
 	Theorem Structure_1:
 		For all S : SStr,
 			<Element_At(0, S)> o Prt_Btwn(1, (|S| - 1), S) = S;
+			
+	
 end;
