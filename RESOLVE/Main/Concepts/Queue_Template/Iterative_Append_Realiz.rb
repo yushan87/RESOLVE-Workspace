@@ -1,5 +1,5 @@
 Realization Iterative_Append_Realiz for Append_Capability of Queue_Template;
-    -- will not verify because loop invariant is adequate
+    -- will not verify because loop invariant is not adequate
     Procedure Append(updates P: Queue; clears Q: Queue);
         Var E: Entry;
         Var Len: Integer;
