@@ -4,7 +4,10 @@ Realization Recursive_Inverting_Realiz for Inverting_Capability of Globally_Boun
 		decreasing |Q|;
 
 		Var E: Entry;
-		If ( Not(Is_Empty(Q)) ) then
+		Var Empty: Boolean;
+		
+		Empty := Is_Empty(Q);
+		If ( Not(Empty) ) then
 			Dequeue(E, Q);
 			Invert(Q);
 			Enqueue(E, Q);
