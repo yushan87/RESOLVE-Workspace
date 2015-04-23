@@ -11,7 +11,8 @@ Realization Manual_Transfer_Realization for Transfer_Capability of
 		Empty := Is_Empty(Source);
 		While ( Not(Empty) )
 			changing Source, Source_Reversed, Next_Entry, Empty;
-			maintaining #Source = Reverse(Source_Reversed) o Source;
+			maintaining #Source = Reverse(Source_Reversed) o Source and
+						Empty = (Source = Empty_String);
 			decreasing |Source|;
 		do
 			Pop(Next_Entry, Source);
@@ -22,8 +23,8 @@ Realization Manual_Transfer_Realization for Transfer_Capability of
 		Empty := Is_Empty(Source_Reversed);
 		While ( Not(Empty) )
 			changing Destination, Source_Reversed, Next_Entry, Empty;
-			maintaining #Source = 
-				Reverse(Source_Reversed) o Destination;
+			maintaining #Source = Reverse(Source_Reversed) o Destination and
+						Empty = (Source_Reversed = Empty_String);
 			decreasing |Source_Reversed|;
 		do
 			Pop(Next_Entry, Source_Reversed);

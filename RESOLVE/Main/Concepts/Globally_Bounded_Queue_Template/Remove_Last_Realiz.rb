@@ -8,7 +8,8 @@ Realization Remove_Last_Realiz for Remove_Last_Capability of Globally_Bounded_Qu
 		Empty := Is_Empty(Q);
 		While ( Not(Empty) )
 			changing Q,T,E,Empty;
-			maintaining #Q = T o <E> o Q;
+			maintaining #Q = T o <E> o Q and
+						Empty = (Q = Empty_String);
 			decreasing |Q|;
 		do
 			Enqueue(E,T);
