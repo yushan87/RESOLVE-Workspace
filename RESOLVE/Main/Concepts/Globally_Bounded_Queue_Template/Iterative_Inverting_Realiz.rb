@@ -10,7 +10,8 @@ Realization Iterative_Inverting_Realiz for Inverting_Capability of Globally_Boun
 
 		Empty := Is_Empty(Q);
 		While ( Not(Empty) )
-			maintaining Reverse(Q) o S = Reverse(#Q);
+			maintaining Reverse(Q) o S = Reverse(#Q) and
+						Empty = (Q = Empty_String);
 			decreasing |Q|;
 		do
 			Dequeue(Next_Entry, Q);
@@ -20,7 +21,8 @@ Realization Iterative_Inverting_Realiz for Inverting_Capability of Globally_Boun
 
 		Empty := Is_Empty(S);
 		While ( Not(Empty) )
-			maintaining Q o S = Reverse(#Q);
+			maintaining Q o S = Reverse(#Q) and
+						Empty = (S = Empty_String);
 			decreasing |S|;
 		do
 			Pop(Next_Entry, S);

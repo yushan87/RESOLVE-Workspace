@@ -8,7 +8,8 @@ Realization Obvious_Flipping_Realiz for Flipping_Capability of
 
 		Empty := Is_Empty(S);
 		While ( Not(Empty) )
-			maintaining #S = Reverse(Temp) o S;
+			maintaining #S = Reverse(Temp) o S and
+						Empty = (S = Empty_String);
 			decreasing |S|;
 		do
 			Pop(Next_Entry, S);

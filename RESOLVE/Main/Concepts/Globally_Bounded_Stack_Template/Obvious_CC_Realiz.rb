@@ -13,7 +13,8 @@ Realization Obvious_CC_Realiz
         Empty := Is_Empty(S_Orig);
         While (Not(Empty))
             changing Next_Entry, S_Orig, S_Reversed, Empty;
-            maintaining #S_Orig = Reverse(S_Reversed) o S_Orig;
+            maintaining #S_Orig = Reverse(S_Reversed) o S_Orig and 
+						Empty = (S_Orig = Empty_String);
             decreasing |S_Orig|;
         do
             Pop(Next_Entry, S_Orig);
@@ -26,7 +27,8 @@ Realization Obvious_CC_Realiz
         While (Not(Empty))
             changing Entry_Copy, Next_Entry, S_Copy, S_Orig, S_Reversed, Empty;
             maintaining S_Copy = S_Orig and
-                        #S_Orig = Reverse(S_Reversed) o S_Orig;
+                        #S_Orig = Reverse(S_Reversed) o S_Orig and
+						Empty = (S_Reversed = Empty_String);
             decreasing |S_Reversed|;
         do
             Pop(Next_Entry, S_Reversed);

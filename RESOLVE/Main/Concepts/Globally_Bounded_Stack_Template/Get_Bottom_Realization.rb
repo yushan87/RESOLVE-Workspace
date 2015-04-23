@@ -9,7 +9,8 @@ Realization Get_Bottom_Realization for Get_Bottom_Capability of
 		Empty := Is_Empty(S);
 		While ( Not(Empty) )
 			changing S, S_Temp, E_Temp, Empty;
-			maintaining #S = Reverse(S_Temp) o S; 
+			maintaining #S = Reverse(S_Temp) o S and
+						Empty = (S = Empty_String);
 			decreasing |S|;
 		do
 			Pop(E_Temp, S);
@@ -20,7 +21,8 @@ Realization Get_Bottom_Realization for Get_Bottom_Capability of
 		Empty := Is_Empty(S_Temp);
 		While ( Not(Empty) )
 			changing S, S_Temp, E_Temp, Empty;
-			maintaining #S = Reverse(S_Temp) o S o <E>;
+			maintaining #S = Reverse(S_Temp) o S o <E> and
+						Empty = (S_Temp = Empty_String); 
 			decreasing |S_Temp|;
 		do
 			Pop(E_Temp, S_Temp);
