@@ -6,7 +6,7 @@ Realization Recursive_Inverting_Realiz for Inverting_Capability of Queue_Templat
         Var Len: Integer;
 
         Len := Length(Q);
-        If ( Len /= 0 ) then
+        If ( Less_Or_Equal(1, Len) ) then
             Dequeue(E, Q);
             Invert(Q);
             Enqueue(E, Q);

@@ -12,6 +12,7 @@
 
 # Proofs
 *.proof
+*.smt
 
 # AST graphs
 *.ast

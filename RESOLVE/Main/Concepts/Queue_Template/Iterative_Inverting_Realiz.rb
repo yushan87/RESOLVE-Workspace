@@ -9,7 +9,7 @@ Realization Iterative_Inverting_Realiz for Inverting_Capability of Queue_Templat
 		Var Len, Dep: Integer;
 
 		Len := Length(Q);
-		While ( Len /= 0 )
+		While ( Less_Or_Equal(1, Len) )
 			maintaining Reverse(Q) o S = Reverse(#Q) and Len = |Q|;
 			decreasing |Q|;
 		do
@@ -19,7 +19,7 @@ Realization Iterative_Inverting_Realiz for Inverting_Capability of Queue_Templat
 		end;
 
 		Dep := Depth(S);
-		While ( Dep /= 0 )
+		While ( Less_Or_Equal(1, S) )
 			maintaining Q o S = Reverse(#Q) and Dep = |S|;
 			decreasing |S|;
 		do

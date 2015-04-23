@@ -1,5 +1,5 @@
 (*
- * This softare is released under the new BSD 2006 license.
+ * This software is released under the new BSD 2006 license.
  * 
  * Note the new BSD license is equivalent to the MIT License, except for the
  * no-endorsement final clause.
@@ -32,8 +32,8 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * 
- * This sofware has been developed by past and present members of the
- * Reusable Sofware Research Groups (RSRG) at Clemson University and
+ * This software has been developed by past and present members of the
+ * Reusable Software Research Groups (RSRG) at Clemson University and
  * The Ohio State University.
  *)
 
@@ -48,7 +48,7 @@ Precis String_Theory;
 	--A function that restricts SStr to the type of all strings of some homogenous
 	--type
 	Definition Str : MType -> MType;
-	Definition Empty_String_In(T : MType) : Str(T);
+	--Definition Empty_String_In(T : MType) : Str(T);
 
 	Type Theorem Empty_String_In_All_Strs:
 		For all T : MType,
@@ -66,33 +66,19 @@ Precis String_Theory;
 		For all s : Str(R),
 			s : Str(T);
 
-	--String length
-	Definition |(s : SStr)| : Z;
-	
-	Theorem Non_Neg_Length_1:
-		For all s : SStr,
-		For all i : Z,
-			|s| = i implies 0 <= i;
-		
-	Theorem Non_Neg_Length_2:
-		For all s : SStr,
-		For all i : Z,
-			|s| = i and not(i > 0) implies 0 = i;
-			
-	
-	--Big Pi (Iterated Concatenation)
-	Definition Iterated_Concatenation(l : Z, m : Z, F: Z->SStr): SStr;
+	Definition DeString(s : SStr) : Entity;
 
-	--String concatenation
-	--Definition (s : Str(U : MType)) o (t : Str(U)) : Str(U);
+	
 	Definition (s : SStr) o (t : SStr) : SStr;
 
 	Type Theorem Concatenation_Preserves_Generic_Type:
 		For all T : MType,
 		For all U, V : Str(T),
 			U o V : Str(T);
-
-	--Definition Reverse(s : Str(U : MType)) : Str(U);
+	Type Theorem DeString_Extracts_Generic_Type:
+		For all T : MType,
+		For all S : Str(T),
+			DeString(S) : Str(T);
 
 	Definition Reverse(s : SStr) : SStr;
 
@@ -100,322 +86,359 @@ Precis String_Theory;
 		For all T : MType,
 		For all S : Str(T),
 			Reverse(S) : Str(T);
+	Definition min(m:Z,n:Z):Z;
+	Definition max(m:Z,n:Z):Z;
+(*
+	Theorem min_Expanded_Definition_a:
+    	For all m,n:Z,
+    		(min(m,n) = m) = (m <= n);
 
-	--Singleton string
-	Definition <(e : (U : MType))> : Str(U);
+    Theorem min_Expanded_Definition_b:
+    	For all m,n:Z,
+    		(min(m,n) = n) = (n <= m);
 
-	Definition Is_Permutation(s : SStr, t : SStr) : B;
+	Theorem max_Expanded_Definition_a:
+    	For all m,n:Z,
+    		(max(m,n) = m) = (n <= m);
+
+    Theorem max_Expanded_Definition_b:
+    	For all m,n:Z,
+    		(max(m,n) = n) = (m <= n);
+*)
+
+(*	Inductive Definition (alpha:SStr) o (beta:SStr) is
+	(i) alpha o Empty_String = alpha;
+	(ii) alpha o ext(beta,x) = ext(alpha o beta, x); *)
+
+	Corollary Concatenation_1_a: -- Is_Identity_for(o,Empty_String);
+		For all S:SStr,
+			Empty_String o S = S;
+
+	Corollary Concatenation_1_b: -- Is_Identity_for(o,Empty_String);
+		For all S:SStr,
+			S o Empty_String = S;
+
+	Corollary Concatenation_2: -- Is_Associative(o);
+		For all S,T,U:SStr,
+			S o (T o U) = (S o T) o U;
+
+	Corollary Concatenation_3: -- Is_Right_Cancellative(o)
+		For all S,T,U:SStr,
+			((S o U) = (T o U)) implies (S = T);
+
+(* Inductive Definition |(alpha:SStr)|:N is
+		(i) |Empty_String| = 0;
+		(ii) |ext(alpha,x)| = suc(|alpha|); *)
+
+	Definition |(alpha:SStr)|:N; 
+
+	Theorem Str_Length_Expanded_Def_i:
+		|Empty_String| = 0;
+
+	Corollary Str_Length_1_a:
+		For all alpha:SStr,
+			(|alpha| = 0) implies (alpha = Empty_String);
+
+	Corollary Str_Length_1_b:
+		For all alpha:SStr,
+			 (alpha = Empty_String) implies (|alpha| = 0);
+
+	Corollary Str_Length_2: -- will not introduce |_| on its own, see add_ons at end
+		For all alpha,beta:SStr,
+			|alpha o beta| = |alpha| + |beta|;
+			
+	Corollary Str_Length_Lt:
+		For all alpha,beta,gamma:SStr,
+			|alpha o beta| = |gamma| and 0 < |beta| implies |alpha| < |gamma|;
+			
+	Corollary Str_Length_2_1: 
+		For all alpha,beta,gamma:SStr,
+			|alpha o beta| = |gamma| implies |alpha| = |gamma| - |beta|;
+
+			
+	Corollary Str_Length_3:
+		For all alpha,beta,gamma,delta:SStr,
+			((alpha o beta) = (gamma o delta) and |beta| = |delta|)
+				implies (beta = delta and alpha = gamma);
+
+
+(*	Definition <(x:Entity)>:Str = (ext(Empty_String,x)); *)
+--	Definition <(e : (U : MType))> : Str(U);
+	Definition <(e : Entity)> : SStr;
+	
+	Type Theorem Stringleton_Preserves_Generic_Type:
+		For all T : MType,
+		For all e : T,
+			<e> : Str(T);
+
+	Corollary Str_Length_Singlton_Cat:
+		For all alpha,beta: SStr,
+		For all x: Entity, 
+			(alpha = <x> o beta) implies (|beta| < |alpha|);
+				
+	Corollary Singleton_Str_1:
+		For all x:Entity,
+			<x> /= Empty_String;
+
+	Corollary Singleton_Str_2:
+		For all x:Entity,
+			|<x>| = 1;
+			
+	Corollary Str_Length_Singelton:
+		For all alpha: SStr,
+		For all x: Entity,
+			|alpha| < |<x> o alpha|;
+			
+	Corollary Singleton_Str_3: -- Is_Injective(op<>);
+		For all x,y:Entity,
+			(<x> = <y>) implies (x = y);
+
+(*	Corollary Singleton_Str 4:
+		Is_Proper_Class(SStr); *)
+
+(*	Corollary Singleton_Str 6:
+		For all alpha:SStr,
+		For all x:Entity,
+			alpha o x = ext(alpha,x); *)
+
+(*	Inductive Definition Reverse(alpha:SStr):SStr is
+	(i) Reverse(Empty_String) = Empty_String;
+	(ii) Reverse(ext(alpha,x)) = <x> o Reverse(alpha); *)
+
+	Theorem Reverse_Expanded_Definition_i:
+		Reverse(Empty_String) = Empty_String;
+
+	Corollary Reverse_1:
+		For all x:Entity,
+			Reverse(<x>) = <x>;
+
+	Corollary Reverse_2:
+		For all alpha,beta:SStr,
+			Reverse(alpha o beta) = Reverse(beta) o Reverse(alpha);
+
+	Corollary Reverse_3:
+		For all alpha:SStr,
+			Reverse(Reverse(alpha)) = alpha;
+
+	Corollary Reverse_4: -- Is_Bijective(Reverse); (only stating injectivity)
+		For all alpha,beta:SStr,
+			(Reverse(alpha) = Reverse(beta)) implies (alpha = beta);
+
+	Corollary Reverse_5:
+		For all alpha,beta:SStr,
+			Reverse(alpha) = beta implies Reverse(beta) = alpha;
+
+	Corollary Reverse_6: -- Is_Left_Cancellative( o )
+		For all S,T,U:SStr,
+			((U o S) = (U o T)) implies (S = T);
+
+	Corollary Reverse_7:
+		For all alpha,beta,gamma,delta:SStr,
+			((alpha o beta) = (gamma o delta)) and ((|alpha| = |gamma|) or (|beta| = |delta|))  implies
+				(alpha = gamma and beta = delta);
+
+	Corollary Reverse_8:
+		For all alpha:SStr,
+			|Reverse(alpha)| = |alpha|;
+
+(*	Inductive Definition Prt_Btwn(m:Z,n:Z,alpha:SStr):SStr is
+	(i) Prt_Btwn(m,n,Empty_String) = Empty_String);
+	(ii) (m <= |alpha| < n) implies Prt_Btwn(m,n,ext(alpha,x)) = ext(Prt_btwn(m,n,alpha));
+	(iii) not(m <= |alpha| < n) implies Prt_Btwn(m,n,ext(alpha,x)) = Prt_btwn(m,n,alpha); *)
+
+	Definition Prt_Btwn(m:Z,n:Z,alpha:SStr):SStr;
+	(* 0 a 1 b 2 c 3 d 4 e 5 *)
+
+	Theorem Prt_Btwn_Expanded_Def_i:
+		For all m,n:Z,
+			Prt_Btwn(m,n,Empty_String) = Empty_String;
+
+	Corollary Prt_Btwn_1:
+		For all alpha:SStr,
+		For all m,n:Z,
+			(|alpha| <= n) implies Prt_Btwn(0,n,alpha) = alpha;
+
+	Corollary Prt_Btwn_2:
+		For all alpha:SStr,
+		For all m,n:Z,
+			(Prt_Btwn(m,n,alpha) = alpha and alpha /= Empty_String) implies (m <= 0 and |alpha| <= n);
+
+	Corollary Prt_Btwn_3:
+		For all alpha:SStr,
+		For all m,n:Z,
+			(Prt_Btwn(m,n,alpha) = Empty_String) = (alpha = Empty_String or |alpha| <= m or n <= m);
+
+	Corollary Prt_Btwn_4:
+		For all alpha:SStr,
+		For all n:Z,
+			Prt_Btwn(n,n,alpha) = Empty_String;
+
+	Corollary Prt_Btwn_5:
+		For all alpha:SStr,
+		For all m,n:Z,
+			|Prt_Btwn(m,n,alpha)| = max(min(n,|alpha|) - max(m,0),0);
+
+	Corollary Prt_Btwn_7:
+		For all alpha:SStr,
+		For all m,n:Z,
+			Prt_Btwn(0,m,alpha) o Prt_Btwn(m,n,alpha) o Prt_Btwn(max(m,n),|alpha|,alpha) = alpha;
+
+	Corollary Prt_Btwn_8:
+		For all alpha:SStr,
+		For all n:Z,
+			Prt_Btwn(0,n,alpha) o Prt_Btwn(n,|alpha|,alpha) = alpha;
+
+	Corollary Prt_Btwn_9_a:
+		For all alpha,beta,gamma,delta:SStr,
+		For all m,n:Z,
+			Prt_Btwn(m,n,alpha o beta) = gamma and Prt_Btwn(m,n,alpha) = delta and n <= |alpha|
+				implies gamma = delta;
+
+	Corollary Prt_Btwn_9_b:
+		For all alpha,beta,gamma,delta:SStr,
+		For all m,n:Z,
+			Prt_Btwn(m,n,alpha o beta) = gamma and Prt_Btwn(m - |alpha|,n - |alpha|,beta) = delta and |alpha| <= m
+				implies gamma = delta;
+
+	Corollary Prt_Btwn_10_a:
+		For all alpha,beta:SStr,
+			Prt_Btwn(0,|alpha|,alpha o beta) = alpha;
+
+	Corollary Prt_Btwn_10_b:
+		For all alpha,beta:SStr,
+			Prt_Btwn(|alpha|,|alpha o beta|, alpha o beta) = beta;
+
+	Corollary Prt_Btwn_11_a:
+		For all alpha,beta:SStr,
+		For all x:Entity,
+			Prt_Btwn(|alpha|,|alpha| + 1, alpha o <x>) = <x>;
+
+	Corollary Prt_Btwn_11_b:
+		For all alpha,beta:SStr,
+		For all x:Entity,
+			Prt_Btwn(0,1,<x> o alpha) = <x>;
+
+	Corollary Prt_Btwn_11_c:
+		For all alpha,beta:SStr,
+		For all x:Entity,
+			Prt_Btwn(0,|alpha|,alpha o <x>) = alpha;
+-- this one is wrong
+--	Corollary Prt_Btwn_11_d:
+--		For all alpha,beta:SStr,
+--		For all x:Entity,
+--			Prt_Btwn(1,|alpha| + 1,<x> o alpha) = alpha;
+
+	Corollary Prt_Btwn_12_a:
+		For all alpha:SStr,
+		For all m,n,p,q:Z,
+			Prt_Btwn(m,n,Prt_Btwn(p,q,alpha)) = Prt_Btwn(m + p, min(n + p, q), alpha);
+			
+
+	Corollary Prt_Btwn_12_b:
+		For all alpha:SStr,
+		For all n:Z,
+			Reverse(Prt_Btwn(n,n+1,alpha)) = Prt_Btwn(n,n+1,alpha);
+(*
+-- causes contrad
+	Corollary Prt_Btwn_13_a:
+		For all alpha:SStr,
+		For all m,n:Z,
+			Reverse(Prt_Btwn(m,n,alpha)) = Prt_Btwn(|alpha| - n, |alpha| - m, Reverse(alpha));
+-- causes contrad
+	Corollary Prt_Btwn_13_b:
+		For all alpha:SStr,
+		For all m,n:Z,
+			Prt_Btwn(m,n,Reverse(alpha)) = Reverse(Prt_Btwn(|alpha| - n, |alpha| - m, alpha));
+*)
 
 	--Determines if for every pairing of elements from s and t, the given predicate
 	--holds
-	Definition Is_Universally_Related(s : SStr, t : SStr, 
+(*	Definition Is_Universally_Related(s : SStr, t : SStr,
 		f : (Entity * Entity) -> B) : B;
 
-	Definition Prt_Btwn(m : Z, n : Z, s : SStr) : SStr;
-	Definition DeString(s : SStr) : Entity;
-	Definition Element_At(i : Z, s : SStr) : Entity;
-
-	Type Theorem Element_At_Extracts_Generic_Type:
-		For all T : MType,
-		For all S : Str(T),
-		For all i : Z,
-			Element_At(i, S) : Str(T);
-			
-	Type Theorem DeString_Extracts_Generic_Type:
-		For all T : MType,
-		For all S : Str(T),
-			DeString(S) : Str(T);
-
-	Definition Exists_Between(E : Entity, S : SStr, From : Z, To : Z) : B;
-
-	---------------------------------------------------------------
-	-- String Equality Theorems                                  --
-	---------------------------------------------------------------
-	Theorem Structure_Equality:
-		For all S, T : SStr,
-		For all E, F : Entity,
-			(S o <E> = T o <F>) implies ((S = T) and (E = F));
-
-
-	---------------------------------------------------------------
-	-- Empty String Theorems                                     --
-	---------------------------------------------------------------
-	Theorem Reverse_Empty_String:
-		Reverse(Empty_String) = Empty_String;
-
-	Theorem Empty_String_Concatenation_Right:
-		For all S : SStr,
-			S o Empty_String = S;
-
-	Theorem Empty_String_Concatenation_Left:
-		For all S : SStr,
-			Empty_String o S = S;
-
-	---------------------------------------------------------------
-	-- String Length Theorems                                    --
-	---------------------------------------------------------------
-	Theorem Stringleton_Length_One:
-		For all e : Entity,
-			|<e>| = 1;
-
-	Theorem Same_String_Same_Length:
-		For all S, T : SStr,
-			S = T implies |S| = |T|;
-
-	Theorem String_Length_Boundary_1:
-		For all S, T : SStr,
-		For all i : Z,
-			|S o T| <= i implies
-				|S| <= i and
-				|T| <= i;
-
-	Theorem String_Length_Boundary_2:
-		For all S, T : SStr,
-		For all i : Z,
-			|S o T| < i implies
-				|S| < i and
-				|T| < i;
-
-	Theorem Lenght_Concatenate_Singleton:
-		For all S : SStr,
-		For all e : Entity,
-			|S o <e>| = |S| + 1;
-
-	Theorem String_Length_Boundary_Singleton_Left:
-		For all S : SStr,
-		For all E : Entity,
-		For all i : Z,
-			|<E> o S| <= i implies
-				|S| < i;
-
-	Theorem String_Length_Hack_1:
-		For all U, V : SStr,
-		For all E : Entity,
-		For all i : Z,
-			|U o (<E> o V)| <= i implies
-				|U| < i and
-				|V| < i;
-
-	Theorem Reverse_Irrelevant_In_Length:
-		For all S : SStr,
-			|Reverse(S)| = |S|;
-
-	Theorem Concatenate_Singleton_Greater_Than_Zero_Length:
-		For all S : SStr,
-		For all E : Entity,
-			|(S o <E>)| > 0;
-
-	Theorem Concatenate_Singleton_Increases_Length_Left:
-		For all S : SStr,
-		For all E : Entity,
-			(|S| < |<E> o S|);
-
-	Theorem Concatenate_Singleton_Increases_Length_Right:
-		For all S : SStr,
-		For all E : Entity,
-			(|S| < |S o <E>|);
-
-	Theorem Zero_Length_Empty_String:
-		For all S : SStr,
-			(|S| = 0) implies (S = Empty_String);
-
-	Theorem Length_Concatenation:
-		For all U, V : SStr,
-			|U o V| = |U| + |V|;
-
-	Theorem Get_Rid_Of_Singleton_1:
-		For all S, T : SStr,
-		For all e : Entity,
-			(|S o <e>| = |T|) implies
-				(|S| < |T|);
-
-	Theorem Get_Rid_Of_Singleton_2:
-		For all S, T : SStr,
-		For all e : Entity,
-			(|<e> o S| = |T|) implies
-				(|S| < |T|);
-
-	Theorem Length_Relation_1:
-		For all S, T, U : SStr,
-			|S o T| = |U| and |S| > 0 implies
-				|T| < |U|;
-
-	Theorem Length_Relation_2:
-		For all S : SStr,
-		For all e : Entity,
-		For all i, j : Z,
-			|S o <e>| = i and i <= j implies |S| < j;
-
-	Theorem Concat_Length_Not_Zero_Left:
-		For all U, V, W : SStr,
-			U o V = W and |U| /= 0 implies |V| < |W|;
-
-	Theorem Concat_Length_Not_Zero_Right:
-		For all U, V, W : SStr,
-			U o V = W and |V| /= 0 implies |U| < |W|;
-
-	---------------------------------------------------------------
-	-- Singleton String Theorems                                 --
-	---------------------------------------------------------------
-	Theorem Reverse_Of_Singleton:
-		For all E : Entity,
-			Reverse(<E>) = <E>;
-
-	---------------------------------------------------------------
-	-- Reverse Theorems                                          --
-	---------------------------------------------------------------
-	Theorem Concatenation_Under_Reverse:
-		For all U, V : SStr,
-			Reverse(U o V) = Reverse(V) o Reverse(U);
-
-	Theorem Reverse_Inverts_Itself:
-		For all S : SStr,
-			Reverse(Reverse(S)) = S;
-
-	---------------------------------------------------------------
-	-- Concatenation Theorems                                    --
-	---------------------------------------------------------------
-	Theorem Concatenation_Associative:
-		For all U, V, W : SStr,
-			(U o V) o W = U o (V o W);
-
-	---------------------------------------------------------------
-	-- Permutation Theorems                                      --
-	---------------------------------------------------------------
-	Theorem Identity_Permutation:
-		For all S : SStr,
-			Is_Permutation(S, S);
-
-	Theorem Permutation_Lengths:
-		For all S, T : SStr,
-			Is_Permutation(S, T) implies |S| = |T|;
-
-	Theorem Permutation_Extension_1:
-		For all S, T, U, V : SStr,
-			Is_Permutation(S, T) and
-			Is_Permutation(T o U, V) implies
-				Is_Permutation(S o U, V);
-
-	Theorem Permutation_Shell_Game_1:
-		For all S, T, U, V : SStr,
-			Is_Permutation(S o (T o U), V) =
-				Is_Permutation((S o U) o T, V);
-
-	Theorem Permutation_Shell_Game_2:
-		For all S, T : SStr,
-			Is_Permutation(S o T, T o S);
-
-	Theorem Permutation_Shell_Game_3:
-		For all S, T, U, V, W : SStr,
-			Is_Permutation((S o (T o U)) o V, W) =
-				Is_Permutation(((S o V) o U) o T, W);
-
-	Theorem Permutation_Commutative:
-		For all S, T : SStr,
-			Is_Permutation(S, T) = Is_Permutation(T, S);
-
-	---------------------------------------------------------------
-	-- Universal Relations Theorems                              --
-	---------------------------------------------------------------
 	Theorem Empty_String_Universally_Related_1:
-		For all S : SStr,
+		For all beta : SStr,
 		For all f : (Entity * Entity) -> B,
-			Is_Universally_Related(Empty_String, S, f);
+			Is_Universally_Related(Empty_String, beta, f) = (beta = Empty_String);
+*)
+	Theorem DeString_Expanded_Definition:
+		For all rho:SStr, -- should be typed as Prime_Str
+			|rho| = 1 implies <DeString(rho)> = rho;
 
-	Theorem Empty_String_Universally_Related_2:
-		For all S : SStr,
-		For all f : (Entity * Entity) -> B,
-			Is_Universally_Related(S, Empty_String, f);
+	Corollary DeString_1:
+		For all x:Entity,
+			DeString(<x>) = x;
 
-	Theorem Universally_Related_Distributes_1:
-		For all f : (Entity * Entity) -> B,
-		For all S, T, U : SStr,
-			Is_Universally_Related(S o T, U, f) implies
-				Is_Universally_Related(S, U, f) and
-				Is_Universally_Related(T, U, f);
-
-	Theorem Universally_Related_Distributes_2:
-		For all f : (Entity * Entity) -> B,
-		For all S, T, U : SStr,
-			Is_Universally_Related(S, T o U, f) implies
-				Is_Universally_Related(S, T, f) and
-				Is_Universally_Related(S, U, f);
-
-	Theorem Universally_Related_Distributes_3:
-		For all f : (Entity * Entity) -> B,
-		For all S, T, U : SStr,
-			Is_Universally_Related(S, U, f) and
-			Is_Universally_Related(T, U, f) implies
-				Is_Universally_Related(S o T, U, f);
-
-	Theorem Universally_Related_Distributes_4:
-		For all f : (Entity * Entity) -> B,
-		For all S, T, U : SStr,
-			Is_Universally_Related(S, T, f) and
-			Is_Universally_Related(S, U, f) implies
-				Is_Universally_Related(S, T o U, f);
-
-	Theorem Permutation_Maintains_Universal_Relation_1:
-		For all f : (Entity * Entity) -> B,
-		For all S, T, U : SStr,
-			Is_Universally_Related(S, T, f) and
-			Is_Permutation(U, T) implies
-				Is_Universally_Related(S, U, f);
-
-	Theorem Permutation_Maintains_Universal_Relation_2:
-		For all f : (Entity * Entity) -> B,
-		For all S, T, U : SStr,
-			Is_Universally_Related(S, T, f) and
-			Is_Permutation(U, S) implies
-				Is_Universally_Related(U, T, f);
-
-	Theorem Universal_Relation_Transitivity_1:
-		For all f : (Entity * Entity) -> B,
-		For all S : SStr,
-		For all e1, e2 : Entity,
-			f(e1, e2) and Is_Universally_Related(<e2>, S, f) implies
-				Is_Universally_Related(<e1>, S, f);
-
-	Theorem Universally_Related_Singletons:
-		For all e1, e2 : Entity,
-		For all f : (Entity * Entity) -> B,
-			f(e1, e2) = Is_Universally_Related(<e1>, <e2>, f);
-
-	---------------------------------------------------------------
-	-- Exists_Between Theorems                                   --
-	---------------------------------------------------------------
-	Theorem Exists_Between_No_Window_1:
-		For all e : Entity,
-		For all S : SStr,
-		For all i : Z,
-			Exists_Between(e, S, i, i - 1) = false;
-
-	Theorem Exists_Between_No_Window_2:
-		For all e : Entity,
-		For all S : SStr,
-		For all i : Z,
-			Exists_Between(e, S, i + 1, i) = false;
-
-	Theorem Exists_Between_Decomposition:
-		For all e : Entity,
-		For all S : SStr,
-		For all i, j, x, y : Z,
-			x >= y - 1 implies
-				((Exists_Between(e, S, i, x) or
-				Exists_Between(e, S, y, j)) =
-					Exists_Between(e, S, i, j));
-
-	---------------------------------------------------------------
-	-- Substring Theorems                                        --
-	---------------------------------------------------------------
-	Theorem Substring_Length:
-		For all S : SStr,
-		For all n : N,
-			|Prt_Btwn(n, |S| - n, S)| = |S| - n;
-
-	Theorem Structure_1:
-		For all S : SStr,
-			<Element_At(0, S)> o Prt_Btwn(1, (|S| - 1), S) = S;
+	Corollary DeString_2:
+		For all alpha:SStr,
+		For all n:Z,
+			0 <= n <= (|alpha| + (-1)) implies <DeString(Prt_Btwn(n, n + 1, alpha))> = Prt_Btwn(n,n+1,alpha);
 			
+	-- Big Pi (Iterated Concatenation) Parameter of F is implicitly (m,m + n]
+	-- Theorems assume it is defined this way: F(m + 1) o ... o F(m + n)
+(*	Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
+
+	Theorem Iterated_Concatenation_Expanded_Def_i:
+		For all m:Z,
+		For all F: Z->SStr,
+		For all alpha: SStr,
+			Iterated_Concatenation(m,0,F) = Empty_String; 
+*)
+(*		
+	Theorem Iterated_Concatenation_Expanded_Def_ii:
+		For all m,n:Z,
+		For all F: Z->SStr,
+		For all alpha: SStr,
+			Iterated_Concatenation(m,suc(n),F) = Iterated_Concatenation(m,n,F) o F(m + 1 + suc(n));
+	Corollary Iterated_Concatenation_1:
+		For all m,n,p:Z,
+		For all F: Z->SStr,
+			Iterated_Concatenation(m,n,F) o Iterated_Concatenation(m+n,p,F) = 
+				Iterated_Concatenation(m,n+p,F);
+*)				
+(*	Corollary Iterated_Concatenation_2:
+		For all m,n:Z,
+		For all F:Z -> SStr,
+			|Iterated_Concatenation(m,n,F)| = Summation(m,n,Composition_of_Z_SStr_Z(F,Length));
+*)
+	---------------------------------------------------------------
+	-- Potential Addons                                
+	---------------------------------------------------------------
+(*
+    -- Generate contradiction if negative numbers are used for bounds
+	Theorem Iterated_Concatenation_Z_Params_are_N:
+		For all m,n:Z,
+		For all F: Z->SStr,
+		For all alpha: SStr,
+			Iterated_Concatenation(m,n,F) = alpha implies m >= 0 and n >= 0;
+*)			
+	Theorem Str_Length_NN_1:
+		For all alpha:SStr,
+			0 <= |alpha|;
+
+	Theorem Str_Length_NN_2:
+		For all alpha:SStr,
+			|alpha| /= 0 implies  1 <= |alpha|;
 	
+	Theorem Str_Length_N_Pos:
+		For all alpha,beta:SStr,
+		For all i:Z,
+			1 <= |alpha|  and |beta o alpha| <= i implies  |beta| < i;
+(*			
+	Theorem Str_Length_Bound_Cat_Stringleton:
+		For all alpha:SStr,
+		For all e:Entity,
+		For all i,j:Z,
+			|<e> o alpha| = i and |alpha| < j implies i <= j;
+*)			
+	Corollary Str_Length_forced_introduction:
+		For all alpha,beta,gamma:SStr,
+			alpha o beta = gamma implies |gamma| = |alpha| + |beta|;
+(*			
+	Corollary Str_Length_forced_introduction_2:
+		For all alpha,beta,gamma:SStr,
+			alpha o beta = gamma implies |alpha| = |gamma| - |beta|;
+*)			
+
+			
 end;

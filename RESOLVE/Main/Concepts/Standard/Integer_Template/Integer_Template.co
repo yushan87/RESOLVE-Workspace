@@ -44,7 +44,7 @@ Concept Integer_Template;
     Definition min_int: Z;
     Definition max_int: Z;
 
-    Constraint min_int <= 0 and 0 < max_int;
+    Constraint min_int <= 0 and 1 <= max_int;
 
     Type Family Integer is modeled by Z;
         exemplar i;

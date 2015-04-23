@@ -2,9 +2,10 @@ Realization Iterative_Add_to_Realiz for Adding_Capability of Integer_Template;
 	uses Integer_Theory, Boolean_Theory;
 
 	Procedure Add_to(updates i:Integer; evaluates j:Integer);
-		While ( Is_Not_Zero(j) ) 
+
+		While ( Less_Or_Equal(1, j) ) 
 			changing i, j;
-			maintaining (i + j = #i + #j) and j >= 0;
+			maintaining (i + j = #i + #j) and 0 <= j;
 			decreasing j;
 		do
 			Increment (i);
