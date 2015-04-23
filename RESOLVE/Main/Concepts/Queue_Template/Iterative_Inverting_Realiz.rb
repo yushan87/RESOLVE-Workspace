@@ -19,7 +19,7 @@ Realization Iterative_Inverting_Realiz for Inverting_Capability of Queue_Templat
 		end;
 
 		Dep := Depth(S);
-		While ( Less_Or_Equal(1, S) )
+		While ( Less_Or_Equal(1, Dep) )
 			maintaining Q o S = Reverse(#Q) and Dep = |S|;
 			decreasing |S|;
 		do

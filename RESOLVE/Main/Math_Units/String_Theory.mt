@@ -376,8 +376,8 @@ Precis String_Theory;
 			
 	-- Big Pi (Iterated Concatenation) Parameter of F is implicitly (m,m + n]
 	-- Theorems assume it is defined this way: F(m + 1) o ... o F(m + n)
-(*	Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
-
+ Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
+(*
 	Theorem Iterated_Concatenation_Expanded_Def_i:
 		For all m:Z,
 		For all F: Z->SStr,
