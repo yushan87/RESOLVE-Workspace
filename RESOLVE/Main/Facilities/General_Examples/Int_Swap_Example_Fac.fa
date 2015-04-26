@@ -12,6 +12,7 @@ Facility Int_Swap_Example_Fac;
     end Exchange;
 
     Operation Exchange2(updates I: Integer; updates J: Integer);
+    	requires min_int <= I + J <= max_int;
         ensures I = #J and J = #I;
     Procedure
         I := I + J;

@@ -6,7 +6,7 @@ Realization Obvious_Flipping_Realiz for Flipping_Capability of Stack_Template;
 		Var D: Integer;
 
 		D := Depth(S);
-		While (Is_Not_Zero(D))
+		While (Less_Or_Equal(1, D))
 			maintaining #S = Reverse(Temp) o S and D = |S|;
 			decreasing |S|;
 		do

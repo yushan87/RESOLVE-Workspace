@@ -5,7 +5,7 @@ Realization Remove_Last_Realiz for Remove_Last_Capability of Queue_Template;
 
 		Dequeue (E, Q);
 		Len := Length(Q);
-		While (Len /= 0)
+		While (Less_Or_Equal(1, Len))
 			changing Q,T,E,Len;
 			maintaining #Q = T o <E> o Q and Len = |Q|;
 			decreasing |Q|;

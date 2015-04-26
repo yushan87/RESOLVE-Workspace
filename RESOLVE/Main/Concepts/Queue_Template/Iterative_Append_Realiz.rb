@@ -4,7 +4,7 @@ Realization Iterative_Append_Realiz for Append_Capability of Queue_Template;
         Var E: Entry;
         Var Len: Integer;
         Len := Length(Q);
-        While ( Is_Not_Zero(Len) )
+        While ( Less_Or_Equal(1, Len) )
           -- fill in a suitable invariant
           maintaining true;
           decreasing |Q|;
