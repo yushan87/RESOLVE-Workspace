@@ -7,7 +7,7 @@ Realization Obvious_Reading_Realiz (Operation Read_Entry(replaces E: Entry);)
 
 		Clear(S);
 		D := Depth(S);
-		While (D /= Count)
+		While (D < Count)
 			changing S, Next_Entry, D;
 			maintaining |S| <= Count and D = |S|;
 			decreasing (Count - |S|);
