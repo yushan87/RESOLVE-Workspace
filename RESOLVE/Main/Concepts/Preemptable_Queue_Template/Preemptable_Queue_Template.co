@@ -1,6 +1,6 @@
 Concept Preemptable_Queue_Template(type Entry; evaluates Max_Length: Integer);
 	uses String_Theory;
-	requires Max_Length > 0;
+	requires 1 <= Max_Length;
     
 	Type Family P_Queue is modeled by Str(Entry);
 		exemplar Q;
@@ -9,19 +9,19 @@ Concept Preemptable_Queue_Template(type Entry; evaluates Max_Length: Integer);
 	end;
     
 	Operation Enqueue(alters E: Entry; updates Q: P_Queue);
-		requires |Q| < Max_Length;
+		requires 1 + |Q| <= Max_Length;
 		ensures Q = #Q o <#E>;
     
 	Operation Inject(alters E: Entry; updates Q: P_Queue);
-		requires |Q| < Max_Length;
+		requires 1 + |Q| <= Max_Length;
 		ensures Q = <#E> o #Q;
     
 	Operation Dequeue(replaces R: Entry; updates Q: P_Queue);
-		requires |Q| /= 0;
+		requires 1 <= |Q|;
 		ensures #Q = <R> o Q;
     
 	Operation Swap_Last_Entry(updates E: Entry; updates Q: P_Queue);
-		requires |Q| /= 0;
+		requires 1 <= |Q|;
 		ensures Q = Prt_Btwn(0, |#Q| - 1, #Q) o <#E> and
 			E = DeString(Prt_Btwn(|#Q| - 1, |#Q|, #Q));
     
