@@ -440,7 +440,7 @@ Precis Integer_Theory;
 			
 	Theorem Addition_Over_LTE_Remove_Like_Terms: -- written to remove negatives
 		For all i,j,k:Z,
-			i + j <= k + j implies i <= j;
+			i + j <= k + j implies i <= k;
    
 	Theorem LT_Expanded_Def_1:
     	For all i,j:Z,
