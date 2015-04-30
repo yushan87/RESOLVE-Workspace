@@ -50,6 +50,14 @@ Precis Integer_Theory;
 
 	Definition 0:N;
 	Definition 1:N;
+	Definition 2:N;
+	Definition 3:N;
+	Definition 4:N;
+	Definition 5:N;
+	Definition 6:N;
+	Definition 7:N;
+	Definition 8:N;
+	Definition 9:N;
 	
 	(* Note that the type Z is built-in.  No need to introduce it here. *)
 	-- Definition Z:SSet;
@@ -429,10 +437,14 @@ Precis Integer_Theory;
 	Theorem Addition_Over_LTE: -- written to remove negatives
 		For all i,j,k:Z,
 			i + (-j) <= k implies i <= k + j;
+			
+	Theorem Addition_Over_LTE_Remove_Like_Terms: -- written to remove negatives
+		For all i,j,k:Z,
+			i + j <= k + j implies i <= k;
    
 	Theorem LT_Expanded_Def_1:
     	For all i,j:Z,
-    		(i < j) = (i + 1 <= j); 	
+    		(i < j) implies (1 + i <= j); 	
  
  	Theorem Subtr_Elim:
     	For all i,j,k:Z,
@@ -440,11 +452,11 @@ Precis Integer_Theory;
     		
     Theorem LT_and_LTE_a:
     	For all m,n,p:Z,		
-    		 m < n and n <= p implies m < p;
+    		 m < n and n <= p implies m + 1 <= p;
     		 
     Theorem LT_and_LTE_b:
     	For all m,n,p:Z,		
-    		 m <= n and n < p implies m < p;
+    		 m <= n and n < p implies m + 1 <= p;
     		 			
     Corollary LTE_6_b:
 		For all i,j,k,l:Z,
@@ -497,7 +509,7 @@ Precis Integer_Theory;
 
     Theorem Not_LT:
     	For all i,j:Z,
-    		(i >= j) = not(i < j);
+    		not(i + 1 <= j) implies j <= i;
 
     Theorem Not_Eq_1:
     	For all i,j:Z,
@@ -513,7 +525,7 @@ Precis Integer_Theory;
 
    	Theorem Not_Eq_4:
    		For all i,j:Z,
-   			(i <= j) and (j /= i) implies (i < j);
+   			(i <= j) and (j /= i) implies (i + 1 <= j);
    			
    	Theorem Add_NonZero_Not_Eq:
    		For all i,j,k:Z,
@@ -525,7 +537,7 @@ Precis Integer_Theory;
 
 	Theorem GT_implies_GTE:
     	For all i,j:Z,
-    		(i > j) implies (i >= j);
+    		(i > j) implies (j <= i);
 
 	Theorem Not_LTE_Implies:
 		For all i,j:Z,
@@ -546,7 +558,7 @@ Precis Integer_Theory;
 	
 	Theorem LT_Subtr:
 		For all i,j,k:Z,
-			i + (-j) = k and 0 < j implies k < i;
+			i + (-j) = k and 0 < j implies k + 1 <= i;
 
 	Theorem LTE_Substitution:
 		For all i,j,k:Z,	
@@ -558,7 +570,7 @@ Precis Integer_Theory;
 			
 	Theorem Nested_Subt_2:
 		For all i,j:Z,
-			(i + j) - i = j;	
+			(i + j) - i = j;
 
     Definition (i: Z) ** (j: Z) : Z;
 

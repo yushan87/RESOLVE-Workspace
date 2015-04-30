@@ -4,13 +4,12 @@ Realization Obvious_Reading_Realiz (Operation Read_Entry(replaces E: Entry);)
 	Procedure Read_upto(replaces S: Stack; preserves Count: Integer);
 		Var Next_Entry: Entry;
 		Var D: Integer;
-
 		Clear(S);
 		D := Depth(S);
-		While (D < Count)
+		While (Less(D,Count))
 			changing S, Next_Entry, D;
 			maintaining |S| <= Count and D = |S|;
-			decreasing (Count - |S|);
+			decreasing  Count - |S|;
 		do
 			Read_Entry(Next_Entry);
 			Push(Next_Entry, S);
