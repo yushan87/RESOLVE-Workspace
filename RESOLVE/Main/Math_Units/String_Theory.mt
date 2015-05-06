@@ -252,11 +252,11 @@ Precis String_Theory;
 	Theorem Prt_Btwn_Expanded_Def_i:
 		For all m,n:Z,
 			Prt_Btwn(m,n,Empty_String) = Empty_String;
-
+			
 	Corollary Prt_Btwn_1:
-		For all alpha:SStr,
-		For all m,n:Z,
-			(|alpha| <= n) implies Prt_Btwn(0,n,alpha) = alpha;
+		For all alpha, beta:SStr,
+		For all n:Z,
+			(|alpha| <= n) and Prt_Btwn(0,n,alpha) = beta implies beta = alpha;
 
 	Corollary Prt_Btwn_2:
 		For all alpha:SStr,
