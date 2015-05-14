@@ -41,6 +41,8 @@ Concept Char_Str_Template;
     uses String_Theory, Integer_Theory;
 
     Definition Max_Char_Str_Len: N;
+	
+    Constraint 1 <= Max_Char_Str_Len;
 
     Type Family Char_Str is modeled by Str(N);
         exemplar s;
