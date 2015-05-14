@@ -41,11 +41,12 @@ Concept Character_Template;
     uses Integer_Theory;
 
     Definition Last_Char_Num: N;
+
     Constraint 1 <= Last_Char_Num;
 
     Type Family Character is modeled by N;
         exemplar c;
-		constraints 1 + c <= Last_Char_Num;
+		constraints c <= Last_Char_Num;
 		initialization 
 			ensures c = 0;
 	end;
