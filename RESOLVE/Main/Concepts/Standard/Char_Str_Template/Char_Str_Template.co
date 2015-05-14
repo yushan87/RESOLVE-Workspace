@@ -42,7 +42,7 @@ Concept Char_Str_Template;
 
     Definition Max_Char_Str_Len: N;
 	
-	Constraint 1 <= Max_Char_Str_Len;
+    Constraint 1 <= Max_Char_Str_Len;
 
     Type Family Char_Str is modeled by Str(N);
         exemplar s;
