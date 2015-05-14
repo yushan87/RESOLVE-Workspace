@@ -16,8 +16,8 @@ Facility Int_Swap_Example_Fac;
         ensures I = #J and J = #I;
     Procedure
         I := I + J;
-        J := I - J;
-        I := I - J;
+        J := -J + I;
+        I := -J + I;
     end Exchange2;
 
     (*

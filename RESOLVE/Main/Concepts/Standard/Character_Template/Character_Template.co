@@ -41,11 +41,11 @@ Concept Character_Template;
     uses Integer_Theory;
 
     Definition Last_Char_Num: N;
-    Constraint Last_Char_Num > 0;
+    Constraint 1 <= Last_Char_Num;
 
     Type Family Character is modeled by N;
         exemplar c;
-		constraints c < Last_Char_Num;
+		constraints 1 + c <= Last_Char_Num;
 		initialization 
 			ensures c = 0;
 	end;
@@ -63,13 +63,13 @@ Concept Character_Template;
         ensures Less_Or_Equal = ( c1 <= c2 );
 
     Operation Less(evaluates c1, c2: Character): Boolean;
-        ensures Less = ( c1 < c2 );
+        ensures Less = ( 1 + c1 <= c2 );
 
     Operation Greater_Or_Equal(evaluates c1, c2: Character): Boolean;
-        ensures Greater_Or_Equal = ( c1 >= c2 );
+        ensures Greater_Or_Equal = ( c2 <= c1 );
 
     Operation Greater(evaluates c1, c2: Character): Boolean;
-        ensures Greater = ( c1 > c2 );
+        ensures Greater = ( 1 + c2 <= c1 );
 
     Operation Replica(restores c: Character): Character;
         ensures Replica = ( c );

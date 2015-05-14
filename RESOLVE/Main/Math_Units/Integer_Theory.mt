@@ -46,6 +46,9 @@ Categorical Definition introduces
 related by
 	Is_Monogeneric_for(Z, z0, NB);
 
+Type Theorem N_subset_Of_Z:
+	For all n:N,
+		n:Z;
 Theorem zero_N:
 	z0 = 0;
 		
@@ -98,6 +101,10 @@ Inductive Definition (m : Z) + (n : Z) : Z is
 Corollary Plus_1:
 	Is_Right_Identity_for(op +, z0);
 	
+Corollary Plus_1_Def:
+	For all m,n:Z,
+		n + 0 = m implies m = n;
+	
 Corollary Plus_2:
 	For all m, n : Z,
 		m + NB(n) = conditional(Is_Neg(n), -(-m + n), -(suc(-m + n)));
@@ -116,9 +123,17 @@ Theorem I6:
 Theorem I7:
 	Is_Associative(op +);
 	
+Theorem I_7_Def:
+	For all i,j,k:Z,
+		(i + j) + k = i + (j + k);
+	
 Theorem I8:
 	Is_Left_Identity_for(op +, z0);
 	
+Theorem I8_Def:
+	For all m,n:Z,
+		0 + n = m implies m = n;
+		
 Corollary I8_1:
 	Is_Identity_for(op +, z0);
 	
@@ -128,10 +143,19 @@ Theorem I9:
 		
 Theorem I10:
 	Is_Commutative(op +);
-	
+
+Theorem I10_Def:
+	For all m,n:Z,
+		m + n = n + m;
+		
 Corollary I10_1:
 	Is_Inverse_for(op +, op -);
 	
+Corollary I10_1_a:
+	For all n:Z,
+		--n + (-n) = m implies m = 0;
+		n + (-n) = 0;	
+		
 Corollary I10_2:
 	Is_Abelian_Group(Z, z0, op +, op -);
 		
@@ -143,19 +167,19 @@ Definition (i: Z) > (j: Z) : B;
 	
 Theorem One_Expanded_Def:
 	z1 = suc(z0);
-(*
+
 Corollary One_1:
 	For all m,n:Z,
-		suc(m) = n implies n = m + 1;
+		suc(m) = n implies n = m + z1;
 
 Corollary One_2_a:
 	For all n:Z,
-		0 <= n implies NB(n) = -(n + 1);
+		z0 <= n implies NB(n) = -(n + z1);
 
 Corollary One_2_b:
     For all n:Z,
     	Is_Neg(n) implies NB(n) = -n;
-*)
+
 Corollary One_3:
     z1 /= z0;
 
@@ -311,11 +335,11 @@ Corollary I25_2:
 	Theorem Minus_Expanded_Def:
 		For all i,j,k:Z,
 			i - j = k implies k = i + (-j);
-			
+*)			
 	Theorem Distribution_Unary_Minus_Over_Addition:
 		For all i,j,k:Z,
 			-(i + j) = k implies k = (-i) + (-j);
-*)			
+			
 	Theorem Addition_Over_Equality: -- written to remove negatives
 		For all i,j,k:Z,
 			i + (-j) = k implies i = k + j;
@@ -444,15 +468,15 @@ Corollary I25_2:
 	Theorem LTE_Substitution:
 		For all i,j,k:Z,	
 			i <= j and k <= i implies k <= j;
-(*			
+			
 	Theorem Nested_Subt_1:
 		For all i,j:Z,
-			(i + j) - j = i;
+			(i + j) + (- j) = i;
 			
 	Theorem Nested_Subt_2:
 		For all i,j:Z,
-			(i + j) - i = j;
-*)
+			(i + j) + (- i) = j;
+
     Definition (i: Z) ** (j: Z) : Z;
 
     Definition (i: Z) / (j: Z) : Z;

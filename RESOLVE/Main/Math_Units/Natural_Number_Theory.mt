@@ -85,4 +85,8 @@ Theorem N9:
 Theorem N10:
 	Is_Preserved_by(op +, op <=);
 	
+Theorem Not_LTE_Z_1_0:
+	For all n:N,
+		not(1 <= n) implies n = 0;
+	
 end Natural_Number_Theory;

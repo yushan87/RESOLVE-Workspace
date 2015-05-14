@@ -37,7 +37,7 @@ Concept Map_Template (Type Key; Type Info; evaluates Max_Size: Integer);
 		ensures 	Element_Count = ||M.KeySet||;
 
 	Oper Remaining_Capacity(restores M: Map) : Integer;
-		ensures 	Remaining_Capacity = Max_Size - ||M.KeySet||;
+		ensures 	Remaining_Capacity = - ||M.KeySet|| + Max_Size;
 
 	Oper Clear(clears M: Map);
 

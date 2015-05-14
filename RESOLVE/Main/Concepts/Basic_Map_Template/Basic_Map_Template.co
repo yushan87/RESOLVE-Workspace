@@ -40,7 +40,7 @@ Concept Basic_Map_Template (Type Key; Type Info; evaluates Max_Size: Integer;
 		ensures 	Deviation_Count = Dev_Ct (M);
 
 	Oper Rem_Capacity (restores M: Map): Integer;
-		ensures 	Rem_Capacity = Max_Size - Dev_Ct (M);
+		ensures 	Rem_Capacity = - Dev_Ct (M) + Max_Size;
 
 	Oper Clear (clears M: Map);
 

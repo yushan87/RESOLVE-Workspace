@@ -54,13 +54,13 @@ Realization Array_Realiz for Stack_Template;
 	end;
 
     Procedure Push(alters E: Entry; updates S: Stack);
-        S.Top := S.Top + 1;
+        S.Top := 1 + S.Top;
         E :=: S.Contents[S.Top];
     end;
 
     Procedure Pop(replaces R: Entry; updates S: Stack); 
         R :=: S.Contents[S.Top];
-        S.Top := S.Top - 1;
+        S.Top := - 1 + S.Top;
     end;
 
     Procedure Depth(restores S: Stack): Integer;
@@ -68,7 +68,7 @@ Realization Array_Realiz for Stack_Template;
     end;
 
     Procedure Rem_Capacity(restores S: Stack): Integer;
-        Rem_Capacity := Max_Depth - S.Top;
+        Rem_Capacity := - S.Top + Max_Depth;
     end;
 
     Procedure Clear(clears S: Stack);

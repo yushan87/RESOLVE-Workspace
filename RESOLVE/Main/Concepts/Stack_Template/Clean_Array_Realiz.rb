@@ -23,7 +23,7 @@ Realization Clean_Array_Realiz for Stack_Template;
 
         R :=: S.Contents[S.Top];
         S.Contents[S.Top] :=: Fresh_Val;
-        S.Top := S.Top - 1; 
+        S.Top := -1 + S.Top; 
     end Pop;
 
     Procedure Depth(restores S: Stack): Integer;
@@ -31,7 +31,7 @@ Realization Clean_Array_Realiz for Stack_Template;
     end Depth;
 
     Procedure Rem_Capacity(restores S: Stack): Integer;
-        Rem_Capacity := Max_Depth - S.Top;
+        Rem_Capacity := -S.Top + Max_Depth ;
     end Rem_Capacity;
 	
     Operation Clear_Entry(clears E: Entry);
@@ -41,13 +41,13 @@ Realization Clean_Array_Realiz for Stack_Template;
     end Clear_Entry;
 	
     Procedure Clear(clears S: Stack);
-        While (S.Top > 0)  
+        While (1 <= S.Top)  
             changing S;
             maintaining S.Top <= Max_Depth;
             decreasing S.Top;
         do
             Clear_Entry(S.Contents[S.Top]);
-            S.Top := S.Top - 1;
+            S.Top := -1 + S.Top;
         end;
     end Clear;
 
