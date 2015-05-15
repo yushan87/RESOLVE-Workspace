@@ -146,16 +146,4 @@ Concept Integer_Template;
 --    	Operation Ten( ): Integer;
 --			ensures Ten = 10;
 
-	Operation Zero() : Integer;
-			ensures Zero = 0;
-			
-	Operation One() : Integer;
-			ensures One = 1;
-
-	Operation GTE_Zero(evaluates i: Integer) : Boolean;
-		ensures GTE_Zero = (0 <= i);
-				
-	Operation GTE_One(evaluates i: Integer) : Boolean;
-		ensures GTE_One = (1 <= i);
-
 end Integer_Template;
