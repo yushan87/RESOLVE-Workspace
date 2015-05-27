@@ -414,38 +414,10 @@ Precis String_Theory;
 			Iterated_Concatenation(m,n,F) = alpha implies m >= 0 and n >= 0;
 *)	
 
--- These will likely soon be removed.		
-	Theorem Str_Length_NN_1:
-		For all alpha:SStr,
-			0 <= |alpha|;
-
-	Theorem Str_Length_NN_2:
-		For all alpha:SStr,
-			|alpha| /= 0 implies  1 <= |alpha|;
 	
-	Theorem Str_Length_NN_3:
-		For all alpha:SStr,
-			not(1 <= |alpha| ) implies  0 = |alpha|;
-			
-	Theorem Str_Length_N_Pos:
-		For all alpha,beta:SStr,
-		For all i:Z,
-			1 <= |alpha|  and |beta o alpha| <= i implies  |beta| < i;
-(*			
-	Theorem Str_Length_Bound_Cat_Stringleton:
-		For all alpha:SStr,
-		For all e:Entity,
-		For all i,j:Z,
-			|<e> o alpha| = i and |alpha| < j implies i <= j;
-*)			
 	Corollary Str_Length_forced_introduction:
 		For all alpha,beta,gamma:SStr,
 			alpha o beta = gamma implies |gamma| = |alpha| + |beta|;
-(*			
-	Corollary Str_Length_forced_introduction_2:
-		For all alpha,beta,gamma:SStr,
-			alpha o beta = gamma implies |alpha| = |gamma| - |beta|;
-*)			
 
 			
 end;

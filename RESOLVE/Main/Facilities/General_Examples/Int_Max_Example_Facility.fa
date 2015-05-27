@@ -5,10 +5,10 @@ Facility Int_Max_Example_Facility;
     Procedure
         Max := I + J;
         If (I > J) then
-            Max := -J + Max;
+            Max := Max - J;
         end;
         If (J > I) then
-            Max := -I + Max;
+            Max := Max - I;
         end;
     end Max;
 
