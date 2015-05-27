@@ -322,7 +322,7 @@ Precis String_Theory;
 	Corollary Prt_Btwn_11_c:
 		For all alpha,beta:SStr,
 		For all x:Entity,
-			Prt_Btwn(z0,|alpha|,alpha o <x>) = alpha;
+			Prt_Btwn(0,|alpha|,alpha o <x>) = alpha;
 -- this one is wrong
 --	Corollary Prt_Btwn_11_d:
 --		For all alpha,beta:SStr,
