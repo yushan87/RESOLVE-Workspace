@@ -6,7 +6,7 @@ Realization Inject_Front_Realiz for Inject_Front_Capability of Queue_Template;
 		
 		Enqueue (E, T);
 		Len := Length(Q);
-		While ( Less_Or_Equal(1, Len) )
+		While ( 1 <= Len )
 			changing Q,T,E,Len;
 			maintaining T o Q = <#E> o #Q and Len = |Q|;
 			decreasing |Q|;

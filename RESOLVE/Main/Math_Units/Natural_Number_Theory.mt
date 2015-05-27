@@ -85,4 +85,16 @@ Theorem N9:
 Theorem N10:
 	Is_Preserved_by(op +, op <=);
 	
+Theorem NN_LTE_Addition:
+	For all m,n:N,
+		m <= m + n;
+	
+Theorem Not_LTE_Z_1_0:
+	For all n:N,
+		not(1 <= n) implies n = 0;
+		
+Theorem Zero_min:
+	For all n:N,
+		0 <= n;
+	
 end Natural_Number_Theory;

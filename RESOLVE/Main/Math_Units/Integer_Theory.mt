@@ -46,17 +46,24 @@ Categorical Definition introduces
 related by
 	Is_Monogeneric_for(Z, z0, NB);
 
+Type Theorem N_subset_Of_Z:
+	For all n:N,
+		n:Z;
+		
 Theorem zero_N:
 	z0 = 0;
 		
 Inductive Definition Is_Neg(n : Z) : B is
-	(i) Is_Neg(z0) = false;
+	(i) Is_Neg(0) = false;
 	(ii) Is_Neg(NB(n)) = not(Is_Neg(n));
 	
 Inductive Definition -(n : Z) : Z is
-	(i) -z0 = z0;
+	(i) -0 = 0;
 	(ii) -NB(n) = conditional(Is_Neg(n), n, NB(NB(n)));
-	
+
+Theorem I0_a:
+	-0 = 0;
+		
 Theorem I1:
 	For all n : Z,
 		Is_Neg(n) implies NB(n) = -n;
@@ -66,11 +73,11 @@ Theorem I2:
 		-(-n) = n;
 		
 Inductive Definition suc(n : Z) : Z is
-	(i) suc(z0) = NB(NB(z0));
+	(i) suc(0) = NB(NB(0));
 	(ii) suc(NB(n)) = conditional(Is_Neg(n), NB(NB(NB(n))), -n);
 	
 
-Definition z1 : Z = suc(z0);
+Definition z1 : Z = suc(0);
 
 Theorem one_N:
 	z1 = 1;
@@ -92,11 +99,19 @@ Corollary I4_1:
 	Is_Bijective(suc);
 	
 Inductive Definition (m : Z) + (n : Z) : Z is
-	(i) m + z0 = m;
+	(i) m + 0 = m;
 	(ii) m + NB(n) = conditional(Is_Neg(n), -(-m + n), -(suc(-m + n)));
-	
+
+Corollary Plus_ID_1:
+	For all m:Z,
+		m + 0 = m;
+			
 Corollary Plus_1:
-	Is_Right_Identity_for(op +, z0);
+	Is_Right_Identity_for(op +, 0);
+	
+Corollary Plus_1_Def:
+	For all m,n:Z,
+		0 + m = m;
 	
 Corollary Plus_2:
 	For all m, n : Z,
@@ -116,11 +131,19 @@ Theorem I6:
 Theorem I7:
 	Is_Associative(op +);
 	
-Theorem I8:
-	Is_Left_Identity_for(op +, z0);
+Theorem I_7_Def:
+	For all i,j,k:Z,
+		(i + j) + k = i + (j + k);
 	
+Theorem I8:
+	Is_Left_Identity_for(op +, 0);
+	
+Theorem I8_Def:
+	For all m,n:Z,
+		0 + n = m implies m = n;
+		
 Corollary I8_1:
-	Is_Identity_for(op +, z0);
+	Is_Identity_for(op +, 0);
 	
 Theorem I9:
 	For all m, n : Z,
@@ -128,10 +151,22 @@ Theorem I9:
 		
 Theorem I10:
 	Is_Commutative(op +);
-	
+
+Theorem I10_Def:
+	For all m,n:Z,
+		m + n = n + m;
+		
 Corollary I10_1:
 	Is_Inverse_for(op +, op -);
 	
+Corollary I10_1_a:
+	For all n,m:Z,
+		n + (-n) = m implies m = 0;
+
+Corollary I10_1_b:
+	For all n,m:Z,
+		(-n) + n = m implies m = 0;		
+		
 Corollary I10_2:
 	Is_Abelian_Group(Z, z0, op +, op -);
 		
@@ -142,8 +177,8 @@ Definition (i: Z) < (j: Z) : B;
 Definition (i: Z) > (j: Z) : B;
 	
 Theorem One_Expanded_Def:
-	z1 = suc(z0);
-(*
+	1 = suc(0);
+
 Corollary One_1:
 	For all m,n:Z,
 		suc(m) = n implies n = m + 1;
@@ -155,9 +190,9 @@ Corollary One_2_a:
 Corollary One_2_b:
     For all n:Z,
     	Is_Neg(n) implies NB(n) = -n;
-*)
+
 Corollary One_3:
-    z1 /= z0;
+    1 /= 0;
 
     -- Corollaries 4 to 7 omitted
 
@@ -196,10 +231,10 @@ Corollary LTE_8:
 Corollary LTE_9:
 	For all n:Z,
 	For all p:B,
-		Is_Neg(n) = p implies p = not(z0 <= n);
+		Is_Neg(n) = p implies p = not(0 <= n);
 
 Corollary LTE_10:
-	not(z1 <= z0);
+	not(1 <= 0);
 
 Definition |(n: Z)| : Z;
 
@@ -222,7 +257,7 @@ Corollary Abs_Val_2:
 	--Omitted Is_Alg_Int_Like section
 
 Inductive Definition (m:Z) * (n:Z):Z is
-		(i) m * z0 = z0;
+		(i) m * 0 = 0;
 		(ii) Is_Neg(n) implies m * NB(n) = -(m * n);
 		--(iii) not(Is_Neg(n)) implies m * NB(n) = -(m * n + m);
 (*
@@ -237,11 +272,11 @@ Theorem Mult_Ind_Def_Expansion_iii:
 
 Corollary Mult_Def_1:
 	For all n:Z,
-		n * z0 = z0;
+		n * 0 = 0;
 
 Corollary Mult_Def_2:
 	For all n: Z,
-		n * z1 = n;
+		n * 1 = n;
 
 Theorem I14: --Is_Right_Distributive_Over(op+,op*);
 	For all l,m,n:Z,
@@ -269,11 +304,11 @@ Theorem I19: --Is_Associative(op*);
 
 Theorem I20: --Is_Left_Zero_for(*,0)
 	For all n:Z,
-		z0 * n = z0;
+		0 * n = 0;
 
 Theorem I21: --Is_Left_Identity_for(op*,1)
 	For all n:Z,
-		z1 * n = n;
+		1 * n = n;
 
 Theorem I22: --Is_Commutative(op*)
 	For all m,n:Z,
@@ -284,11 +319,11 @@ Theorem I22: --Is_Commutative(op*)
 
 Corollary I25_1:
 	For all l,m,n:Z,
-		l /= z0 and m * l = n * l implies m = n;
+		l /= 0 and m * l = n * l implies m = n;
 
 Corollary I25_2:
 	For all l,m,n:Z,
-        l /= z0 and l * m = l * n implies m = n;
+        l /= 0 and l * m = l * n implies m = n;
 
  (*	Corollary I25_3:
 		Is_Integral_Domain(Z,0,1,-,+,op* ); *)
@@ -301,21 +336,21 @@ Corollary I25_2:
 			
 	Theorem Not_LTE_Z_1_0:
 		For all i:Z,
-			not(z1 <= i) implies i <= z0;
+			not(1 <= i) implies i <= 0;
 			
 	Theorem Add_Zero:
 		For all i:Z,
-			z0 + i = i;
+			0 + i = i;
 (*			
     Definition (i: Z) - (j: Z): Z = i + (-j);
 	Theorem Minus_Expanded_Def:
 		For all i,j,k:Z,
 			i - j = k implies k = i + (-j);
-			
+*)			
 	Theorem Distribution_Unary_Minus_Over_Addition:
 		For all i,j,k:Z,
 			-(i + j) = k implies k = (-i) + (-j);
-*)			
+			
 	Theorem Addition_Over_Equality: -- written to remove negatives
 		For all i,j,k:Z,
 			i + (-j) = k implies i = k + j;
@@ -326,7 +361,7 @@ Corollary I25_2:
    
 	Theorem LT_Expanded_Def_1:
     	For all i,j:Z,
-    		(i < j) implies (z1 + i <= j); 	
+    		(i < j) implies (1 + i <= j); 	
  (*
  	Theorem Subtr_Elim:
     	For all i,j,k:Z,
@@ -334,35 +369,35 @@ Corollary I25_2:
  *)   		
     Theorem LT_and_LTE_a:
     	For all m,n,p:Z,		
-    		 m < n and n <= p implies m + z1 <= p;
+    		 m < n and n <= p implies m + 1 <= p;
     		 
     Theorem LT_and_LTE_b:
     	For all m,n,p:Z,		
-    		 m <= n and n < p implies m + z1 <= p;
+    		 m <= n and n < p implies m + 1 <= p;
     		 			
     Corollary LTE_6_b:
 		For all i,j,k,l:Z,
 			i + j <= k and l <= j implies i + l <= k;
 			
 	Theorem Zero_LTE_One:
-		z0 <= z1;
+		0 <= 1;
 
 	Theorem Neg_One_LTE_Zero:
-		(-z1) <= z0;
+		(-1) <= 0;
 	
 	Theorem Zero_LT_One:
-		z0 < z1;
+		0 < 1;
 
 	Theorem Neg_One_LT_Zero:
-		(-z1) < z0;	
+		(-1) < 0;	
 				
 	Theorem LTE_Plus_Non_Neg_RS:
 		For all i,j,k,m:Z,	
-			i <= j and j + m = k and z0 <= m implies i <= k;
+			i <= j and j + m = k and 0 <= m implies i <= k;
 			
 	Theorem LTE_Sub_LS:
 		For all i,j,k,m:Z,	
-			i <= j and i + m = k and m <= z0 implies k <= j;
+			i <= j and i + m = k and m <= 0 implies k <= j;
 
 	Theorem GTE_Expanded_Def:
     	For all i,j:Z,
@@ -372,7 +407,7 @@ Corollary I25_2:
     Theorem GT_Expanded_Def:
     	For all i,j:Z,
     	For all p:B,
-    		(i > j) = p implies (j + z1 <= i) = p;
+    		(i > j) = p implies (j + 1 <= i) = p;
     		
     Theorem Not_GTE:
     	For all i,j:Z,
@@ -387,11 +422,11 @@ Corollary I25_2:
     Theorem Not_LTE:
     	For all i,j:Z,
     	For all p:B,
-    		not(i <= j) = p implies p = (j + z1 <= i);
+    		not(i <= j) = p implies p = (j + 1 <= i);
 
     Theorem Not_LT:
     	For all i,j:Z,
-    		not(i + z1 <= j) implies j <= i;
+    		not(i + 1 <= j) implies j <= i;
 
     Theorem Not_Eq_1:
     	For all i,j:Z,
@@ -407,7 +442,7 @@ Corollary I25_2:
 
    	Theorem Not_Eq_4:
    		For all i,j:Z,
-   			(i <= j) and (j /= i) implies (i + z1 <= j);
+   			(i <= j) and (j /= i) implies (i + 1 <= j);
    			
    	Theorem Add_NonZero_Not_Eq:
    		For all i,j,k:Z,
@@ -423,36 +458,44 @@ Corollary I25_2:
 
 	Theorem Not_LTE_Implies:
 		For all i,j:Z,
-			not(i<=j) implies j + z1 <= i;
+			not(i<=j) implies j + 1 <= i;
 					
 	Theorem Add_GTE_Zero_GTE_a:
    		For all i,j,k:Z,
-   			(i <= j) and (z0 <= k) implies (i <= j + k);
+   			(i <= j) and (0 <= k) implies (i <= j + k);
    			
 	Theorem Add_GTE_Zero_GTE_b:
    		For all i,j,k,m:Z,
-   			(i <= j) and j + k = m  and z0 <= k implies (i <= m);		
+   			(i <= j) and j + k = m  and 0 <= k implies (i <= m);		
    			
 	Theorem LTE_Subtr:
 		For all i,j,k:Z,
-			i + (-j) = k and z0 <= j implies k <= i;
+			i + (-j) = k and 0 <= j implies k <= i;
 	
 	Theorem LT_Subtr:
 		For all i,j,k:Z,
-			i + (-j) = k and z0 < j implies k + z1 <= i;
+			i + (-j) = k and 0 < j implies k + 1 <= i;
 
 	Theorem LTE_Substitution:
 		For all i,j,k:Z,	
 			i <= j and k <= i implies k <= j;
-(*			
+			
 	Theorem Nested_Subt_1:
 		For all i,j:Z,
-			(i + j) - j = i;
+			(i + j) + (- j) = i;
 			
 	Theorem Nested_Subt_2:
 		For all i,j:Z,
-			(i + j) - i = j;
-*)
+			(i + j) + (- i) = j;
+			
+	Theorem Nested_Subt_3:	
+		For all i,j,k:Z,	
+			(i + j) + (-i + k) = j + k;
+	
+	Theorem Nested_Subt_4:	
+		For all i,j,k:Z,	
+			(i + j) + (k + -j) = i + k;
+
     Definition (i: Z) ** (j: Z) : Z;
 
     Definition (i: Z) / (j: Z) : Z;

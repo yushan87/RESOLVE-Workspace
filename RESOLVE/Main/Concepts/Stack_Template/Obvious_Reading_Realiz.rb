@@ -9,7 +9,7 @@ Realization Obvious_Reading_Realiz (Operation Read_Entry(replaces E: Entry);)
 		While (Less(D,Count))
 			changing S, Next_Entry, D;
 			maintaining |S| <= Count and D = |S|;
-			decreasing  Count - |S|;
+			decreasing  Count + (-|S|);
 		do
 			Read_Entry(Next_Entry);
 			Push(Next_Entry, S);

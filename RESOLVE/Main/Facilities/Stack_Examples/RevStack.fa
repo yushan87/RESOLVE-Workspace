@@ -14,7 +14,7 @@ Facility RevStack;
 		RC := Rem_Capacity(S);
 		While (RC > 0)
 			changing CS, RC, S;
-			maintaining |S| = 1 - RC;
+			maintaining |S| = 1 + (-RC);
 			decreasing RC;
 		do
 			Read(CS);

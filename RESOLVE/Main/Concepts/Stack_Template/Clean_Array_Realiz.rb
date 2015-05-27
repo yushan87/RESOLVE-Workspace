@@ -41,7 +41,7 @@ Realization Clean_Array_Realiz for Stack_Template;
     end Clear_Entry;
 	
     Procedure Clear(clears S: Stack);
-        While (S.Top > 0)  
+        While (1 <= S.Top)  
             changing S;
             maintaining S.Top <= Max_Depth;
             decreasing S.Top;

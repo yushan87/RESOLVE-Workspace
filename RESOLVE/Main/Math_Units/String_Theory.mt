@@ -149,11 +149,12 @@ Precis String_Theory;
 			
 	Corollary Str_Length_Lt:
 		For all alpha,beta,gamma:SStr,
-			|alpha o beta| = |gamma| and 0 < |beta| implies |alpha| < |gamma|;
-			
+			|alpha o beta| = |gamma| and 1 <= |beta| implies 1 + |alpha| <= |gamma|;
+
+(*	Can't negate naturals		
 	Corollary Str_Length_2_1: 
 		For all alpha,beta,gamma:SStr,
-			|alpha o beta| = |gamma| implies |alpha| = |gamma| - |beta|;
+			|alpha o beta| = |gamma| implies |alpha| = |gamma| + (- |beta|);
 
 			
 	Corollary Str_Length_3:
@@ -174,7 +175,7 @@ Precis String_Theory;
 	Corollary Str_Length_Singlton_Cat:
 		For all alpha,beta: SStr,
 		For all x: Entity, 
-			(alpha = <x> o beta) implies (|beta| < |alpha|);
+			(alpha = <x> o beta) implies (1 + |beta| <= |alpha|);
 				
 	Corollary Singleton_Str_1:
 		For all x:Entity,
@@ -187,7 +188,7 @@ Precis String_Theory;
 	Corollary Str_Length_Singelton:
 		For all alpha: SStr,
 		For all x: Entity,
-			|alpha| < |<x> o alpha|;
+			1 + |alpha| <= |<x> o alpha|;
 			
 	Corollary Singleton_Str_3: -- Is_Injective(op<>);
 		For all x,y:Entity,
@@ -276,7 +277,7 @@ Precis String_Theory;
 	Corollary Prt_Btwn_5:
 		For all alpha:SStr,
 		For all m,n:Z,
-			|Prt_Btwn(m,n,alpha)| = max(min(n,|alpha|) - max(m,0),0);
+			|Prt_Btwn(m,n,alpha)| = max( min(n,|alpha|) + -( max(m,0))  ,0);
 
 	Corollary Prt_Btwn_7:
 		For all alpha:SStr,
@@ -297,7 +298,7 @@ Precis String_Theory;
 	Corollary Prt_Btwn_9_b:
 		For all alpha,beta,gamma,delta:SStr,
 		For all m,n:Z,
-			Prt_Btwn(m,n,alpha o beta) = gamma and Prt_Btwn(m - |alpha|,n - |alpha|,beta) = delta and |alpha| <= m
+			Prt_Btwn(m,n,alpha o beta) = gamma and Prt_Btwn(m + (- |alpha|),n + (- |alpha|),beta) = delta and |alpha| <= m
 				implies gamma = delta;
 
 	Corollary Prt_Btwn_10_a:
@@ -372,7 +373,7 @@ Precis String_Theory;
 	Corollary DeString_2:
 		For all alpha:SStr,
 		For all n:Z,
-			0 <= n <= (|alpha| + (-1)) implies <DeString(Prt_Btwn(n, n + 1, alpha))> = Prt_Btwn(n,n+1,alpha);
+			1 <= n + 1 <= |alpha| implies <DeString(Prt_Btwn(n, n + 1, alpha))> = Prt_Btwn(n,n+1,alpha);
 			
 	-- Big Pi (Iterated Concatenation) Parameter of F is implicitly (m,m + n]
 	-- Theorems assume it is defined this way: F(m + 1) o ... o F(m + n)
@@ -411,34 +412,12 @@ Precis String_Theory;
 		For all F: Z->SStr,
 		For all alpha: SStr,
 			Iterated_Concatenation(m,n,F) = alpha implies m >= 0 and n >= 0;
-*)			
-	Theorem Str_Length_NN_1:
-		For all alpha:SStr,
-			0 <= |alpha|;
+*)	
 
-	Theorem Str_Length_NN_2:
-		For all alpha:SStr,
-			|alpha| /= 0 implies  1 <= |alpha|;
 	
-	Theorem Str_Length_N_Pos:
-		For all alpha,beta:SStr,
-		For all i:Z,
-			1 <= |alpha|  and |beta o alpha| <= i implies  |beta| < i;
-(*			
-	Theorem Str_Length_Bound_Cat_Stringleton:
-		For all alpha:SStr,
-		For all e:Entity,
-		For all i,j:Z,
-			|<e> o alpha| = i and |alpha| < j implies i <= j;
-*)			
 	Corollary Str_Length_forced_introduction:
 		For all alpha,beta,gamma:SStr,
 			alpha o beta = gamma implies |gamma| = |alpha| + |beta|;
-(*			
-	Corollary Str_Length_forced_introduction_2:
-		For all alpha,beta,gamma:SStr,
-			alpha o beta = gamma implies |alpha| = |gamma| - |beta|;
-*)			
 
 			
 end;

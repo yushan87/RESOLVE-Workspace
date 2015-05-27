@@ -27,7 +27,7 @@ Precis Binary_Iterator_Theory;
 					f(j) otherwise;
 				}}),
 				i)
-			= Concatenate(f, i - 1) o <e>;
+			= Concatenate(f, i + (-1)) o <e>;
 
 	Theorem End_Excluded:
 		For all f : Z -> Entity,
@@ -39,11 +39,11 @@ Precis Binary_Iterator_Theory;
 					f(j) otherwise;
 				}}),
 				i - 1)
-			= Concatenate(f, i - 1);
+			= Concatenate(f, i + (-1));
 
 	Theorem Inductive_Reverse_1:
 		For all f : Z -> Entity,
 		For all i : Z,
 		Reverse(Concatenate(f, i)) = 
-			<f(i)> o Reverse(Concatenate(f, i - 1));
+			<f(i)> o Reverse(Concatenate(f, i + (-1)));
 end;
