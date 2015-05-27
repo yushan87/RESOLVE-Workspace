@@ -1,5 +1,5 @@
 Concept Location_Linking_Template_1(type Info);
-
+	uses Integer_Theory;
 	(* Note: Under Construction! *)
 
 	Definition Void: Z;
