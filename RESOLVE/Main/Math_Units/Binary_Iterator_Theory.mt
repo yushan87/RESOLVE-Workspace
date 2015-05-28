@@ -38,7 +38,7 @@ Precis Binary_Iterator_Theory;
 					e if j = i;
 					f(j) otherwise;
 				}}),
-				i - 1)
+				i + (-1))
 			= Concatenate(f, i + (-1));
 
 	Theorem Inductive_Reverse_1:
