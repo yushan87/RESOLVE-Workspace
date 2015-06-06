@@ -6,28 +6,21 @@ Realization Iterative_Inverting_Realiz for Inverting_Capability of Globally_Boun
 	Procedure Invert (updates Q: Queue);
 		Var S: SF.Stack;
 		Var Next_Entry: Entry;
-		Var Empty: Boolean;
 
-		Empty := Is_Empty(Q);
-		While ( Not(Empty) )
-			maintaining Reverse(Q) o S = Reverse(#Q) and
-						Empty = (Q = Empty_String);
+		While ( not Is_Empty(Q) )
+			maintaining Reverse(Q) o S = Reverse(#Q);
 			decreasing |Q|;
 		do
 			Dequeue(Next_Entry, Q);
 			Push(Next_Entry, S);
-			Empty := Is_Empty(Q);
 		end;
 
-		Empty := Is_Empty(S);
-		While ( Not(Empty) )
-			maintaining Q o S = Reverse(#Q) and
-						Empty = (S = Empty_String);
+		While ( not Is_Empty(S) )
+			maintaining Q o S = Reverse(#Q);
 			decreasing |S|;
 		do
 			Pop(Next_Entry, S);
 			Enqueue(Next_Entry, Q);
-			Empty := Is_Empty(S);
 		end;
 	end Invert;
 end Iterative_Inverting_Realiz;

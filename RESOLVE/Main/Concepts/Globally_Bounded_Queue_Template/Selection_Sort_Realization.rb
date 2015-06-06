@@ -4,6 +4,8 @@ Realization Selection_Sort_Realization(
 				ensures Compare = LEQV(E1, E2);)
 		for Sorting_Capability of Globally_Bounded_Queue_Template;
 	uses String_Theory;
+	
+	(* Note: Under Construction! *)
 
 	Operation Remove_Min(updates Q : Queue; replaces Min : Entry);
 		requires |Q| /= 0;

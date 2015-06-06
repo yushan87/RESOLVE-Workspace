@@ -6,26 +6,21 @@ Realization Iterative_Inverting_Realiz for Inverting_Capability of Queue_Templat
 	Procedure Invert (updates Q: Queue);
 		Var S: SF.Stack;
 		Var Next_Entry: Entry;
-		Var Len, Dep: Integer;
 
-		Len := Length(Q);
-		While ( Less_Or_Equal(1, Len) )
-			maintaining Reverse(Q) o S = Reverse(#Q) and Len = |Q|;
+		While ( 1 <= Length(Q) )
+			maintaining Reverse(Q) o S = Reverse(#Q);
 			decreasing |Q|;
 		do
 			Dequeue(Next_Entry, Q);
 			Push(Next_Entry, S);
-			Len := Length(Q);
 		end;
 
-		Dep := Depth(S);
-		While ( Less_Or_Equal(1, Dep) )
-			maintaining Q o S = Reverse(#Q) and Dep = |S|;
+		While ( 1 <= Depth(S) )
+			maintaining Q o S = Reverse(#Q);
 			decreasing |S|;
 		do
 			Pop(Next_Entry, S);
 			Enqueue(Next_Entry, Q);
-			Dep := Depth(S);
 		end;
 	end Invert;
 end Iterative_Inverting_Realiz;

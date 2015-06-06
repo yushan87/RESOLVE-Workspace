@@ -42,6 +42,8 @@ Enhancement Merge_and_Sort_Capabilities(definition LEQV(x,y: Entry): B)
 	uses String_Theory, Total_Preordering_Theory;
 	requires Is_Total_Preordering(LEQV);
 	
+	(* Note: Under Construction! *)
+
 	Operation Merge_Q(clears Q: Queue; updates R: Queue);
 		requires Is_Conformal_With(LEQV, Q) and Is_Conformal_With(LEQV, R) and
 			|Q| + |R| <= Max_Length;
