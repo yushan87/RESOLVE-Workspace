@@ -6,30 +6,23 @@ Realization Manual_Transfer_Realization for Transfer_Capability of
 		Var Workaround_Stack : Stack;
 		Var Source_Reversed: Stack;
 		Var Next_Entry: Entry;
-		Var Empty: Boolean;
 
-		Empty := Is_Empty(Source);
-		While ( Not(Empty) )
-			changing Source, Source_Reversed, Next_Entry, Empty;
-			maintaining #Source = Reverse(Source_Reversed) o Source and
-						Empty = (Source = Empty_String);
+		While ( not Is_Empty(Source) )
+			changing Source, Source_Reversed, Next_Entry;
+			maintaining #Source = Reverse(Source_Reversed) o Source;
 			decreasing |Source|;
 		do
 			Pop(Next_Entry, Source);
 			Push(Next_Entry, Source_Reversed);
-			Empty := Is_Empty(Source);
 		end;
 		
-		Empty := Is_Empty(Source_Reversed);
-		While ( Not(Empty) )
-			changing Destination, Source_Reversed, Next_Entry, Empty;
-			maintaining #Source = Reverse(Source_Reversed) o Destination and
-						Empty = (Source_Reversed = Empty_String);
+		While ( not Is_Empty(Source_Reversed) )
+			changing Destination, Source_Reversed, Next_Entry;
+			maintaining #Source = Reverse(Source_Reversed) o Destination;
 			decreasing |Source_Reversed|;
 		do
 			Pop(Next_Entry, Source_Reversed);
 			Push(Next_Entry, Destination);
-			Empty := Is_Empty(Source_Reversed);
 		end;
 	end Transfer;
 end Manual_Transfer_Realization;

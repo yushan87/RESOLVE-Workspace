@@ -1,5 +1,7 @@
 Realization Queue_Location_Linking_Realiz for Globally_Bounded_Queue_Template;
 	uses Location_Linking_Template_1;
+	
+	(* Note: Under Construction! *)
 
 	definition Is_Reachable(first: Z, last: Z, 
 		refContext : Z -> Z) : B = {{(true) if first = last; 
