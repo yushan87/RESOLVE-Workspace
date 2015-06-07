@@ -1,6 +1,6 @@
 Enhancement Remove_Last_Capability for Queue_Template;
     Operation Remove_Last(updates Q: Queue; replaces E: Entry);
-        requires |Q| /= 0;
+        requires 1 <= |Q|;
         ensures #Q = Q o <E>;
 end Remove_Last_Capability;
 
