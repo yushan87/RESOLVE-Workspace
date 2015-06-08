@@ -33,19 +33,3 @@ Facility Stack_Examples_Fac;
                 end;
         end Flip_onto;
 end Stack_Examples_Fac;
-
-(*
-0_1 Proved  time: 78 ms
-1_1 Proved  time: 0 ms
-1_2 Proved  time: 0 ms
-1_3 Proved  time: 0 ms
-1_4 Proved  time: 5475 ms
-1_5 Proved  time: 4 ms
-1_6 Proved  time: 0 ms
-1_7 Proved  time: 0 ms
-2_1 Proved  time: 0 ms
-2_2 Proved  time: 0 ms
-2_3 Proved  time: 3 ms
-2_4 Proved  time: 1 ms
-Elapsed time from construction: 5675 ms
-*)
