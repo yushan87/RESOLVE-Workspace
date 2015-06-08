@@ -8,35 +8,27 @@ Facility RevStack;
 	Operation Read_Stack(replaces S: Stack);
 	Procedure
 		Var CS: Char_Str;
-		Var RC: Integer;
 
 		Clear(S);
-		RC := Rem_Capacity(S);
-		While (RC > 0)
-			changing CS, RC, S;
-			maintaining |S| = 1 + (-RC);
-			decreasing RC;
+		While ( 1 <= Rem_Capacity(S) )
+			changing CS, S;
+			decreasing 1 + (-|S|);
 		do
 			Read(CS);
 			Push(CS, S);
-			RC := Rem_Capacity(S);
 		end;
 	end Read_Stack;
 
 	Operation Write_Stack(clears S: Stack);
 	Procedure
 		Var CS: Char_Str;
-		Var D: Integer;
 
-		D := Depth(S);
-		While (D /= 0)
-			changing CS, D, S;
-			maintaining D = |S|;
-			decreasing D;
+		While ( 1 <= Depth(S) )
+			changing CS, S;
+			decreasing |S|;
 		do
 			Pop(CS, S);
 			Write_Line(CS);
-			D := Depth(S);
 		end;
 	end Write_Stack; 
 
