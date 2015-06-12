@@ -47,6 +47,14 @@ Corollary N6_1:
 	not(Is_Factorable_for(op +, 0));
 	
 Definition 1 : N = suc(0);
+Definition 2 : N = suc(1);
+Definition 3 : N = suc(2);
+Definition 4 : N = suc(3);
+Definition 5 : N = suc(4);
+Definition 6 : N = suc(5);
+Definition 7 : N = suc(6);
+Definition 8 : N = suc(7);
+Definition 9 : N = suc(8);
 
 Corollary Def1_1:
 	For all n : N,
