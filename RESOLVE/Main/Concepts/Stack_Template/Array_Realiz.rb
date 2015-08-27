@@ -38,7 +38,6 @@
  *)
 
 Realization Array_Realiz for Stack_Template;
-	uses Binary_Iterator_Theory;
 
     (* Note: Under Construction! *)
 

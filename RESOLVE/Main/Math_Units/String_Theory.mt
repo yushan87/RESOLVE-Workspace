@@ -150,13 +150,11 @@ Precis String_Theory;
 	Corollary Str_Length_Lt:
 		For all alpha,beta,gamma:SStr,
 			|alpha o beta| = |gamma| and 1 <= |beta| implies 1 + |alpha| <= |gamma|;
-
-(*	Can't negate naturals		
+	
 	Corollary Str_Length_2_1: 
 		For all alpha,beta,gamma:SStr,
 			|alpha o beta| = |gamma| implies |alpha| = |gamma| + (- |beta|);
-
-			
+		
 	Corollary Str_Length_3:
 		For all alpha,beta,gamma,delta:SStr,
 			((alpha o beta) = (gamma o delta) and |beta| = |delta|)
@@ -248,7 +246,6 @@ Precis String_Theory;
 	(iii) not(m <= |alpha| < n) implies Prt_Btwn(m,n,ext(alpha,x)) = Prt_btwn(m,n,alpha); *)
 
 	Definition Prt_Btwn(m:Z,n:Z,alpha:SStr):SStr;
-	(* 0 a 1 b 2 c 3 d 4 e 5 *)
 
 	Theorem Prt_Btwn_Expanded_Def_i:
 		For all m,n:Z,
@@ -323,11 +320,11 @@ Precis String_Theory;
 		For all alpha,beta:SStr,
 		For all x:Entity,
 			Prt_Btwn(0,|alpha|,alpha o <x>) = alpha;
--- this one is wrong
---	Corollary Prt_Btwn_11_d:
---		For all alpha,beta:SStr,
---		For all x:Entity,
---			Prt_Btwn(1,|alpha| + 1,<x> o alpha) = alpha;
+
+	Corollary Prt_Btwn_11_d:
+		For all alpha,beta:SStr,
+		For all x:Entity,
+			Prt_Btwn(1,|alpha| + 1,<x> o alpha) = alpha;
 
 	Corollary Prt_Btwn_12_a:
 		For all alpha:SStr,
@@ -397,11 +394,7 @@ Precis String_Theory;
 			Iterated_Concatenation(m,n,F) o Iterated_Concatenation(m+n,p,F) = 
 				Iterated_Concatenation(m,n+p,F);
 *)				
-(*	Corollary Iterated_Concatenation_2:
-		For all m,n:Z,
-		For all F:Z -> SStr,
-			|Iterated_Concatenation(m,n,F)| = Summation(m,n,Composition_of_Z_SStr_Z(F,Length));
-*)
+
 	---------------------------------------------------------------
 	-- Potential Addons                                
 	---------------------------------------------------------------

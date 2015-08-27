@@ -1,0 +1,9 @@
+Precis Integer_Ext_Theory;
+	uses Integer_Theory;
+
+Definition (i: Z) - (j: Z): Z = i + (-j);
+Theorem Minus_Expanded_Def:
+	For all i,j,k:Z,
+		i - j = k implies k = i + (-j);	
+	
+end Integer_Ext_Theory;
