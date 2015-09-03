@@ -366,7 +366,7 @@ Corollary I25_2:
  	Theorem Subtr_Elim:
     	For all i,j,k:Z,
     		((i - j) = k) implies (k + j = i);   
- *)   		
+    		
     Theorem LT_and_LTE_a:
     	For all m,n,p:Z,		
     		 m < n and n <= p implies m + 1 <= p;
@@ -378,7 +378,7 @@ Corollary I25_2:
     Corollary LTE_6_b:
 		For all i,j,k,l:Z,
 			i + j <= k and l <= j implies i + l <= k;
-			
+*)			
 	Theorem Zero_LTE_One:
 		0 <= 1;
 
@@ -390,7 +390,7 @@ Corollary I25_2:
 
 	Theorem Neg_One_LT_Zero:
 		(-1) < 0;	
-				
+(*				
 	Theorem LTE_Plus_Non_Neg_RS:
 		For all i,j,k,m:Z,	
 			i <= j and j + m = k and 0 <= m implies i <= k;
@@ -398,7 +398,7 @@ Corollary I25_2:
 	Theorem LTE_Sub_LS:
 		For all i,j,k,m:Z,	
 			i <= j and i + m = k and m <= 0 implies k <= j;
-
+*)
 	Theorem GTE_Expanded_Def:
     	For all i,j:Z,
     	For all p:B,
@@ -495,6 +495,10 @@ Corollary I25_2:
 	Theorem Nested_Subt_4:	
 		For all i,j,k:Z,	
 			(i + j) + (k + -j) = i + k;
+			
+	Theorem Negated_Interval_1:
+		For all i,j:Z,
+			not (i <= j and j <= i) implies not (i = j);
 
     Definition (i: Z) ** (j: Z) : Z;
 

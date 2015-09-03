@@ -40,15 +40,23 @@
 Theory Conditional_Function_Theory;
 	uses Integer_Theory;
 
-	Definition CF (f1 : (D : MType) -> (R : MType), f2 : D -> R, c : D -> B) : D -> R;	
-	Definition FRestr (f : (D : MType) -> (R : MType), s: Entity) : D->R;
-	Definition isBinaryPartition (p1: Entity, p2: Entity) : B;
-	
+Definition isBinaryPartitionZ (p1: Z, p2: Z) : B;
+(* isBinaryPartition is automatically generated
+Theorem isBinaryPartitionZ_Def:
+	For all f: Z->B,
+	For all x,y:Z, 	
+		f(x) and not(f(y)) implies isBinaryPartitionZ(x,y)
+*)
+
+Theorem isBinaryPartition_Commutative:
+	For all x,y:Z,
+		isBinaryPartitionZ(x,y) = isBinaryPartitionZ(y,x);
 		
-Theorem FRestr_CombineParts:
-	For all f,g: MType -> MType,
-	For all p1,p2: Entity,
-		isBinaryPartition(p1,p2) and FRestr(f,p1) = FRestr(g,p1) and FRestr(f,p2) = FRestr(g,p2) implies
+Theorem CombineParts_Z_Dom:
+	For all f,g: Z -> Entity,
+	For all p1,p2: Z,
+		isBinaryPartitionZ(p1,p2) and f(p1) = g(p1) and f(p2) = g(p2) implies
 			f = g;
-				
+
+
 end Conditional_Function_Theory;
