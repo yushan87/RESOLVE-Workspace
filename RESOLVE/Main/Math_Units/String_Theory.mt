@@ -144,8 +144,8 @@ Precis String_Theory;
 			 (alpha = Empty_String) implies (|alpha| = 0);
 
 	Corollary Str_Length_2: -- will not introduce |_| on its own, see add_ons at end
-		For all alpha,beta:SStr,
-			|alpha o beta| = |alpha| + |beta|;
+		For all alpha,betax:SStr,
+			|alpha o betax| = |alpha| + |betax|;
 			
 	Corollary Str_Length_Lt:
 		For all alpha,beta,gamma:SStr,
@@ -163,34 +163,40 @@ Precis String_Theory;
 
 (*	Definition <(x:Entity)>:Str = (ext(Empty_String,x)); *)
 --	Definition <(e : (U : MType))> : Str(U);
-	Definition <(e : Entity)> : SStr;
+	Definition Prime_Str : MType;
+	Definition <(e : Entity)> : Prime_Str;
+	Type Theorem Prime_Str_is_SSTR:
+		For all p : Prime_Str,
+			p : SStr;
 	
 	Type Theorem Stringleton_Preserves_Generic_Type:
 		For all T : MType,
 		For all e : T,
 			<e> : Str(T);
-
-	Corollary Str_Length_Singlton_Cat:
-		For all alpha,beta: SStr,
-		For all x: Entity, 
-			(alpha = <x> o beta) implies (1 + |beta| <= |alpha|);
 				
 	Corollary Singleton_Str_1:
-		For all x:Entity,
-			<x> /= Empty_String;
+		For all p:Prime_Str,
+			p /= Empty_String;
 
 	Corollary Singleton_Str_2:
-		For all x:Entity,
-			|<x>| = 1;
-			
-	Corollary Str_Length_Singelton:
-		For all alpha: SStr,
-		For all x: Entity,
-			1 + |alpha| <= |<x> o alpha|;
-			
+		For all p:Prime_Str,
+			|p| = 1;
+						
 	Corollary Singleton_Str_3: -- Is_Injective(op<>);
 		For all x,y:Entity,
 			(<x> = <y>) implies (x = y);
+			
+	-- For length comparisons where + is not in the alphabet
+	Corollary Prime_Str_Cat_1:
+		For all p: Prime_Str,
+		For all s: SStr,
+			|s| <= |(p o s)|; 
+			
+	Corollary Prime_Str_Cat_2:
+		For all p: Prime_Str,
+		For all s: SStr,
+		For all n: N,
+			|(p o s)| = n implies |s| <= n; 
 
 (*	Corollary Singleton_Str 4:
 		Is_Proper_Class(SStr); *)
@@ -208,8 +214,8 @@ Precis String_Theory;
 		Reverse(Empty_String) = Empty_String;
 
 	Corollary Reverse_1:
-		For all x:Entity,
-			Reverse(<x>) = <x>;
+		For all p:Prime_Str,
+			Reverse(p) = p;
 
 	Corollary Reverse_2:
 		For all alpha,beta:SStr,
@@ -375,39 +381,53 @@ Precis String_Theory;
 	-- Big Pi (Iterated Concatenation) Parameter of F is implicitly (m,m + n]
 	-- Theorems assume it is defined this way: F(m + 1) o ... o F(m + n)
  Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
-(*
-	Theorem Iterated_Concatenation_Expanded_Def_i:
-		For all m:Z,
-		For all F: Z->SStr,
-		For all alpha: SStr,
-			Iterated_Concatenation(m,0,F) = Empty_String; 
-*)
-(*		
-	Theorem Iterated_Concatenation_Expanded_Def_ii:
-		For all m,n:Z,
-		For all F: Z->SStr,
-		For all alpha: SStr,
-			Iterated_Concatenation(m,suc(n),F) = Iterated_Concatenation(m,n,F) o F(m + 1 + suc(n));
-	Corollary Iterated_Concatenation_1:
-		For all m,n,p:Z,
-		For all F: Z->SStr,
-			Iterated_Concatenation(m,n,F) o Iterated_Concatenation(m+n,p,F) = 
-				Iterated_Concatenation(m,n+p,F);
-*)				
 
 	---------------------------------------------------------------
 	-- Potential Addons                                
 	---------------------------------------------------------------
-(*
-    -- Generate contradiction if negative numbers are used for bounds
-	Theorem Iterated_Concatenation_Z_Params_are_N:
-		For all m,n:Z,
-		For all F: Z->SStr,
-		For all alpha: SStr,
-			Iterated_Concatenation(m,n,F) = alpha implies m >= 0 and n >= 0;
-*)	
-
 	
+	Definition Iterated_Concatenation_of_Prime_Str(m : Z, n : Z, F: Z->SStr): SStr;
+	Theorem Iterated_Concat_of_Prime_Str_Length_1:
+		For all i:Z,
+		For all n:N,
+		For all F:Z->Prime_Str,
+			0 <= i and |Iterated_Concatenation_of_Prime_Str(1,i,F)| = n 
+				implies n = i;
+	
+	Theorem Iterated_Concat_of_Prime_Str_Length_2:
+		For all n:Z,
+		For all F:Z->Prime_Str,
+			|Iterated_Concatenation_of_Prime_Str(n,n,F)| = 1;
+			
+	Theorem Iterated_Concat_of_Prime_Str_Length_3:	
+		For all i,j:Z,
+		For all n:N,
+		For all F:Z->Prime_Str,
+			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = n implies k = (1 + (- i)) + n;
+			
+	Theorem Iterated_Concat_of_Prime_Str_Length_4_a:
+		For all i,j,k:Z,
+		For all F:Z->Prime_Str,
+			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = k implies k = 0;	
+			
+	Theorem Iterated_Concat_of_Prime_Str_Length_4_b:
+		For all i,j:Z,
+		For all s:SStr,
+		For all F:Z->Prime_Str,
+			j + 1 <= i and Iterated_Concatenation_of_Prime_Str(i,j,F) = s implies s = Empty_String;
+	
+	-- 	For VCs where <= or + not used	
+	Theorem Iterated_Concat_of_Prime_Str_3_c:
+		For all s:SStr,
+		For all F:Z->Prime_Str,
+			Iterated_Concatenation_of_Prime_Str(1,0,F) = Empty_String;
+			
+	Theorem Iterated_Concat_End_Cat:
+		For all m, n: Z,
+		For all F: Z->Prime_Str,	
+			Iterated_Concatenation_of_Prime_Str(m, n + 1, F) = 
+			Iterated_Concatenation_of_Prime_Str(m, n, F) o F(n + 1);
+						
 	Corollary Str_Length_forced_introduction:
 		For all alpha,beta,gamma:SStr,
 			alpha o beta = gamma implies |gamma| = |alpha| + |beta|;
