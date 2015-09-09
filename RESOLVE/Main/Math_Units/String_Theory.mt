@@ -357,17 +357,17 @@ Precis String_Theory;
 
 	--Determines if for every pairing of elements from s and t, the given predicate
 	--holds
-(*	Definition Is_Universally_Related(s : SStr, t : SStr,
+	Definition Is_Universally_Related(s : SStr, t : SStr,
 		f : (Entity * Entity) -> B) : B;
 
-	Theorem Empty_String_Universally_Related_1:
+(*	Theorem Empty_String_Universally_Related_1:
 		For all beta : SStr,
 		For all f : (Entity * Entity) -> B,
 			Is_Universally_Related(Empty_String, beta, f) = (beta = Empty_String);
 *)
 	Theorem DeString_Expanded_Definition:
-		For all rho:SStr, -- should be typed as Prime_Str
-			|rho| = 1 implies <DeString(rho)> = rho;
+		For all rho: Prime_Str,
+			<DeString(rho)> = rho;
 
 	Corollary DeString_1:
 		For all x:Entity,
@@ -378,13 +378,7 @@ Precis String_Theory;
 		For all n:Z,
 			1 <= n + 1 <= |alpha| implies <DeString(Prt_Btwn(n, n + 1, alpha))> = Prt_Btwn(n,n+1,alpha);
 			
-	-- Big Pi (Iterated Concatenation) Parameter of F is implicitly (m,m + n]
-	-- Theorems assume it is defined this way: F(m + 1) o ... o F(m + n)
- Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
-
-	---------------------------------------------------------------
-	-- Potential Addons                                
-	---------------------------------------------------------------
+    Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
 	
 	Definition Iterated_Concatenation_of_Prime_Str(m : Z, n : Z, F: Z->SStr): SStr;
 	Theorem Iterated_Concat_of_Prime_Str_Length_1:
@@ -403,7 +397,7 @@ Precis String_Theory;
 		For all i,j:Z,
 		For all n:N,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = n implies k = (1 + (- i)) + n;
+			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = n implies n = (1 + (- i)) + j;
 			
 	Theorem Iterated_Concat_of_Prime_Str_Length_4_a:
 		For all i,j,k:Z,
