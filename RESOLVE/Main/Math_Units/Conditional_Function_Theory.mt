@@ -47,10 +47,6 @@ Theorem isBinaryPartitionZ_Def:
 	For all x,y:Z, 	
 		f(x) and not(f(y)) implies isBinaryPartitionZ(x,y)
 *)
-
-Theorem isBinaryPartition_Commutative:
-	For all x,y:Z,
-		isBinaryPartitionZ(x,y) = isBinaryPartitionZ(y,x);
 		
 Theorem CombineParts_Z_Dom:
 	For all f,g: Z -> Entity,
