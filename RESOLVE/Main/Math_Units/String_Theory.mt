@@ -414,6 +414,59 @@ Precis String_Theory;
 			not(alpha = Empty_String) implies <DeString(Prt_Btwn(0, 1, alpha))> = Prt_Btwn(0,1,alpha);
 			
 			
+	Definition Is_Substring(a:SStr,b:SStr):B;
+	
+	Corollary Is_Substring_1a:
+		For all a,b:SStr,
+			Is_Substring(a,a o b);
+			
+	Corollary Is_Substring_1b:
+		For all a,b:SStr,
+			Is_Substring(b, a o b);
+	-- Is_Partial_Ordering(Is_Substring)
+	--	means it is reflexive, transitive, and antisymmetric,
+	
+	Corollary Is_Substring_3_reflexive:
+		For all a:SStr,
+			Is_Substring(a,a);
+			
+	Corollary Is_Substring_3_transitive:
+		For all a,b,c:SStr,
+			Is_Substring(a,b) and Is_Substring(b,c) implies Is_Substring(a,c);
+	
+	-- Will be able to state these as: (not(Is_Substring(a,c)) implies Is_Substring(a, b o c) = Is_Substring(a, b);
+	Corollary Is_Substring_3_transitive_contrapositive_a:
+		For all a,b,c:SStr,
+		For all p:B,
+			(not(Is_Substring(a,c)) and Is_Substring(a, b o c) = p ) implies p = Is_Substring(a, b);	
+			
+	Corollary Is_Substring_3_transitive_contrapositive_b:
+		For all a,b,c:SStr,
+		For all p:B,
+			(not(Is_Substring(a,c)) and Is_Substring(a, c o b) = p ) implies p = Is_Substring(a, b);	
+				
+	Corollary Is_Substring_3_antisymmetric:
+		For all a,b:SStr,
+			Is_Substring(a,b) and Is_Substring(b,a) = (a = b);
+					
+	Corollary Is_Substring_4:
+		For all a,b:SStr,
+			Is_Substring(a,b) implies |a| <= |b|;
+	
+	Corollary Is_Substring_4_Without_Length_Operator:
+		For all a:SStr,		
+			Is_Substring(a,Empty_String) = (a = Empty_String);
+					
+	Corollary Is_Substring_5:
+		For all a:SStr,
+		For all m,n:N,
+			Is_Substring(Prt_Btwn(m,n,a),a);
+			
+	-- These are specialized versions for Prime_Str
+	
+	Corollary Is_Substring_Primes_1:
+		For all p,s:Prime_Str,		
+			(p = s) = Is_Substring(p,s);
 			
     Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
 	
