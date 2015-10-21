@@ -134,7 +134,7 @@ Theorem I7:
 Theorem I_7_Def:
 	For all i,j,k:Z,
 		(i + j) + k = i + (j + k);
-	
+			
 Theorem I8:
 	Is_Left_Identity_for(op +, 0);
 	
@@ -202,7 +202,7 @@ Corollary LTE_1: -- Is_Transitive(op<=);
 
 Corollary LTE_2: -- Is_Antisymmetric(<=)
     For all m,n:Z,
-    	m <= n and n <= m implies m = n;
+    	(m <= n and n <= m) = (m = n);
 
 Corollary LTE_3: -- Is_Total(<=)
     For all m,n:Z,
@@ -221,7 +221,7 @@ Corollary LTE_6:
 Corollary LTE_6_def: 
 	For all l,m,n:Z,
 	For all p:B,
-		(l + n <= m + n) = p implies p = (l <= m);
+		(l + n <= m + n) = (l <= m);
 
 Corollary LTE_8:
 	For all m,n:Z,
@@ -349,7 +349,8 @@ Corollary I25_2:
 *)			
 	Theorem Distribution_Unary_Minus_Over_Addition:
 		For all i,j,k:Z,
-			-(i + j) = k implies k = (-i) + (-j);
+			---(i + j) = k implies k = (-i) + (-j);
+			-(i + j) = (-i) + (-j);
 			
 	Theorem Addition_Over_Equality: -- written to remove negatives
 		For all i,j,k:Z,
@@ -492,18 +493,14 @@ Corollary I25_2:
 	Theorem Nested_Subt_3:	
 		For all i,j,k:Z,	
 			(i + j) + (-i + k) = j + k;
-	
-	Theorem Nested_Subt_4:	
-		For all i,j,k:Z,	
-			(i + j) + (k + -j) = i + k;
-			
-	Theorem Negated_Interval_1:
-		For all i,j:Z,
-			not (i <= j and j <= i) implies not (i = j);
-			
+					
 	Theorem Positive_Difference:
 		For all i,j: Z,
 			i <= j implies 0 <= j + (-i);
+			
+	Theorem Not_Equal_Primary: -- this is a way to express /= using + and <=
+		For all i,j: Z,
+			(not(i = j)) = ((i <= j) = (i + 1 <= j));
 
     Definition (i: Z) ** (j: Z) : Z;
 
