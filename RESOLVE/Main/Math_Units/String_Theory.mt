@@ -207,7 +207,12 @@ Precis String_Theory;
 		For all p,q: Prime_Str,
 		For all s,t: SStr,
 		For all n: N,
-			|(p o s)| = |q o t| implies |s| = |t|; 
+			|(p o s)| = |q o t| implies |s| = |t|;
+			
+	Corollary Prime_Str_Cat_Length_4:
+		For all p: Prime_Str,
+		For all s: SStr,
+			1 <= |p o s|;
 
 (*	Corollary Singleton_Str 4:
 		Is_Proper_Class(SStr); *)
