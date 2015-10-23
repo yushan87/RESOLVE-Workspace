@@ -149,9 +149,9 @@ Precis String_Theory;
 			not(alpha = Empty_String) implies 1 <= |alpha|;
 
 	Corollary Str_Length_2: -- will not introduce |_| on its own, see add_ons at end
-		For all alpha,betax:SStr,
-			|alpha o betax| = |alpha| + |betax|;
-			
+		For all alpha,beta:SStr,
+			|alpha o beta| = |alpha| + |beta|;
+	
 	Corollary Str_Length_Lt:
 		For all alpha,beta,gamma:SStr,
 			|alpha o beta| = |gamma| and 1 <= |beta| implies 1 + |alpha| <= |gamma|;
@@ -186,7 +186,7 @@ Precis String_Theory;
 	Corollary Singleton_Str_2:
 		For all p:Prime_Str,
 			|p| = 1;
-						
+			
 	Corollary Singleton_Str_3a: -- Is_Bijective(op<>); Changed from Is_Injective
 		For all x,y:Entity,
 			(<x> = <y>) = (x = y);
@@ -207,13 +207,13 @@ Precis String_Theory;
 		For all p,q: Prime_Str,
 		For all s,t: SStr,
 		For all n: N,
-			|(p o s)| = |q o t| implies |s| = |t|;
-			
+			|(p o s)| = |q o t| implies |s| = |t|; 
+	
 	Corollary Prime_Str_Cat_Length_4:
-		For all p: Prime_Str,
-		For all s: SStr,
+		For all p:Prime_Str,
+		For all s:SStr,
 			1 <= |p o s|;
-
+			
 (*	Corollary Singleton_Str 4:
 		Is_Proper_Class(SStr); *)
 
