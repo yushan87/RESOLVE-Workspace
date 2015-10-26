@@ -1,17 +1,13 @@
 Facility Stack_Examples_Fac;
---This is an instructor version
--- an example of a stack with with local operations to read/write
+--This is an exercise; need to include a proper loop invariant to prove.
 	uses String_Theory;
 
-	(*	Note that the facility VC, i.e., Max_Depth > 0 will verify only with 1;
-		the prover right now doesn't deal with proofs involving larger numbers, so when
-        generating VCs set Max_Depth to 1, but change it for generating executable *)
-	Facility Rev_Stack_Fac is Stack_Template(Char_Str, 1)
+	Facility Rev_Stack_Fac is Stack_Template(Char_Str, 5)
 		realized by Array_Realiz;
 
 	Operation Flip_onto(clears S: Stack; updates T: Stack);
-		-- leave out the requires clause for the first pass and see if students can find its need; note Max_Depth is 1
-		requires |S| + |T| <= 1;
+		-- leave out the requires clause for the first pass and see if students can find its need; note Max_Depth is 5
+		requires |S| + |T| <= 5;
 		ensures T = Reverse(#S) o #T;
 	Procedure
 		Var Next_Entry: Char_Str;
@@ -19,12 +15,11 @@ Facility Stack_Examples_Fac;
 
 		D := Depth(S);
 		While (D /= 0)
-			-- motivate the second conjunct first
+			-- motivate the second conjunct of the loop invariant first
 			-- use this example S = <1, 2, 3> and T = <4, 5, 6> and
 			-- look at values of S and T at the beginning of successive iterations to motivate invaraint
 			-- discuss keeping the RHS of ensures clause involving input values the same in the invariant
-			maintaining Reverse(S) o T = Reverse(#S) o #T and |S| = D;
-			-- alt for the first conjunct: Reverse(T) o S = Reverse(#T) o #S is correct, but does not prove at this time
+			maintaining true;
 			decreasing |S|;
 		do
 			Pop(Next_Entry, S);
