@@ -5,8 +5,9 @@ Realization Inject_Front_Realiz for Inject_Front_Capability of Queue_Template;
 		
 		Enqueue (E, T);
 		While ( 1 <= Length(Q) )
+			-- fill in a suitable invariant
 			changing Q, T, E;
-			maintaining T o Q = <#E> o #Q;
+			maintaining true;
 			decreasing |Q|;
 		do
 			Dequeue(E,Q);
