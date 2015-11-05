@@ -1,4 +1,5 @@
 Enhancement Fill_Remaning_Capability for Queue_Template;
     Operation Fill_Rem_Queue(updates Q: Queue);
 		ensures Prt_Btwn(1, |#Q|, Q) = Prt_Btwn(1, |#Q|, #Q) and |Q| = Max_Length;
+				-- and #input = Prt_Btwn(|#Q|, Max_Length, Q) o input;
 end Fill_Remaning_Capability;
