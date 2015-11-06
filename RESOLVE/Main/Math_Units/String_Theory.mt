@@ -467,7 +467,7 @@ Precis String_Theory;
 				
 	Corollary Is_Substring_3_antisymmetric:
 		For all a,b:SStr,
-			Is_Substring(a,b) and Is_Substring(b,a) = (a = b);
+			(Is_Substring(a,b) and Is_Substring(b,a)) = (a = b);
 					
 	Corollary Is_Substring_4:
 		For all a,b:SStr,
