@@ -134,7 +134,11 @@ Theorem I7:
 Theorem I_7_Def:
 	For all i,j,k:Z,
 		(i + j) + k = i + (j + k);
-			
+
+Theorem I_7a_Def:
+	For all i,j,k:Z,
+		(i + j) + k = j + (i + k);
+					
 Theorem I8:
 	Is_Left_Identity_for(op +, 0);
 	
@@ -213,15 +217,18 @@ Corollary LTE_3a: --Is_Reflexive(<=) -- implied by Is_Total
     	n <= n;
 
 Corollary LTE_4:
-    	Is_Total_Ordering(op <=);
+    	Is_Total_Ordering(op <=); -- total_pre(trans, total) and antisymm
     	
 Corollary LTE_6:
 	Is_Preserved_by(op +,op <=);
 	
 Corollary LTE_6_def: 
 	For all l,m,n:Z,
-	For all p:B,
 		(l + n <= m + n) = (l <= m);
+		
+Corollary LTE_6_b:
+	For all i,j,k,l:Z,
+			i + j <= k and l <= j implies i + l <= k;
 
 Corollary LTE_8:
 	For all m,n:Z,
@@ -376,11 +383,7 @@ Corollary I25_2:
     	For all m,n,p:Z,		
     		 m <= n and n < p implies m + 1 <= p;
 *)
-    		 			
-    Corollary LTE_6_b:
-		For all i,j,k,l:Z,
-			i + j <= k and l <= j implies i + l <= k;
-			
+    		 						
 	Theorem Zero_LTE_One:
 		0 <= 1;
 
@@ -424,7 +427,7 @@ Corollary I25_2:
     Theorem Not_LTE:
     	For all i,j:Z,
     	For all p:B,
-    		not(i <= j) = p implies p = (j + 1 <= i);
+    		not(i <= j) = (j + 1 <= i);
 
     Theorem Not_LT:
     	For all i,j:Z,
@@ -457,10 +460,6 @@ Corollary I25_2:
 	Theorem GT_implies_GTE:
     	For all i,j:Z,
     		(i > j) implies (j <= i);
-
-	Theorem Not_LTE_Implies:
-		For all i,j:Z,
-			not(i<=j) implies j + 1 <= i;
 					
 	Theorem Add_GTE_Zero_GTE_a:
    		For all i,j,k:Z,
@@ -481,7 +480,7 @@ Corollary I25_2:
 	Theorem LTE_Substitution:
 		For all i,j,k:Z,	
 			i <= j and k <= i implies k <= j;
-			
+
 	Theorem Nested_Subt_1:
 		For all i,j:Z,
 			(i + j) + (- j) = i;
@@ -498,14 +497,14 @@ Corollary I25_2:
 		For all i,j: Z,
 			i <= j implies 0 <= j + (-i);
 			
-	Theorem Not_Equal_Primary: -- this is a way to express /= using + and <=
+	Theorem Not_Equal_Primary_a: -- this is a way to express /= using + and <=
 		For all i,j: Z,
 			(not(i = j)) = ((i <= j) = (i + 1 <= j));
-
+	
     Definition (i: Z) ** (j: Z) : Z;
 
     Definition (i: Z) / (j: Z) : Z;
 
     Definition (i: Z) mod (j: Z) : Z;
-    
+   -- add mod theorems 
 end Integer_Theory;

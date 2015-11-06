@@ -161,12 +161,14 @@ Theorem NN_LTE_Addition:
 	For all m,n:N,
 		m <= m + n;
 	
-Theorem Not_LTE_Z_1_0:
+Theorem Not_LTE_1:
 	For all n:N,
-		not(1 <= n) implies n = 0;
+		not(1 <= n) = (n = 0);
 		
 Theorem Zero_min:
 	For all n:N,
 		0 <= n;
-	
+		
+--Definition monus (m:N, n:N) : N;	
+
 end Natural_Number_Theory;

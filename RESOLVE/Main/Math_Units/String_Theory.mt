@@ -148,9 +148,13 @@ Precis String_Theory;
 		For all alpha:SStr,
 			not(alpha = Empty_String) implies 1 <= |alpha|;
 
-	Corollary Str_Length_2: -- will not introduce |_| on its own, see add_ons at end
+	Corollary Str_Length_2: 
 		For all alpha,beta:SStr,
 			|alpha o beta| = |alpha| + |beta|;
+			
+	Corollary Str_Length2_without_Length_Op:
+		For all alpha,beta,gamma:SStr,
+			alpha o beta = gamma implies |gamma| = |alpha o beta|;
 	
 	Corollary Str_Length_Lt:
 		For all alpha,beta,gamma:SStr,
@@ -214,6 +218,17 @@ Precis String_Theory;
 		For all s:SStr,
 			1 <= |p o s|;
 			
+	Corollary Prime_Str_Cat_Length_5: -- delete
+		For all p:Prime_Str,
+		For all s,t:SStr,
+			(|s| + |t|) + 1 = |(s o p) o t|;
+(*
+	Corollary Prime_Str_Cat_Length_5:
+		For all p:Prime_Str,
+		For all s:SStr,
+		For all n:N,		
+			(not(|s| = n)  = (|s| <= n)) = (|(s o p)| <= n);
+*)		
 (*	Corollary Singleton_Str 4:
 		Is_Proper_Class(SStr); *)
 
@@ -475,73 +490,47 @@ Precis String_Theory;
 			
     Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
 	
-	Definition Iterated_Concatenation_of_Prime_Str(m : Z, n : Z, F: Z->SStr): SStr;
 	Theorem Iterated_Concat_of_Prime_Str_Length_1:
 		For all i:Z,
 		For all n:N,
 		For all F:Z->Prime_Str,
-			0 <= i and |Iterated_Concatenation_of_Prime_Str(1,i,F)| = n 
+			0 <= i and |Iterated_Concatenation(1,i,F)| = n 
 				implies n = i;
 	
 	Theorem Iterated_Concat_of_Prime_Str_Length_2:
 		For all n:Z,
 		For all F:Z->Prime_Str,
-			|Iterated_Concatenation_of_Prime_Str(n,n,F)| = 1;
+			|Iterated_Concatenation(n,n,F)| = 1;
 			
 	Theorem Iterated_Concat_of_Prime_Str_Length_3:	
 		For all i,j:Z,
 		For all n:N,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = n implies n = (1 + (- i)) + j;
+			j + 1 <= i and |Iterated_Concatenation(i,j,F)| = n implies n = (1 + (- i)) + j;
 			
 	Theorem Iterated_Concat_of_Prime_Str_Length_4_a:
 		For all i,j,k:Z,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = k implies k = 0;	
+			j + 1 <= i and |Iterated_Concatenation(i,j,F)| = k implies k = 0;	
 			
 	Theorem Iterated_Concat_of_Prime_Str_Length_4_b:
 		For all i,j:Z,
 		For all s:SStr,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and Iterated_Concatenation_of_Prime_Str(i,j,F) = s implies s = Empty_String;
+			j + 1 <= i and Iterated_Concatenation(i,j,F) = s implies s = Empty_String;
 	
 	-- 	For VCs where <= or + not used	
 	Theorem Iterated_Concat_of_Prime_Str_3_c:
 		For all s:SStr,
 		For all F:Z->Prime_Str,
-			Iterated_Concatenation_of_Prime_Str(1,0,F) = Empty_String;
+			Iterated_Concatenation(1,0,F) = Empty_String;
 			
 	Theorem Iterated_Concat_End_Cat:
 		For all m, n: Z,
 		For all F: Z->Prime_Str,	
-			Iterated_Concatenation_of_Prime_Str(m, n + 1, F) = 
-			Iterated_Concatenation_of_Prime_Str(m, n, F) o F(n + 1);
+			Iterated_Concatenation(m, n + 1, F) = 
+			Iterated_Concatenation(m, n, F) o F(n + 1);
 			
-(*	 Theorem Iterated_Concat_Equality:
-	 	For all m,n,x: Z,
-	 	For all s:ZSet,
-	 	For all F,G: Z->Prime_Str,
-	 		(ZSetCons(x) = s and m <= x and x <= n and F(x) = G(x)) =
-	 		(Iterated_Concatenation_of_Prime_Str(m,n,F) = Iterated_Concatenation_of_Prime_Str(m,n,G));
-	 		
-	 Theorem Iterated_Concat_Implication_1:
-	 	For all m,n,x,y: Z,
-	 	For all F,G: Z->Prime_Str,
-	 		isSubsetOrEq(ZSetCons(y), ZSetCons(x)) and m <= x and x <= n and F(x) = G(y)) =
-	 		(Iterated_Concatenation_of_Prime_Str(m,n,F) = Iterated_Concatenation_of_Prime_Str(m,n,G));
-	 		
-	 Definition IF_THEN: B * B -> B; -- Meta-function trigger for prover (may spawn new VC)
-	 
-	 Theorem Iterated_Concat_Eq_On_Interval:
-	 	For all m,n:Z,
-	 	For all f,g:Z->Entity,
-		(FR(F, ZSetConsB( lambda(k:Z).(m <= k and k <= n) )) = FR(G, ZSetConsB(lambda(k:Z).(m <= k and k <= n))))
-	 	= (Iterated_Concatenation_of_Prime_Str(m,n,F) = Iterated_Concatenation_of_Prime_Str(m,n,G) );
-*)						
-	Corollary Str_Length_forced_introduction:
-		For all alpha,beta,gamma:SStr,
-			alpha o beta = gamma implies |gamma| = |alpha| + |beta|;
-
 	Corollary Not_Eq_Str_Length:
 		For all S,T:SStr,
 			|S| /= |T| implies S /= T;
