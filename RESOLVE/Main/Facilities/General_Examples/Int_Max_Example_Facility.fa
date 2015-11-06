@@ -1,5 +1,6 @@
 Facility Int_Max_Example_Facility;
-
+    
+    -- The operation below is intentionally buggy.
     Operation Max(restores I: Integer; restores J: Integer) : Integer;
         ensures (Max = I or Max = J) and (Max >= I and Max >= J);
     Procedure
