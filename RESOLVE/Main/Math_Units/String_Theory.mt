@@ -190,41 +190,7 @@ Precis String_Theory;
 	Corollary Singleton_Str_3a: -- Is_Bijective(op<>); Changed from Is_Injective
 		For all x,y:Entity,
 			(<x> = <y>) = (x = y);
-
-	-- For length comparisons where + is not in the alphabet
-	Corollary Prime_Str_Cat_Length_1:
-		For all p: Prime_Str,
-		For all s: SStr,
-			|s| <= |(p o s)|; 
-			
-	Corollary Prime_Str_Cat_Length_2:
-		For all p: Prime_Str,
-		For all s: SStr,
-		For all n: N,
-			|(p o s)| = n implies |s| <= n; 
-			
-	Corollary Prime_Str_Cat_Length_3:
-		For all p,q: Prime_Str,
-		For all s,t: SStr,
-		For all n: N,
-			|(p o s)| = |q o t| implies |s| = |t|; 
-	
-	Corollary Prime_Str_Cat_Length_4:
-		For all p:Prime_Str,
-		For all s:SStr,
-			1 <= |p o s|;
-			
-	Corollary Prime_Str_Cat_Length_5: -- delete
-		For all p:Prime_Str,
-		For all s,t:SStr,
-			(|s| + |t|) + 1 = |(s o p) o t|;
-(*
-	Corollary Prime_Str_Cat_Length_5:
-		For all p:Prime_Str,
-		For all s:SStr,
-		For all n:N,		
-			(not(|s| = n)  = (|s| <= n)) = (|(s o p)| <= n);
-*)		
+		
 (*	Corollary Singleton_Str 4:
 		Is_Proper_Class(SStr); *)
 
