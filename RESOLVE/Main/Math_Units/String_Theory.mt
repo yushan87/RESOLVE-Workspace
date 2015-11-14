@@ -377,50 +377,81 @@ Precis String_Theory;
 		For all alpha:SStr,
 		For all n:Z,
 			1 <= n + 1 <= |alpha| implies <DeString(Prt_Btwn(n, n + 1, alpha))> = Prt_Btwn(n,n+1,alpha);
+
+	Definition Stringify_Z_Entity: (Z->Entity)->(Z->Prime_Str);
+	
+	Theorem Stringify_Z_Entity_1: -- (Stringify_Z_Entity(F))(i) = <F(i)>
+		For all F:Z->Entity,
+		For all G:Z->Prime_Str,
+		For all e:Entity,
+		For all i:Z,
+			Stringify_Z_Entity(F) = G and
+			F(i) = e implies
+				G(i) = <e>;
+
+	Theorem Z_Entity_Stringify_Composition:
+		For all i:Z,
+		For all F,G:Z->Entity,
+			Eq_Except_At(F,G,i) =
+			Eq_Except_At(Stringify_Z_Entity(F),Stringify_Z_Entity(G),i) ;
+
 			
     Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
 	
-	Definition Iterated_Concatenation_of_Prime_Str(m : Z, n : Z, F: Z->SStr): SStr;
-	Theorem Iterated_Concat_of_Prime_Str_Length_1:
+	Theorem Iterated_Concat_Length_1:
 		For all i:Z,
 		For all n:N,
 		For all F:Z->Prime_Str,
-			0 <= i and |Iterated_Concatenation_of_Prime_Str(1,i,F)| = n 
+			0 <= i and |Iterated_Concatenation(1,i,F)| = n 
 				implies n = i;
 	
-	Theorem Iterated_Concat_of_Prime_Str_Length_2:
+	Theorem Iterated_Concat_Length_2:
 		For all n:Z,
 		For all F:Z->Prime_Str,
-			|Iterated_Concatenation_of_Prime_Str(n,n,F)| = 1;
+			|Iterated_Concatenation(n,n,F)| = 1;
 			
-	Theorem Iterated_Concat_of_Prime_Str_Length_3:	
+	Theorem Iterated_Concat_Length_3:	
 		For all i,j:Z,
 		For all n:N,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = n implies n = (1 + (- i)) + j;
+			j + 1 <= i and |Iterated_Concatenation(i,j,F)| = n implies n = (1 + (- i)) + j;
 			
-	Theorem Iterated_Concat_of_Prime_Str_Length_4_a:
+	Theorem Iterated_Concat_Length_4_a:
 		For all i,j,k:Z,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = k implies k = 0;	
+			j + 1 <= i and |Iterated_Concatenation(i,j,F)| = k implies k = 0;	
 			
-	Theorem Iterated_Concat_of_Prime_Str_Length_4_b:
+	Theorem Iterated_Concat_Length_4_b:
 		For all i,j:Z,
 		For all s:SStr,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and Iterated_Concatenation_of_Prime_Str(i,j,F) = s implies s = Empty_String;
+			j + 1 <= i and Iterated_Concatenation(i,j,F) = s implies s = Empty_String;
 	
 	-- 	For VCs where <= or + not used	
-	Theorem Iterated_Concat_of_Prime_Str_3_c:
+	Theorem Iterated_Concat_3_c:
 		For all s:SStr,
 		For all F:Z->Prime_Str,
-			Iterated_Concatenation_of_Prime_Str(1,0,F) = Empty_String;
+			Iterated_Concatenation(1,0,F) = Empty_String;
 			
 	Theorem Iterated_Concat_End_Cat:
 		For all m, n: Z,
 		For all F: Z->Prime_Str,	
-			Iterated_Concatenation_of_Prime_Str(m, n + 1, F) = 
-			Iterated_Concatenation_of_Prime_Str(m, n, F) o F(n + 1);
+			Iterated_Concatenation(m, n + 1, F) = 
+			Iterated_Concatenation(m, n, F) o F(n + 1);
+			
+	Theorem Iterated_Concat_Eq_On_Interval_1:
+		For all m, n, i: Z,
+		For all F,G: Z->Prime_Str,
+		Eq_Except_At(F,G,i) and
+		(m <= n + 1 <=i) implies
+			Iterated_Concatenation(m,n,F) = Iterated_Concatenation(m,n,G);
+			
+	Theorem Iterated_Concat_Eq_On_Interval_2:
+		For all m, n, i: Z,
+		For all F,G: Z->Prime_Str,
+		Eq_Except_At(F,G,i) and
+		(i + 1 <= m <= n) implies
+			Iterated_Concatenation(m,n,F) = Iterated_Concatenation(m,n,G);
 						
 	Corollary Str_Length_forced_introduction:
 		For all alpha,beta,gamma:SStr,

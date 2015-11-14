@@ -202,7 +202,7 @@ Corollary LTE_1: -- Is_Transitive(op<=);
 
 Corollary LTE_2: -- Is_Antisymmetric(<=)
     For all m,n:Z,
-    	m <= n and n <= m implies m = n;
+    	(m <= n and n <= m) = (m = n);
 
 Corollary LTE_3: -- Is_Total(<=)
     For all m,n:Z,
@@ -328,6 +328,27 @@ Corollary I25_2:
  (*	Corollary I25_3:
 		Is_Integral_Domain(Z,0,1,-,+,op* ); *)
 
+Definition Eq_Except_At(F:Z->Entity,G:Z->Entity,i:Z):B;
+
+	Theorem Eq_Except_At_Def:
+	For all i,j:Z,
+	For all F,G:Z->Entity,
+		Eq_Except_At(F,G,i) = (i = j or F(j) = G(j));
+		
+    Theorem Except_At_1:
+    For all F,G:Z->Entity,
+    For all i:Z,
+    	Eq_Except_At(F,G,i) and F(i) = G(i) implies F = G;
+
+    Theorem Except_At_2:
+    For all F,G:Z->Entity,
+    For all i:Z,
+    	Eq_Except_At(F,G,i) = Eq_Except_At(G,F,i);
+
+    Theorem Except_At_3:
+    For all F,G,H:Z->Entity,
+    For all i:Z,
+    	Eq_Except_At(F,G,i) and Eq_Except_At(G,H,i) implies Eq_Except_At(F,H,i);
 
    	---------------------------------------------------------------
 	-- Potential Addons                                
@@ -496,10 +517,6 @@ Corollary I25_2:
 	Theorem Nested_Subt_4:	
 		For all i,j,k:Z,	
 			(i + j) + (k + -j) = i + k;
-			
-	Theorem Negated_Interval_1:
-		For all i,j:Z,
-			not (i <= j and j <= i) implies not (i = j);
 			
 	Theorem Positive_Difference:
 		For all i,j: Z,
