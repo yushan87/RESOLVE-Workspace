@@ -1,6 +1,6 @@
 Concept Sequence_Template(type Entry; evaluates Max_Length: Integer);
 	uses String_Theory;
-	requires Max_Length > 0;
+	requires 1 <= Max_Length;
  
 	Type Family Sequence is modeled by Str(Entry);
 		exemplar S;
