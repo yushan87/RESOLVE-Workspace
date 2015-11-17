@@ -39,8 +39,6 @@
 
 Realization Array_Realiz for Stack_Template;
 
-    (* Note: Under Construction! *)
-
     Type Stack is represented by Record
             Contents: Array 1..Max_Depth of Entry;
             Top: Integer;
