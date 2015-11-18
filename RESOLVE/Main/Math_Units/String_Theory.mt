@@ -138,15 +138,11 @@ Precis String_Theory;
 
 	Corollary Str_Length_1_a:
 		For all alpha:SStr,
-			(|alpha| = 0) implies (alpha = Empty_String);
-
-	Corollary Str_Length_1_b:
-		For all alpha:SStr,
-			 (alpha = Empty_String) implies (|alpha| = 0);
+			(|alpha| = 0) = (alpha = Empty_String);
 			 
-	Corollary Str_Length_1c:
+	Corollary Str_Length_1b:
 		For all alpha:SStr,
-			not(alpha = Empty_String) implies 1 <= |alpha|;
+			not(alpha = Empty_String) = (1 <= |alpha|);
 
 	Corollary Str_Length_2: 
 		For all alpha,beta:SStr,

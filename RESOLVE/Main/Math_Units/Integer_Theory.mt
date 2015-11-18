@@ -514,10 +514,10 @@ Definition Eq_Except_At(F:Z->Entity,G:Z->Entity,i:Z):B;
 		For all i,j,k:Z,	
 			(i + j) + (-i + k) = j + k;
 					
-	Theorem Positive_Difference:
-		For all i,j: Z,
-			i <= j implies 0 <= j + (-i);
-			
+	Theorem Positive_Difference_1:
+		For all i,j,k: Z,
+			0 <= j and i <= j implies 0 <= j + (-i);
+
 	Theorem Not_Equal_Primary_a: -- this is a way to express /= using + and <=
 		For all i,j: Z,
 			(not(i = j)) = ((i <= j) = (i + 1 <= j));
