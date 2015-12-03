@@ -124,7 +124,8 @@ Precis String_Theory;
 
 	Corollary Concatenation_3: -- Is_Right_Cancellative(o)
 		For all S,T,U:SStr,
-			((S o U) = (T o U)) implies (S = T);
+			((S o U) = (T o U)) = (S = T); -- check with file
+			
 
 (* Inductive Definition |(alpha:SStr)|:N is
 		(i) |Empty_String| = 0;
@@ -137,16 +138,20 @@ Precis String_Theory;
 
 	Corollary Str_Length_1_a:
 		For all alpha:SStr,
-			(|alpha| = 0) implies (alpha = Empty_String);
-
-	Corollary Str_Length_1_b:
+			(|alpha| = 0) = (alpha = Empty_String);
+			 
+	Corollary Str_Length_1b:
 		For all alpha:SStr,
-			 (alpha = Empty_String) implies (|alpha| = 0);
+			not(alpha = Empty_String) = (1 <= |alpha|);
 
-	Corollary Str_Length_2: -- will not introduce |_| on its own, see add_ons at end
-		For all alpha,betax:SStr,
-			|alpha o betax| = |alpha| + |betax|;
+	Corollary Str_Length_2: 
+		For all alpha,beta:SStr,
+			|alpha o beta| = |alpha| + |beta|;
 			
+	Corollary Str_Length2_without_Length_Op:
+		For all alpha,beta,gamma:SStr,
+			alpha o beta = gamma implies |gamma| = |alpha o beta|;
+	
 	Corollary Str_Length_Lt:
 		For all alpha,beta,gamma:SStr,
 			|alpha o beta| = |gamma| and 1 <= |beta| implies 1 + |alpha| <= |gamma|;
@@ -176,28 +181,50 @@ Precis String_Theory;
 				
 	Corollary Singleton_Str_1:
 		For all p:Prime_Str,
-			p /= Empty_String;
+			not(p = Empty_String);
 
 	Corollary Singleton_Str_2:
 		For all p:Prime_Str,
 			|p| = 1;
-						
-	Corollary Singleton_Str_3: -- Is_Injective(op<>);
-		For all x,y:Entity,
-			(<x> = <y>) implies (x = y);
 			
+	Corollary Singleton_Str_3a: -- Is_Bijective(op<>); Changed from Is_Injective
+		For all x,y:Entity,
+			(<x> = <y>) = (x = y);
+
 	-- For length comparisons where + is not in the alphabet
-	Corollary Prime_Str_Cat_1:
+	Corollary Prime_Str_Cat_Length_1:
 		For all p: Prime_Str,
 		For all s: SStr,
 			|s| <= |(p o s)|; 
 			
-	Corollary Prime_Str_Cat_2:
+	Corollary Prime_Str_Cat_Length_2:
 		For all p: Prime_Str,
 		For all s: SStr,
 		For all n: N,
 			|(p o s)| = n implies |s| <= n; 
-
+			
+	Corollary Prime_Str_Cat_Length_3:
+		For all p,q: Prime_Str,
+		For all s,t: SStr,
+		For all n: N,
+			|(p o s)| = |q o t| implies |s| = |t|; 
+	
+	Corollary Prime_Str_Cat_Length_4:
+		For all p:Prime_Str,
+		For all s:SStr,
+			1 <= |p o s|;
+			
+	Corollary Prime_Str_Cat_Length_5: -- delete
+		For all p:Prime_Str,
+		For all s,t:SStr,
+			(|s| + |t|) + 1 = |(s o p) o t|;
+(*
+	Corollary Prime_Str_Cat_Length_5:
+		For all p:Prime_Str,
+		For all s:SStr,
+		For all n:N,		
+			(not(|s| = n)  = (|s| <= n)) = (|(s o p)| <= n);
+*)		
 (*	Corollary Singleton_Str 4:
 		Is_Proper_Class(SStr); *)
 
@@ -225,9 +252,9 @@ Precis String_Theory;
 		For all alpha:SStr,
 			Reverse(Reverse(alpha)) = alpha;
 
-	Corollary Reverse_4: -- Is_Bijective(Reverse); (only stating injectivity)
+	Corollary Reverse_4: -- Is_Bijective(Reverse);
 		For all alpha,beta:SStr,
-			(Reverse(alpha) = Reverse(beta)) implies (alpha = beta);
+			(Reverse(alpha) = Reverse(beta)) = (alpha = beta);
 
 	Corollary Reverse_5:
 		For all alpha,beta:SStr,
@@ -235,7 +262,7 @@ Precis String_Theory;
 
 	Corollary Reverse_6: -- Is_Left_Cancellative( o )
 		For all S,T,U:SStr,
-			((U o S) = (U o T)) implies (S = T);
+			((U o S) = (U o T)) = (S = T);
 
 	Corollary Reverse_7:
 		For all alpha,beta,gamma,delta:SStr,
@@ -281,7 +308,22 @@ Precis String_Theory;
 		For all alpha:SStr,
 		For all m,n:Z,
 			|Prt_Btwn(m,n,alpha)| = max( min(n,|alpha|) + -( max(m,0))  ,0);
+			
+	Corollary Prt_Btwn_6a:
+		For all alpha:SStr,
+		For all i,m,n:N,
+			(|Prt_Btwn(m,n,alpha)| = i and m <= n <= |alpha|) implies i = n + (-m);
 
+	Corollary Prt_Btwn_6b: -- 6a without negatives
+		For all alpha:SStr,
+		For all i,m,n:N,
+			(|Prt_Btwn(m,n,alpha)| = i and m <= n <= |alpha|) implies i <= n;
+			
+	Corollary Prt_Btwn_6c: -- 6a without negatives
+		For all alpha:SStr,
+		For all i,m,n:N,
+			(m + |Prt_Btwn(m,n,alpha)| = i and m <= n <= |alpha|) implies i = n;
+		
 	Corollary Prt_Btwn_7:
 		For all alpha:SStr,
 		For all m,n:Z,
@@ -342,6 +384,11 @@ Precis String_Theory;
 		For all alpha:SStr,
 		For all n:Z,
 			Reverse(Prt_Btwn(n,n+1,alpha)) = Prt_Btwn(n,n+1,alpha);
+			
+	-- We won't always have "+"
+	Corollary Prt_Btwn_12_c:
+		For all alpha:SStr,
+			Reverse(Prt_Btwn(0,1,alpha)) = Prt_Btwn(0,1,alpha);
 (*
 -- causes contrad
 	Corollary Prt_Btwn_13_a:
@@ -378,53 +425,157 @@ Precis String_Theory;
 		For all n:Z,
 			1 <= n + 1 <= |alpha| implies <DeString(Prt_Btwn(n, n + 1, alpha))> = Prt_Btwn(n,n+1,alpha);
 			
+	Corollary DeString_2_no_addition_no_Length:
+		For all alpha:SStr,
+			not(alpha = Empty_String) implies <DeString(Prt_Btwn(0, 1, alpha))> = Prt_Btwn(0,1,alpha);
+			
+			
+	Definition Is_Substring(a:SStr,b:SStr):B;
+	
+	Corollary Is_Substring_1a:
+		For all a,b:SStr,
+			Is_Substring(a,a o b);
+			
+	Corollary Is_Substring_1b:
+		For all a,b:SStr,
+			Is_Substring(b, a o b);
+	-- Is_Partial_Ordering(Is_Substring)
+	--	means it is reflexive, transitive, and antisymmetric,
+	
+	Corollary Is_Substring_3_reflexive:
+		For all a:SStr,
+			Is_Substring(a,a);
+			
+	Corollary Is_Substring_3_transitive:
+		For all a,b,c:SStr,
+			Is_Substring(a,b) and Is_Substring(b,c) implies Is_Substring(a,c);
+	
+	-- Will be able to state these as: (not(Is_Substring(a,c)) implies Is_Substring(a, b o c) = Is_Substring(a, b);
+	Corollary Is_Substring_3_transitive_contrapositive_a:
+		For all a,b,c:SStr,
+		For all p:B,
+			(not(Is_Substring(a,c)) and Is_Substring(a, b o c) = p ) implies p = Is_Substring(a, b);	
+			
+	Corollary Is_Substring_3_transitive_contrapositive_b:
+		For all a,b,c:SStr,
+		For all p:B,
+			(not(Is_Substring(a,c)) and Is_Substring(a, c o b) = p ) implies p = Is_Substring(a, b);	
+				
+	Corollary Is_Substring_3_antisymmetric:
+		For all a,b:SStr,
+			(Is_Substring(a,b) and Is_Substring(b,a)) = (a = b);
+					
+	Corollary Is_Substring_4:
+		For all a,b:SStr,
+			Is_Substring(a,b) implies |a| <= |b|;
+	
+	Corollary Is_Substring_4_Without_Length_Operator:
+		For all a:SStr,		
+			Is_Substring(a,Empty_String) = (a = Empty_String);
+					
+	Corollary Is_Substring_5:
+		For all a:SStr,
+		For all m,n:N,
+			Is_Substring(Prt_Btwn(m,n,a),a);
+			
+	-- These are specialized versions for Prime_Str
+	
+	Corollary Is_Substring_Primes_1:
+		For all p,s:Prime_Str,		
+			(p = s) = Is_Substring(p,s);
+
+	Definition Stringify_Z_Entity: (Z->Entity)->(Z->Prime_Str);
+	
+	Theorem Stringify_Z_Entity_1: -- (Stringify_Z_Entity(F))(i) = <F(i)>
+		For all F:Z->Entity,
+		For all G:Z->Prime_Str,
+		For all e:Entity,
+		For all i:Z,
+			Stringify_Z_Entity(F) = G and
+			F(i) = e implies
+				G(i) = <e>;
+
+	Theorem Z_Entity_Stringify_Composition:
+		For all i:Z,
+		For all F,G:Z->Entity,
+			Eq_Except_At(F,G,i) =
+			Eq_Except_At(Stringify_Z_Entity(F),Stringify_Z_Entity(G),i) ;
+	
+	Definition Stringify_Mod_Z_Entity: (Z * (Z->Entity))->(Z->Prime_Str);
+	-- (Stringify_Mod_Z_Entity(m,F))(i) = <F(i mod m)>	
+	
+	Theorem Stringify_Mod_Z_Entity_1:
+		For all i,m:Z,
+		For all F,G:Z->Entity,
+		For all e:Entity,
+			Stringify_Mod_Z_Entity(m,F) = G and
+			F(i mod m) = e implies
+				G(i mod m) = <e>;
+				
+	Theorem Mod_Z_Entity_Stringify_Composition:
+		For all i,m:Z,
+		For all F,G:Z->Entity,
+			Eq_Except_At(F,G,i mod m) =
+			Eq_Except_At(Stringify_Z_Entity(F),Stringify_Z_Entity(G),i mod m) ;	
+					
     Definition Iterated_Concatenation(m : Z, n : Z, F: Z->SStr): SStr;
 	
-	Definition Iterated_Concatenation_of_Prime_Str(m : Z, n : Z, F: Z->SStr): SStr;
 	Theorem Iterated_Concat_of_Prime_Str_Length_1:
 		For all i:Z,
 		For all n:N,
 		For all F:Z->Prime_Str,
-			0 <= i and |Iterated_Concatenation_of_Prime_Str(1,i,F)| = n 
+			0 <= i and |Iterated_Concatenation(1,i,F)| = n 
 				implies n = i;
 	
 	Theorem Iterated_Concat_of_Prime_Str_Length_2:
 		For all n:Z,
 		For all F:Z->Prime_Str,
-			|Iterated_Concatenation_of_Prime_Str(n,n,F)| = 1;
-			
-	Theorem Iterated_Concat_of_Prime_Str_Length_3:	
-		For all i,j:Z,
-		For all n:N,
+			|Iterated_Concatenation(n,n,F)| = 1;
+
+	Theorem Iterated_Concat_of_Prime_Str_Length_3:
+		For all m,n,i:Z,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = n implies n = (1 + (- i)) + j;
-			
+			m <= n and |Iterated_Concatenation(m,n,F)| = i implies i = 1 + m + (-n);	
+								
 	Theorem Iterated_Concat_of_Prime_Str_Length_4_a:
 		For all i,j,k:Z,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and |Iterated_Concatenation_of_Prime_Str(i,j,F)| = k implies k = 0;	
+			j + 1 <= i and |Iterated_Concatenation(i,j,F)| = k implies k = 0;	
 			
 	Theorem Iterated_Concat_of_Prime_Str_Length_4_b:
 		For all i,j:Z,
 		For all s:SStr,
 		For all F:Z->Prime_Str,
-			j + 1 <= i and Iterated_Concatenation_of_Prime_Str(i,j,F) = s implies s = Empty_String;
+			j + 1 <= i and Iterated_Concatenation(i,j,F) = s implies s = Empty_String;
 	
 	-- 	For VCs where <= or + not used	
 	Theorem Iterated_Concat_of_Prime_Str_3_c:
 		For all s:SStr,
 		For all F:Z->Prime_Str,
-			Iterated_Concatenation_of_Prime_Str(1,0,F) = Empty_String;
+			Iterated_Concatenation(1,0,F) = Empty_String;
 			
 	Theorem Iterated_Concat_End_Cat:
 		For all m, n: Z,
 		For all F: Z->Prime_Str,	
-			Iterated_Concatenation_of_Prime_Str(m, n + 1, F) = 
-			Iterated_Concatenation_of_Prime_Str(m, n, F) o F(n + 1);
-						
-	Corollary Str_Length_forced_introduction:
-		For all alpha,beta,gamma:SStr,
-			alpha o beta = gamma implies |gamma| = |alpha| + |beta|;
+			Iterated_Concatenation(m, n + 1, F) = 
+			Iterated_Concatenation(m, n, F) o F(n + 1);
 
+	Theorem Iterated_Concat_Eq_On_Interval_1:
+		For all m, n, i: Z,
+		For all F,G: Z->Prime_Str,
+		Eq_Except_At(F,G,i) and
+		(m <= n + 1 <=i) implies
+			Iterated_Concatenation(m,n,F) = Iterated_Concatenation(m,n,G);
 			
+	Theorem Iterated_Concat_Eq_On_Interval_2:
+		For all m, n, i: Z,
+		For all F,G: Z->Prime_Str,
+		Eq_Except_At(F,G,i) and
+		(i + 1 <= m <= n) implies
+			Iterated_Concatenation(m,n,F) = Iterated_Concatenation(m,n,G);
+						
+	Corollary Not_Eq_Str_Length:
+		For all S,T:SStr,
+			|S| /= |T| implies S /= T;
+
 end;

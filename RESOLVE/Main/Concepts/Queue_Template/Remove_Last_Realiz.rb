@@ -5,7 +5,8 @@ Realization Remove_Last_Realiz for Remove_Last_Capability of Queue_Template;
 		Dequeue (E, Q);
 		While ( 1 <= Length(Q) )
 			changing Q, T, E;
-			maintaining #Q = T o <E> o Q;
+			-- fill in a suitable invariant
+			maintaining true;
 			decreasing |Q|;
 		do
 			Enqueue(E,T);

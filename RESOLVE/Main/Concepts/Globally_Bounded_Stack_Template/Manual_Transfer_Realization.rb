@@ -7,6 +7,7 @@ Realization Manual_Transfer_Realization for Transfer_Capability of
 		Var Source_Reversed: Stack;
 		Var Next_Entry: Entry;
 
+		Clear(Destination);
 		While ( not Is_Empty(Source) )
 			changing Source, Source_Reversed, Next_Entry;
 			maintaining #Source = Reverse(Source_Reversed) o Source;
