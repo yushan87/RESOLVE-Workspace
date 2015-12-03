@@ -14,6 +14,11 @@ Concept Globally_Bounded_Queue_Template(type Entry);
 		requires not(Q = Empty_String);
 		ensures #Q = <R> o Q;
 
+	Operation Swap_First_Entry(updates E: Entry; updates Q: Queue);
+		requires not(Q = Empty_String);
+		ensures E = DeString(Prt_Btwn(0, 1, #Q)) and 
+			Q = <#E> o Prt_Btwn(1, |#Q|, #Q);
+
 	Operation Is_Empty(restores Q: Queue): Boolean;
 		ensures Is_Empty = (Q = Empty_String);
 
