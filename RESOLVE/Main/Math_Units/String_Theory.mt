@@ -190,7 +190,7 @@ Precis String_Theory;
 	Corollary Singleton_Str_3a: -- Is_Bijective(op<>); Changed from Is_Injective
 		For all x,y:Entity,
 			(<x> = <y>) = (x = y);
-		
+
 (*	Corollary Singleton_Str 4:
 		Is_Proper_Class(SStr); *)
 

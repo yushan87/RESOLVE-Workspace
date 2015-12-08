@@ -160,10 +160,6 @@ Theorem N10:
 Theorem NN_LTE_Addition_a:
 	For all m,n:N,
 		m <= m + n;
-		
-Theorem NN_LTE_Addition_b:
-	For all m,n:N,
-		m <= m + m;	
 
 Theorem NN_LTE_Addition_c:
 	For all i,j,k:N,
