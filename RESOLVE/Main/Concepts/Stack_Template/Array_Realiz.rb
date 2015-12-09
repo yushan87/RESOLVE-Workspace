@@ -38,6 +38,7 @@
  *)
 
 Realization Array_Realiz for Stack_Template;
+	uses Integer_To_String_Function_Theory;
 
     Type Stack is represented by Record
             Contents: Array 1..Max_Depth of Entry;
