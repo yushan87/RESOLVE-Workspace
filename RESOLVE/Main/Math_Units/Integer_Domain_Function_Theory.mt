@@ -7,30 +7,65 @@ Precis Integer_Domain_Function_Theory;
 	For all i,j:Z,
 	For all F,G:Z->Entity,
 		Eq_Except_On(F,G,i) = (i = j or F(j) = G(j));
-		
-    Theorem Except_At_1:
+	
+	Theorem Except_On_1: -- Reflexive
+	For all i:Z,
+	For all F:Z->Entity,
+		Eq_Except_On(F,F,i);
+			
+    Theorem Except_On_2: 
     For all F,G:Z->Entity,
     For all i:Z,
-    	Eq_Except_On(F,G,i) and F(i) = G(i) implies F = G;
+    	(Eq_Except_On(F,G,i) and F(i) = G(i)) implies F = G;
 
-    Theorem Except_At_2:
+    Theorem Except_On_: -- Symmetric
     For all F,G:Z->Entity,
     For all i:Z,
     	Eq_Except_On(F,G,i) = Eq_Except_On(G,F,i);
 
-    Theorem Except_At_3:
+    Theorem Except_On_3: -- Transitive
     For all F,G,H:Z->Entity,
     For all i:Z,
     	Eq_Except_On(F,G,i) and Eq_Except_On(G,H,i) implies Eq_Except_On(F,H,i);
 
-   Definition Property_Holds(T:SSet,f:Z->T,lower_bound:Z,upper_bound:Z,p:T->B):B;
+   Definition Property_Holds(f:Z->Entity,lower_bound:Z,upper_bound:Z,p:Z->B):B;
    Theorem Property_Holds_def:
-   	For all T:SSet,
-   	For all f:Z->T,
-   	For all p:T->B,
+   	For all f:Z->Entity,
+   	For all p:Z->B,
    	For all i,l,u:Z,
-   		Property_Holds(T,f,l,u,p) and l <= i and i <= u implies p(f(i));
-   	
+   		Property_Holds(f,l,u,p) and l <= i and i <= u implies p(i);
+
+	Theorem Property_Holds_1:
+   	For all f:Z->Entity,
+   	For all p:Z->B,
+   	For all i:Z,
+   		Property_Holds(f,i,i,p) = p(i);  
+   
+   -- Quant is second Arg to rel.		
+   Definition Relation_Holds(f:Z->Entity,l:Z, u:Z, first_arg:Entity, p:(Entity * Entity)->B):B;
+   
+   Theorem Relation_Holds_Def:
+   For all f:Z->Entity,
+   For all r:(Entity*Entity)->B,
+   For all e:Entity,
+   For all i,j,k:Z,
+   		(i <= k and k <= j and Relation_Holds(f,i,j,e,r)) implies r(e,f(k));
+   		
+   Theorem Relation_Holds_1:
+   For all f:Z->Entity,
+   For all r:(Entity*Entity)->B,
+   For all e:Entity,
+   For all i:Z,
+   		Relation_Holds(f,i,i,e,r) = r(e,f(i));	 
+
+   Theorem Relation_Holds_2:
+   For all f:Z->Entity,
+   For all r:(Entity*Entity)->B,
+   For all e:Entity,
+   For all i,j:Z,
+   		(i <= j and Relation_Holds(f,i,j+1,e,r)) = 
+   		(Relation_Holds(f,i,j,e,r) and r(e,f(j+1)));	 
+   		   			
    Definition Is_Ordered(f:Z->Entity,lower_bound:Z,upper_bound:Z,order:(Entity*Entity)->B):B;
    Theorem Is_Ordered_1:
    For all f:Z->Entity,

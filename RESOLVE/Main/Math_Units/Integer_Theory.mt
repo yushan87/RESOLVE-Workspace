@@ -205,7 +205,11 @@ Corollary LTE_1:
 Corollary LTE_1a: -- Is_Transitive(op<=);
     For all l,m,n:Z,
     	l <= m and m <= n implies l <= n;
-
+    	
+    	--(m < l or n < m) or l <= n
+Corollary LTE_1b:
+	For all l,m,n:Z,    	
+    	(m + 1 <= l or n + 1 <= m) or l <= n;
 Corollary LTE_2: -- Is_Antisymmetric(<=)
     For all m,n:Z,
     	(m <= n and n <= m) = (m = n);
@@ -365,7 +369,14 @@ Corollary I25_2:
 	Theorem Addition_Over_LTEc:
 		For all i,j,k:Z,
 			(i + j <= i + k) = (j <= k);
+			
+	Theorem Addition_Over_LTEd:
+		For all i,j,k:Z,
+			(i + j <= k + j) = (i <= k);
 	
+	Theorem Addition_Over_LTEe:
+		For all i,j,k:Z,
+			(i + j <= k + j) = (i <= k);
 	Theorem Zero_LTE_One:
 		0 <= 1;
 

@@ -8,20 +8,25 @@ Realization Iterative_Occ_Counting_Realiz (
         Var loopCt: Integer;
         Occ_Count := 0;
         idx := Lower_Bound;
-        Decrement(idx);
-        While (idx + 1 <= Upper_Bound)
-        	changing A,Temp,idx,Occ_Count;
+        
+        Swap_Entry(A,Temp,idx);
+        if (Equal(key,Temp)) then
+            Occ_Count := Occ_Count + 1;
+        end;
+        Swap_Entry(A,Temp,idx);
+            
+        While (idx < Upper_Bound)
             maintaining 
             Occ_Count = 
             	Occ_Ct_In_Range(A,key,Lower_Bound,idx) and
-            Lower_Bound + (-1) <= idx and
-            Occ_Count <= loopCt and
+            Lower_Bound <= idx and
+            0 <= Occ_Count and
+            Occ_Count <= idx + (-Lower_Bound) + 1 and
             idx <= Upper_Bound and
             #A = A;
             decreasing Upper_Bound + (-idx);
         do
         	Increment(idx);
-        	Increment(loopCt);
             Swap_Entry(A,Temp,idx);
             if (Equal(key,Temp)) then
                 Occ_Count := Occ_Count + 1;
