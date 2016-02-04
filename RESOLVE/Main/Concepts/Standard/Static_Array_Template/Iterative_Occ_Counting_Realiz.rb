@@ -21,8 +21,9 @@ Realization Iterative_Occ_Counting_Realiz (
             	Occ_Ct_In_Range(A,key,Lower_Bound,idx) and
             Lower_Bound <= idx and
             0 <= Occ_Count and
-            Occ_Count <= idx + (-Lower_Bound) + 1 and
+			Occ_Count <= (1 + idx) + (-Lower_Bound) and
             idx <= Upper_Bound and
+			#key = key and
             #A = A;
             decreasing Upper_Bound + (-idx);
         do

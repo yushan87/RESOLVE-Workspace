@@ -162,14 +162,10 @@ Theorem I10_Def:
 		
 Corollary I10_1:
 	Is_Inverse_for(op +, op -);
-	
-Corollary I10_1_a:
-	For all n,m:Z,
-		n + (-n) = m implies m = 0;
 
-Corollary I10_1_b:
-	For all n,m:Z,
-		(-n) + n = m implies m = 0;		
+Corollary I10_1_def:
+	For all i:Z,
+		i + -(i) = 0;
 		
 Corollary I10_2:
 	Is_Abelian_Group(Z, z0, op +, op -);
@@ -203,13 +199,9 @@ Corollary LTE_1:
 	Is_Transitive(op <=);
 	
 Corollary LTE_1a: -- Is_Transitive(op<=);
-    For all l,m,n:Z,
-    	l <= m and m <= n implies l <= n;
+    For all i,j,k:Z,
+    	i <= j and j <= k implies i <= k;
     	
-    	--(m < l or n < m) or l <= n
-Corollary LTE_1b:
-	For all l,m,n:Z,    	
-    	(m + 1 <= l or n + 1 <= m) or l <= n;
 Corollary LTE_2: -- Is_Antisymmetric(<=)
     For all m,n:Z,
     	(m <= n and n <= m) = (m = n);
@@ -280,8 +272,8 @@ Theorem Mult_Ind_Def_Expansion_ii:
 		Is_Neg(n) and m * NB(n) = l implies -(m * n) = l;
 *)
 Theorem Mult_Ind_Def_Expansion_iii:
-	For all l,m,n:Z,
-		not(Is_Neg(n)) and m * NB(n) = l implies -(m * n + m) = l;
+	For all k,m,n:Z,
+		not(Is_Neg(n)) and m * NB(n) = k implies -(m * n + m) = k;
 
 Corollary Mult_Def_1:
 	For all n:Z,
@@ -365,18 +357,7 @@ Corollary I25_2:
 	Theorem Addition_Over_LTEb:
 		For all i,j,k:Z, 
 			(i <= j + k) = (i + (-j) <= k);	
-					
-	Theorem Addition_Over_LTEc:
-		For all i,j,k:Z,
-			(i + j <= i + k) = (j <= k);
-			
-	Theorem Addition_Over_LTEd:
-		For all i,j,k:Z,
-			(i + j <= k + j) = (i <= k);
-	
-	Theorem Addition_Over_LTEe:
-		For all i,j,k:Z,
-			(i + j <= k + j) = (i <= k);
+								
 	Theorem Zero_LTE_One:
 		0 <= 1;
 
