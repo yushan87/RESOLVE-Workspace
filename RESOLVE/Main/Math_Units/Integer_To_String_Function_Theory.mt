@@ -74,8 +74,10 @@ Precis Integer_To_String_Function_Theory;
 	Theorem Iterated_Concat_End_Cat:
 		For all m, n: Z,
 		For all F: Z->Prime_Str,	
-			Iterated_Concatenation(m, n + 1, F) = 
-			Iterated_Concatenation(m, n, F) o F(n + 1);
+		For all s: SStr,
+			(m <= n + 1 and 
+			Iterated_Concatenation(m, n + 1, F) = s) implies
+			Iterated_Concatenation(m, n, F) o F(n + 1) = s;
 
 	Theorem Iterated_Concat_Eq_On_Interval_1:
 		For all m, n, i: Z,
