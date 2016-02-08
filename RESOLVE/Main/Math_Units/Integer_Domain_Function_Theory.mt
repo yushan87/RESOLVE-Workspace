@@ -121,7 +121,7 @@ Precis Integer_Domain_Function_Theory;
    For all f:Z->Entity,
    For all i,j,k,m:Z,
    For all key:Entity,   		
-   		(Occ_Ct_In_Range(f,key,i,j + 1) = m) implies
+   		i <= j + 1 and (Occ_Ct_In_Range(f,key,i,j + 1) = m) implies
    			 m = ((Occ_Ct_In_Range(f,key,i,j) + Occ_Ct_In_Range(f,key, j + 1, j + 1)));
    			    			 
    Theorem Occ_Ct_In_Range_5_a:

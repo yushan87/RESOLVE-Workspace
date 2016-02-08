@@ -357,6 +357,10 @@ Corollary I25_2:
 	Theorem Addition_Over_LTEb:
 		For all i,j,k:Z, 
 			(i <= j + k) = (i + (-j) <= k);	
+			
+	Theorem LTE_Sum:
+		For all w,x,y,z: Z,
+			w <= x + z and x <= y implies w <= y + z;
 								
 	Theorem Zero_LTE_One:
 		0 <= 1;
