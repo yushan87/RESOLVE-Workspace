@@ -230,11 +230,11 @@ Precis String_Theory;
 		For all S,T,U:SStr,
 			((U o S) = (U o T)) = (S = T);
 
-	Corollary Reverse_7:
+(*	Corollary Reverse_7:
 		For all alpha,beta,gamma,delta:SStr,
 			((alpha o beta) = (gamma o delta)) and ((|alpha| = |gamma|) or (|beta| = |delta|))  implies
 				(alpha = gamma and beta = delta);
-
+*)
 	Corollary Reverse_8:
 		For all alpha:SStr,
 			|Reverse(alpha)| = |alpha|;
