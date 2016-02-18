@@ -1,10 +1,16 @@
 Facility Int_Do_Nothing_Exercise;
-    
-    -- The operation below is intentionally buggy.
-    Operation Do_Nothing(restores I: Integer);
+    uses Integer_Ext_Theory;
+ -- The operation below is intentionally buggy.
+    Operation Main();
     Procedure
-            Increment(I);
-            Decrement(I);
-    end Do_Nothing;
-
+        Var I, J, K: Integer;
+        Read(I);
+        Read(J);
+        Remember;
+        Presume (I - 1 < I);
+		Confirm (J < I) = (J + 1 <= I);
+		Confirm (J > I) = (I + 1 <= J);
+		Confirm I - J = I + (-J);
+	end Main;
+	
 end Int_Do_Nothing_Exercise;
