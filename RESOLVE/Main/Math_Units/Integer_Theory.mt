@@ -134,11 +134,7 @@ Theorem I7:
 Theorem I_7_Def:
 	For all i,j,k:Z,
 		(i + j) + k = i + (j + k);
-
-Theorem I_7a_Def:
-	For all i,j,k:Z,
-		(i + j) + k = j + (i + k);
-					
+		
 Theorem I8:
 	Is_Left_Identity_for(op +, 0);
 	
@@ -344,12 +340,12 @@ Corollary I25_2:
 	Theorem Addition_Over_Equality:
 		For all i,j,k:Z,
 			(i + (-j) = k) = (i = k + j);
-	
+		
 	Theorem LTE_Z_N:
 		For all i:Z,
 		For all n:N,
 			i <= i + n;
-							 
+			
 	Theorem Addition_Over_LTEa:
 		For all i,j,k:Z,
 			(i + j <= k) = (i <= k + (-j));	
