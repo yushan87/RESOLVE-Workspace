@@ -39,7 +39,7 @@
 
 
 Concept Integer_Template;
-	uses Integer_Theory;
+	uses Integer_Ext_Theory;
 
     Definition min_int: Z;
     Definition max_int: Z;
@@ -63,8 +63,8 @@ Concept Integer_Template;
         ensures	i = 1 + #i;
 
     Operation Decrement(updates i: Integer);
-        requires min_int <= i + (-1);
-        ensures	i = #i + (-1);
+        requires min_int <= i - 1;
+        ensures	i = #i - 1;
 
     Operation Less_Or_Equal(evaluates i, j: Integer): Boolean;
         ensures	Less_Or_Equal = ( i <= j );
@@ -87,8 +87,8 @@ Concept Integer_Template;
         ensures Negate = ( -i );
 
     Operation Difference(evaluates i, j: Integer): Integer;
-        requires min_int <= i + (- j) <= max_int;
-        ensures Difference =  i + (- j);
+        requires min_int <= i - j <= max_int;
+        ensures Difference =  i - j;
 
     Operation Product(evaluates i, j: Integer): Integer;
         requires min_int <= i * j <= max_int;
@@ -100,7 +100,7 @@ Concept Integer_Template;
 
     Operation Divide(evaluates i, j: Integer; replaces q: Integer);
 	requires if (j <= 0)
-		then (j*(max_int + 1) < i and i < j*(min_int + (-1)))
+		then ((j*(max_int + 1) < i) and i < (j * (min_int -1)))
 		else true;
         ensures (|j*q| <= |i|) and (|i + (- j*q)| < |j|);
 
