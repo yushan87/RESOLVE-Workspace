@@ -20,7 +20,7 @@ Concept Stack_Template(type Entry; evaluates Max_Depth: Integer);
         ensures Depth = (|S|);
 
     Operation Rem_Capacity(restores S: Stack): Integer;
-        ensures Rem_Capacity = Max_Depth + (- |S|);
+        ensures Rem_Capacity = (Max_Depth - |S|);
 
     Operation Clear(clears S: Stack);
 
