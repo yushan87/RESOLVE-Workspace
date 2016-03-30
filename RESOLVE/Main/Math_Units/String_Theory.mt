@@ -160,9 +160,14 @@ Precis String_Theory;
 		For all alpha,beta,gamma:SStr,
 			|alpha o beta| = |gamma| implies |alpha| = |gamma| + (- |beta|);
 		
-	Corollary Str_Length_3:
+	Corollary Str_Length_3_1:
 		For all alpha,beta,gamma,delta:SStr,
 			((alpha o beta) = (gamma o delta) and |beta| = |delta|)
+				implies (beta = delta and alpha = gamma);
+	
+	Corollary Str_Length_3_2:
+		For all alpha,beta,gamma,delta:SStr,
+			((alpha o beta) = (gamma o delta) and |alpha| = |gamma|)
 				implies (beta = delta and alpha = gamma);
 
 
