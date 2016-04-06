@@ -1,5 +1,5 @@
-Facility Stack_Examples_Fac;
 --This is an exercise; need to include a proper loop invariant to prove.
+Facility Stack_Examples_Fac;
 	uses String_Theory;
 
 	Facility Rev_Stack_Fac is Stack_Template(Char_Str, 5)
