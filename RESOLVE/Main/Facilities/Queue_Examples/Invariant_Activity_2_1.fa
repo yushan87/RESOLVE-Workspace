@@ -1,7 +1,6 @@
 Facility Invariant_Activity_2_1;
 --This is an in-class activity for learning loop invariants
     uses Integer_Template, String_Theory;
-    requires 5 <= max_int;
 
     Facility Queue_Fac is Queue_Template(Integer, 5)
 		realized by Circular_Array_Realiz;
