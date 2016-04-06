@@ -1,4 +1,4 @@
-Facility Invariant_Activity_2;
+Facility Invariant_Activity_2_2;
 --This is an in-class activity for learning loop invariants
     uses Integer_Template, String_Theory;
     requires 5 <= max_int;
@@ -14,7 +14,7 @@ Facility Invariant_Activity_2;
 		
 		Enqueue (E, T);
 		While ( 1 <= Length(Q) )
-			maintaining true;
+			maintaining false;
 			decreasing |Q|;
 		do
 			Dequeue(E,Q);
@@ -23,4 +23,4 @@ Facility Invariant_Activity_2;
 		Q :=: T;
 	end Inject_at_Front;
 
-end Invariant_Activity_2;
+end Invariant_Activity_2_2;
