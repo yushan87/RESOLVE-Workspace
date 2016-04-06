@@ -1,4 +1,5 @@
 Facility Int_Max_Example_Facility;
+	uses Integer_Template;
     
 	-- The operation below is intentionally buggy.
 	Operation Max(restores I: Integer; restores J: Integer) : Integer;
