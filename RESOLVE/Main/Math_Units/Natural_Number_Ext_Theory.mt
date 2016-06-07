@@ -1,31 +1,31 @@
 Precis Natural_Number_Ext_Theory;
 	uses Natural_Number_Theory;
 
-Definition Max(m,n:N):N = {{m if (n <= m); n otherwise;}};
+Definition max(m,n:N):N = {{m if (n <= m); n otherwise;}};
 
-Corollary Max_1:
+Corollary max_1:
 	For all n:N,
-	Max(0,n) = n;
+	max(0,n) = n;
 	
-Corollary Max_2:
+Corollary max_2:
 	For all m,n:N,
-	Max(m,n) = Max(n,m);
+	max(m,n) = max(n,m);
 	
-Corollary Max_3:
+Corollary max_3:
 	For all m,n,p:N,
-	Max(Max(m,n),p) = Max(m,Max(n,p));
+	max(max(m,n),p) = max(m,max(n,p));
 	
-Corollary Max_4:
+Corollary max_4:
 	For all m,n:N,
-	m <= Max(m,n);
+	m <= max(m,n);
 	
-Corollary Max_5:
+Corollary max_5:
 	For all m,n:N,
-	(m <= n) = (Max(m,n) = n);
+	(m <= n) = (max(m,n) = n);
 	
-Corollary Max_6:
+Corollary max_6:
 	For all m,n,p:N,
-	Max(m,n) + p = Max(m + p, n + p);
+	max(m,n) + p = max(m + p, n + p);
 	
 	
 Definition min(m,n:N):N = {{m if (m <= n); n otherwise;}};
@@ -48,7 +48,7 @@ Corollary Min_4:
 	
 Corollary Min_5:
 	For all m,n:N,
-	min(m,n) <= Max(m,n);
+	min(m,n) <= max(m,n);
 	
 Corollary Min_6:
 	For all m,n:N,

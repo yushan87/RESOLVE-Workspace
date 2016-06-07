@@ -3,35 +3,35 @@ Precis Integer_Ext_Theory;
 
 Definition (i: Z) - (j: Z): Z = i + (-j);
 
-Definition Max(m,n:Z):Z = {{m if (n <= m); n otherwise;}};
+Definition max(m,n:Z):Z = {{m if (n <= m); n otherwise;}};
 
-Corollary Max_1:
+Corollary max_1:
 	For all m,n:Z,
-	Max(m,n) = Max(n,m);
+	max(m,n) = max(n,m);
 	
-Corollary Max_2:
+Corollary max_2:
 	For all m,n,p:Z,
-	Max(Max(m,n),p) = Max(m,Max(n,p));
+	max(max(m,n),p) = max(m,max(n,p));
 	
-Corollary Max_3:
+Corollary max_3:
 	For all n:Z,
-	Max(n,n) = n;
+	max(n,n) = n;
 	
-Corollary Max_4:
+Corollary max_4:
 	For all m,n:Z,
-	m <= Max(m,n);
+	m <= max(m,n);
 	
-Corollary Max_5:
+Corollary max_5:
 	For all m,n:Z,
-	(m <= n) = (Max(m,n) = n);
+	(m <= n) = (max(m,n) = n);
 	
-Corollary Max_6:
+Corollary max_6:
 	For all m,n,p:Z,
-	Max(m,n) + p = Max(m + p, n + p);
+	max(m,n) + p = max(m + p, n + p);
 	
-Corollary Max_7:
+Corollary max_7:
 	For all m,n,p:Z,
-	Max(m,n) * |p| = Max(m * |p|, n * |p|);
+	max(m,n) * |p| = max(m * |p|, n * |p|);
 	
 Definition min(m,n:Z):Z = {{m if (m <= n); n otherwise;}};
 
@@ -53,7 +53,7 @@ Corollary Min_4:
 	
 Corollary Min_5:
 	For all m,n:Z,
-	min(m,n) <= Max(m,n);
+	min(m,n) <= max(m,n);
 	
 Corollary Min_6:
 	For all m,n:Z,
@@ -69,6 +69,6 @@ Corollary Min_8:
 
 Corollary Min_9:
 	For all m,n:Z,
-	min(m,n) = - Max(-m,-n);
+	min(m,n) = - max(-m,-n);
 	
 end Integer_Ext_Theory;
