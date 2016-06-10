@@ -1,0 +1,53 @@
+Facility Activity_104a_Reasoning_about_DBC_and_If_Statements;
+	uses Integer_Template;
+
+	-- Basic
+	-- This activity combines the ideas of design by contract and if statements
+	-- Instead of writing code directly for finding maximum in Main this activity uses an operation
+	-- Activity 1: Reason about the given code and understand
+
+	-- Guided
+	-- Activity 2a: Use assignment and if-then-else statements instead of swap statement to rewrite the code for ReOrder
+
+	-- Activity 3a: Uncomment Reorder_2 and attempt to verify it
+	-- Activity 3b: Also uncomment the requires clause of Reorder_2 and attempt to verify it
+
+	-- Hard Activity 4+: Rewrite the contract of (ensures clause of) ReOrder without using max or min
+
+	Operation ReOrder(updates I, J: Integer);
+		ensures I = max(#I, #J) and J = min(#I, #J);
+	Procedure
+		If (I < J) then
+			I :=: J;
+		end;
+	end ReOrder;
+
+(*
+	Operation ReOrder_2(updates I, J: Integer); 
+	--	requires min_int <= I - J <= max_int;     -- specification: what the implementer of the operation may assume
+		ensures I = max(#I, #J) and J = min(#I, #J);
+	Procedure
+		If (I - J < 0) then
+			I :=: J;
+		end;
+	end ReOrder_2;
+*)
+
+	Operation Main();
+	Procedure
+		Var X, Y: Integer;
+		
+		Write_Line("Enter two numbers");
+		Read(X);     
+		Read(Y);
+		
+		ReOrder(X, Y);
+		-- If (X < Max_Int()) then
+			-- ReOrder_2(X, Y);
+		-- end;
+		
+		Write_Line("The maximum and minimum are");
+		Write(X);
+		Write(Y);
+	end Main;
+end Activity_104a_Reasoning_about_DBC_and_If_Statements;
