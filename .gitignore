@@ -15,7 +15,7 @@
 *.smt
 
 # AST graphs
-*.ast
+*.gv
 
 ###################
 # User Facilities #
