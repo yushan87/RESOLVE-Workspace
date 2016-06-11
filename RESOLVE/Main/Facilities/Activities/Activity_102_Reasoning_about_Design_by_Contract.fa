@@ -14,7 +14,7 @@ Facility Activity_102_Reasoning_about_Design_by_Contract;
 	-- Activity 3: Write contracts for operations Op_1 and Op_2 to capture what their code does and verify
 
     -- Inquiry
-	-- Activity 5+: Compare various contracts
+	-- Activity 4+: Compare various contracts
 	--              Understand the basics of design-by-contract responsibilities for implementers and benefits for callers
 *)
 

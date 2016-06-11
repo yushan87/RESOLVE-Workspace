@@ -11,7 +11,7 @@ Facility Activity_103_Reasoning_about_Swapping;
 	
 	-- Inquiry
 	-- Activity 3+: Introduce new variables and explore combinations of swap statements
-	-- Activity 3+: Compare assignment statements and swap statements
+	-- Activity 4+: Compare assignment statements and swap statements
 
 	Operation Main();
 	Procedure

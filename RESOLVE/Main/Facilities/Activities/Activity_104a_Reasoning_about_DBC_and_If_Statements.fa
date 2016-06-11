@@ -7,7 +7,7 @@ Facility Activity_104a_Reasoning_about_DBC_and_If_Statements;
 	-- Activity 1: Reason about the given code and understand
 
 	-- Guided
-	-- Activity 2a: Use assignment and if-then-else statements instead of swap statement to rewrite the code for ReOrder
+	-- Activity 2: Use assignment and if-then-else statements instead of swap statement to rewrite the code for ReOrder
 
 	-- Activity 3a: Uncomment Reorder_2 and attempt to verify it
 	-- Activity 3b: Also uncomment the requires clause of Reorder_2 and attempt to verify it
