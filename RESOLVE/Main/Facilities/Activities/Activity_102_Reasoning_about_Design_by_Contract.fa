@@ -1,4 +1,4 @@
-Facility Activity_104c_Reasoning_about_Design_by_Contract;
+Facility Activity_102_Reasoning_about_Design_by_Contract;
 	uses Integer_Template;
 
 (*
@@ -78,4 +78,4 @@ Facility Activity_104c_Reasoning_about_Design_by_Contract;
 		Write_Line("------------");
 	end Main;
 
-end Activity_104c_Reasoning_about_Design_by_Contract;
+end Activity_102_Reasoning_about_Design_by_Contract;
