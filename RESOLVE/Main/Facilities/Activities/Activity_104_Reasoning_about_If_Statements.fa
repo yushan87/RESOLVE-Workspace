@@ -9,7 +9,7 @@ Facility Activity_104_Reasoning_about_If_Statements;
 	-- Activity 2a: Replace the swap statement with a correct assignment statement and attempt to verify
 	-- Activity 2b: Replace the swap statement with a wrong assignment statement and attempt to verify
 
-	-- Activity 3: Read 3 integers, write suitable statements to store the max in I,
+	-- Activity 3: Read 3 integers, write suitable statements to store the max in X,
 	--              and then write a confirm assertion to capture the effect of your code
 
 	-- Activity 4: Explore if-then-else statements
@@ -21,7 +21,7 @@ Facility Activity_104_Reasoning_about_If_Statements;
 		Write_Line("Enter two numbers");
 		Read(X);
 		Read(Y);
-		Remember;    -- remembers the values of I and J here as #I and #J
+		Remember;    -- remembers the values of X and Y here as #X and #Y
 		
         If (X < Y) then
 			X :=: Y;        -- this is a swap statement available on all types of objects
