@@ -11,7 +11,8 @@ Facility Activity_104a_Reasoning_about_DBC_and_If_Statements;
 	-- Activity 2: In operation Reorder, eliminate the use of the swap statement and then insert code that uses a 
 	-- 			   temporary variable and assignment statements to correctly swap the values in I and J.
 
-	-- Activity 3a: Uncomment Reorder_2 by deleting the (* and *) that appear before and after the operation. At this time leave Reorder_2's requires clause as a comment.
+	-- Activity 3a: Uncomment Reorder_2 by deleting the (* and *) that appear before and after the operation. 
+	--				At this time leave Reorder_2's requires clause as a comment.
 	-- Activity 3b: Attempt to verify Reorder_2 by clicking the MP-Prove button.
 	--				After verifying, notice that 2 VCs fail to prove for the line in Reorder_2 that contains the "If"
 	--				These 2 VCs have to do with showing that evaluating I - J does not produce Integer underflow or overflow.

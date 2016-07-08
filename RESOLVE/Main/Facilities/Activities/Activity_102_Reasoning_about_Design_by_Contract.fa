@@ -79,10 +79,10 @@ Facility Activity_102_Reasoning_about_Design_by_Contract;
 		Exchange(X, Y);             -- caller assumes that the operation works according to specification
 		
 		Write("The first number is: ");
-		Write(X);
+		Write_Line(X);
 		Write_Line("------------");
 		Write("The second number is: ");
-		Write(Y);
+		Write_Line(Y);
 		Write_Line("------------");
 	end Main;
 
