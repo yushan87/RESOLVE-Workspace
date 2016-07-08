@@ -29,7 +29,7 @@ Facility Activity_101_Reasoning_about_Assignments;
 		-- Confirm I = #J;  --- this is an assertion
 		-- Confirm J = #I;  
 
-		Write(I);
-		Write(J);
+		Write_Line(I);
+		Write_Line(J);
 	end Main;
 end Activity_101_Reasoning_about_Assignments;

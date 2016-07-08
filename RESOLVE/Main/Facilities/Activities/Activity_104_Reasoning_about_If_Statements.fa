@@ -6,7 +6,7 @@ Facility Activity_104_Reasoning_about_If_Statements;
 	-- Activities 1: Understand, reason, and inquire
 
 	-- Guided
-	-- Activity 2a: Replace the swap statement with a correct assignment statement and attempt to verify
+	-- Activity 2a: Replace the swap statement with assignment statement and attempt to verify
 	-- Activity 2b: Replace the swap statement with a wrong assignment statement and attempt to verify
 
 	-- Activity 3: Read 3 integers, write suitable statements to store the max in X,
@@ -30,8 +30,9 @@ Facility Activity_104_Reasoning_about_If_Statements;
 		Confirm X = max(#X, #Y); 
 --        Confirm Y = min(#X, #Y);
 
-		Write_Line("The maximum and minimum are");
-		Write(X);
-		Write(Y);
+		Write("Maximum: ");
+		Write_Line(X);
+		Write("Minimum: ");
+		Write_Line(Y);
 	end Main;
 end Activity_104_Reasoning_about_If_Statements;

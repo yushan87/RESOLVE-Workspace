@@ -60,7 +60,7 @@ Facility Activity_104c_Reasoning_about_Design_by_Contract;
 		--    Do_Nothing_1(X);
 		-- end;
 		-- Do_Nothing_2(X);
-		Write(X);
+		Write_Line(X);
 	end Main; 
 
 end Activity_104c_Reasoning_about_Design_by_Contract;
