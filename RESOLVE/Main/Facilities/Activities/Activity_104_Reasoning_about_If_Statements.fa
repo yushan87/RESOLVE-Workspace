@@ -1,33 +1,38 @@
 Facility Activity_104_Reasoning_about_If_Statements;
 	uses Integer_Template;
+	
+	-- Basic
 	-- Reasoning about if statements needs reasoning about the correctness of all possible paths
-	-- Activities: Understand, reason, and inquire
+	-- Activities 1: Understand, reason, and inquire
 
-	Operation Max(restores I: Integer; restores J: Integer) : Integer;
-		ensures (Max >= I) and (Max >= J) and (Max = I or Max = J);
-	Procedure
-		If (I >= J) then
-			Max := I;
-		else
-			Max := J;
-		end;
-	end Max;
+	-- Guided
+	-- Activity 2a: Replace the swap statement with assignment statement and attempt to verify
+	-- Activity 2b: Replace the swap statement with a wrong assignment statement and attempt to verify
 
-	-- The operation below is intentionally buggy; fix it
-	Operation Mad_Max(restores I: Integer; restores J: Integer) : Integer;
-		ensures (Mad_Max >= I) and (Mad_Max >= J) and (Mad_Max = I or Mad_Max = J);
-	Procedure
-		Mad_Max := I + J;
-		If (I > J) then
-			Mad_Max := Mad_Max - J;
-		end;
-		If (J > I) then
-			Mad_Max := Mad_Max - I;
-		end;
-	end Mad_Max;
+	-- Activity 3: Read 3 integers, write suitable statements to store the max in X,
+	--              and then write a confirm assertion to capture the effect of your code
+
+	-- Activity 4: Explore if-then-else statements
 
 	Operation Main();
 	Procedure
-	end Main;
+		Var X, Y: Integer;
+		
+		Write_Line("Enter two numbers");
+		Read(X);
+		Read(Y);
+		Remember;    -- remembers the values of X and Y here as #X and #Y
+		
+        If (X < Y) then
+			X :=: Y;        -- this is a swap statement available on all types of objects
+		end;
+		
+		Confirm X = max(#X, #Y); 
+--        Confirm Y = min(#X, #Y);
 
+		Write("Maximum: ");
+		Write_Line(X);
+		Write("Minimum: ");
+		Write_Line(Y);
+	end Main;
 end Activity_104_Reasoning_about_If_Statements;

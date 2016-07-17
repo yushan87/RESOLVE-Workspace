@@ -49,6 +49,6 @@ Facility Activity_105_Reasoning_about_Loops_and_Recursion;
 		-- Clear_Num_00(X);
 		-- Clear_Num_Recursively(X);
 		-- Clear_Num_Iteratively(X);
-		Write(X);
+		Write_Line(X);
 	end Main;
 end Activity_105_Reasoning_about_Loops_and_Recursion;

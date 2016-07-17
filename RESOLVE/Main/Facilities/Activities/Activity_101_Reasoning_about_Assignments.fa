@@ -7,7 +7,7 @@ Facility Activity_101_Reasoning_about_Assignments;
 	-- Activity 1b: Click on build, generate jar, and execute this code
 
 	-- Guided
-	-- Activity 2a: Uncomment Rememember and Confirm assertions by removing -- and MP-Prove (prove)
+	-- Activity 2a: Uncomment Remember and Confirm assertions by removing -- and MP-Prove (prove)
 	-- Activity 2b: Write a new Confirm assertion about the value of K that is true -- and prove
 	-- Activity 2c: Write a Confirm assertion about the value of K that is false -- and attempt to prove
 
@@ -29,7 +29,7 @@ Facility Activity_101_Reasoning_about_Assignments;
 		-- Confirm I = #J;  --- this is an assertion
 		-- Confirm J = #I;  
 
-		Write(I);
-		Write(J);
+		Write_Line(I);
+		Write_Line(J);
 	end Main;
 end Activity_101_Reasoning_about_Assignments;

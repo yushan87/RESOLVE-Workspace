@@ -1,4 +1,4 @@
-Facility Activity_103_Reasoning_about_Design_by_Contract;
+Facility Activity_104c_Reasoning_about_Design_by_Contract;
 	uses Integer_Template;
 (*
 	-- This is a short intro to design by contract (specification)
@@ -60,7 +60,7 @@ Facility Activity_103_Reasoning_about_Design_by_Contract;
 		--    Do_Nothing_1(X);
 		-- end;
 		-- Do_Nothing_2(X);
-		Write(X);
+		Write_Line(X);
 	end Main; 
 
-end Activity_103_Reasoning_about_Design_by_Contract;
+end Activity_104c_Reasoning_about_Design_by_Contract;
