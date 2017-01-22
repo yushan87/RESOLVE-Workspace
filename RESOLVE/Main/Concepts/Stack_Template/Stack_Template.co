@@ -24,4 +24,4 @@ Concept Stack_Template(type Entry; evaluates Max_Depth: Integer);
 
     Operation Clear(clears S: Stack);
 
-end;
+end Stack_Template;

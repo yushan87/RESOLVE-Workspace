@@ -442,4 +442,4 @@ Precis String_Theory;
 		For all S,T:SStr,
 			|S| /= |T| implies S /= T;
 
-end;
+end String_Theory;
