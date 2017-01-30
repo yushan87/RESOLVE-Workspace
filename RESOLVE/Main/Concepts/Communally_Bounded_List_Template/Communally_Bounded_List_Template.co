@@ -1,12 +1,12 @@
-Sharing Concept Communally_Bounded_List_Template( type Entry; evaluates Initial_Capacity: Integer );
+Shared Concept Communally_Bounded_List_Template( type Entry; evaluates Initial_Capacity: Integer );
 	uses String_Theory, Integer_Ext_Theory;
 	requires Initial_Capacity > 0 which_entails Initial_Capacity : N;
 	
-	Sharing Variables
+	Shared Variables
 		Abstract_Var Remaining_Cap: N;
 		initialization
 			ensures Remaining_Cap = Initial_Capacity;
-	end Sharing Variables;
+	end Shared Variables;
 
 	Type Family List is modeled by Cart_Prod
 			Prec, Rem: Str(Entry);
