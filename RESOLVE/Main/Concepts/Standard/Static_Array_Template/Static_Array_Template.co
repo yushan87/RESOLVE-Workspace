@@ -34,4 +34,5 @@ Concept Static_Array_Template(type Entry; evaluates Lower_Bound, Upper_Bound: In
     Operation Entry_Replica(restores A: Static_Array; evaluates i: Integer): Entry;
         requires Lower_Bound <= i  and i <= Upper_Bound;
         ensures Entry_Replica = A(i);
-end;
+
+end Static_Array_Template;
