@@ -1,4 +1,5 @@
 Precis Basic_Properties;
+	uses Boolean_Theory;
 
 Definition (a : B) implies (b : B) : B;
 
