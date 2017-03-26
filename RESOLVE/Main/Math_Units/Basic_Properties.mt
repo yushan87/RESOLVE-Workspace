@@ -1,8 +1,6 @@
 Precis Basic_Properties;
 	uses Boolean_Theory;
 
-Definition (a : B) implies (b : B) : B;
-
 Definition Is_Bijective(f : (D : SSet) -> (R : SSet)) : B;
 Definition Is_Associative(f : (D : SSet) -> (R : SSet)) : B;
 Definition Is_Commutative(f : (D : SSet) * D -> D) : B = 

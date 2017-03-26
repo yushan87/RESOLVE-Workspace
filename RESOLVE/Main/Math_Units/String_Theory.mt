@@ -2,26 +2,26 @@ Precis String_Theory;
     uses Integer_Theory;
 
 	--The type of all strings of heterogenous type
-	Definition SStr : MType;
+	Definition SStr : Cls;
 	Definition Empty_String : SStr;
 
 	--A function that restricts SStr to the type of all strings of some homogenous
 	--type
-	Definition Str : MType -> MType;
-	--Definition Empty_String_In(T : MType) : Str(T);
+	Definition Str : Cls -> Cls;
+	--Definition Empty_String_In(T : Cls) : Str(T);
 
 	Type Theorem Empty_String_In_All_Strs:
-		For all T : MType,
+		For all T : Cls,
 			Empty_String : Str(T);
 
 	Type Theorem All_Strs_In_SStr:
-		For all T : MType,
+		For all T : Cls,
 		For all S : Str(T),
 			S : SStr;
 
 	--If R is a subset of T, then Str(R) is a subset of Str(T)
 	Type Theorem Str_Subsets:
-		For all T : MType,
+		For all T : Cls,
 		For all R : Powerset(T),
 		For all s : Str(R),
 			s : Str(T);
@@ -32,18 +32,18 @@ Precis String_Theory;
 	Definition (s : SStr) o (t : SStr) : SStr;
 
 	Type Theorem Concatenation_Preserves_Generic_Type:
-		For all T : MType,
+		For all T : Cls,
 		For all U, V : Str(T),
 			U o V : Str(T);
 	Type Theorem DeString_Extracts_Generic_Type:
-		For all T : MType,
+		For all T : Cls,
 		For all S : Str(T),
 			DeString(S) : Str(T);
 
 	Definition Reverse(s : SStr) : SStr;
 
 	Type Theorem Reverse_Preserves_Generic_Type:
-		For all T : MType,
+		For all T : Cls,
 		For all S : Str(T),
 			Reverse(S) : Str(T);
 	Definition min(m:Z,n:Z):Z;
@@ -132,15 +132,15 @@ Precis String_Theory;
 
 
 (*	Definition <(x:Entity)>:Str = (ext(Empty_String,x)); *)
---	Definition <(e : (U : MType))> : Str(U);
-	Definition Prime_Str : MType;
+--	Definition <(e : (U : Cls))> : Str(U);
+	Definition Prime_Str : Cls;
 	Definition <(e : Entity)> : Prime_Str;
 	Type Theorem Prime_Str_is_SSTR:
 		For all p : Prime_Str,
 			p : SStr;
 	
 	Type Theorem Stringleton_Preserves_Generic_Type:
-		For all T : MType,
+		For all T : Cls,
 		For all e : T,
 			<e> : Str(T);
 				
