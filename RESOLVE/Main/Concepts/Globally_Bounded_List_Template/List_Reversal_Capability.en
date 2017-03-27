@@ -1,0 +1,5 @@
+Enhancement List_Reversal_Capability for Globally_Bounded_List_Template;
+    Operation Reverse_List (updates L: List);
+        requires L.Prec = Empty_String;
+        ensures L.Prec = Reverse(#L.Rem) and L.Rem = Empty_String;
+end List_Reversal_Capability;

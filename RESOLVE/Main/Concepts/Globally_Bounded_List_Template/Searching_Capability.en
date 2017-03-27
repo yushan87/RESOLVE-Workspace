@@ -1,0 +1,6 @@
+Enhancement Searching_Capability for 
+                                 Globally_Bounded_List_Template;
+    Operation Contains(restores E: Entry; restores L: List): Boolean;
+        ensures Contains = ( Is_Substring(<E>, L.Prec) or 
+									  Is_Substring(<E>, L.Rem) );
+end Searching_Capability;
