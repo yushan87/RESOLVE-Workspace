@@ -1,98 +1,54 @@
-(*
- * This softare is released under the new BSD 2006 license.
- * 
- * Note the new BSD license is equivalent to the MIT License, except for the
- * no-endorsement final clause.
- * 
- * Copyright (c) 2007, Clemson University
- * 
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- * 
- *   * Redistributions of source code must retain the above copyright notice,
- *     this list of conditions and the following disclaimer. 
- *   * Redistributions in binary form must reproduce the above copyright
- *     notice, this list of conditions and the following disclaimer in the
- *     documentation and/or other materials provided with the distribution. 
- *   * Neither the name of the Clemson University nor the names of its
- *     contributors may be used to endorse or promote products derived from
- *     this software without specific prior written permission. 
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
- * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
- * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
- * A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
- * OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
- * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
- * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
- * This sofware has been developed by past and present members of the
- * Reusable Sofware Research Groups (RSRG) at Clemson University and
- * The Ohio State University.
- *)
-
 Precis Set_Theory;
-    uses Boolean_Theory;
+    uses Natural_Number_Theory;
 
-	Definition Set : (MType -> Powerset(SSet));
+    Definition Card: SSet;
+    Definition ||(S:SSet)||: Card;
+    Definition FinPowerset(S: SSet): SSet;
 
-	Type Theorem Restricted_Set_Subtype_of_Big_Set:
-		For all T : MType,
-		For all S : Set(T),
-			S : SSet;
+	Type Theorem Fin_0:
+		For all S: SSet,
+		For all T: FinPowerset(S),
+			T: SSet;
 
-	Type Theorem Empty_Set_In_All_Sets:
-		For all T : MType,
-			Empty_Set : Set(T);
+	Type Theorem Fin_1:
+		For all S: SSet,
+		For all T: FinPowerset(S),
+			T: Powerset(S);
 
-	Definition Is_In(e : Entity, T : MType) : B;
+	Type Theorem Card_1:
+		For all S: SSet,
+		For all T: FinPowerset(S),
+			||T||: N;
 
-    (*Definition elem: Gamma x Set(Gamma) -> B;
+	Definition Empty_Set: SSet; -- {}
+       
+	Type Theorem Powerset_1:
+		For all S: SSet,
+		For all T: Powerset(S),
+			T: SSet;
 
-    --------------------------------------------------------------
+	Definition (S: SSet) union (T: SSet): SSet;
+    Definition (S: SSet) intersection (T: SSet): SSet = Empty_Set;
+    Definition (e: Entity) is_in (S: SSet): B;
+    Definition (e: Entity) is_not_in (s: SSet): B; -- = not (e is_in s);
+    Definition complement (S: SSet): SSet;
+    Definition (S: SSet) without (T: SSet): SSet;
+    Definition (S: SSet) is_subset_of (T: SSet): B;
+    Definition (S: SSet) is_not_subset_of (T: SSet): B;
+    Definition (S: SSet) is_proper_subset_of (T: SSet): B;
+    Definition (S: SSet) is_not_proper_subset_of (T: SSet): B;
+    Definition Singleton(e: Entity): SSet;   -- {(e: Entity)}
 
-    Definition (e: Gamma) is_in (s: Set(Gamma)): B =
-        elem(e, s);
+	Corollary Union_1_a: -- Is_Identity_for(union, Empty_Set);
+		For all S: SSet,
+			Empty_Set union S = S;
 
-    --------------------------------------------------------------
+	Corollary Union_1_b: -- Is_Identity_for(o, Empty_String);
+		For all S: SSet,
+			S union Empty_Set = S;
 
-    Definition (e: Gamma) is_not_in (s: Set(Gamma)): B =
-        not (e is_in s);
+	Corollary Concatenation_2: -- Is_Associative(union);
+		For all S, T, U: SSet,
+			S union (T union U) = (S union T) union U;
 
-    Definition complement (s: Set(Gamma)): Set(Gamma) =
-        { e: Gamma, e is_not_in s };
-
-    Definition (s: Set(Gamma)) union (t: Set(Gamma)): Set(Gamma) =
-        { e: Gamma, e is_in s or e is_in t };
-
-    Definition (s: Set(Gamma)) intersection (t: Set(Gamma)): Set(Gamma) =
-        { e: Gamma, e is_in s and e is_in t };
-
-    Definition (s: Set(Gamma)) without (t: Set(Gamma)): Set(Gamma) =
-        { e: Gamma, e is_in s and e is_not_in t };
-
-    Definition (s: Set(Gamma)) is_subset_of (t: Set(Gamma)): B =
-        For all e: Gamma, if e is_in s then e is_in t;
-
-    Definition (s: Set(Gamma)) is_proper_subset_of (t: Set(Gamma)): B =
-        s is_subset_of t and s /= t;
-
-    Definition (s: Set(Gamma)) is_not_subset_of (t: Set(Gamma)): B =
-        not (s is_subset_of t);
-
-    Definition (s: Set(Gamma)) is_not_proper_subset_of (t: Set(Gamma)): B =
-        not (s is_proper_subset_of t);
-
-    Definition Singleton(e : Gamma) : Set(Gamma);
-
-    --Definition ||(s: Set(Gamma))||: Z = 0;
-
-    --Definition Foo(D : SSet, E : D): SSet;
-*)
 end Set_Theory;
