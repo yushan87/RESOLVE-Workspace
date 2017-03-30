@@ -3,8 +3,8 @@ Precis Boolean_Theory;
 
 	Type Theorem Cart_Prod_Thingy:
 		For all T1, T2 : Cls,
-		For all R1 : Powerset(T1),
-		For all R2 : Powerset(T2),
+		For all R1 : Powerclass(T1),
+		For all R2 : Powerclass(T2),
 		For all r1 : R1,
 		For all r2 : R2,
 			(r1, r2) : (T1 * T2);

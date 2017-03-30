@@ -22,7 +22,7 @@ Precis String_Theory;
 	--If R is a subset of T, then Str(R) is a subset of Str(T)
 	Type Theorem Str_Subsets:
 		For all T : Cls,
-		For all R : Powerset(T),
+		For all R : Powerclass(T),
 		For all s : Str(R),
 			s : Str(T);
 
