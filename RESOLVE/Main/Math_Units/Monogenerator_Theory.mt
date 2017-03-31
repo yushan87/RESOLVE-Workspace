@@ -3,10 +3,15 @@ Precis Monogenerator_Theory;
 
 Definition Is_Injective(D: SSet, f: D -> D): B;
 
--- YS: Not complete. Need to add the 3rd property!
+-- YS: The third property won't compile because it needs is_in
 Definition Is_Monogeneric_for(D : SSet, b : D, g : D -> D) : B =
 	For all x : D,
-		g(x) /= b and Is_Injective(D, g);
+		g(x) /= b and Is_Injective(D, g); (* and
+			For all S: Powerset(D), 
+				(a is_in D and 
+						For all x: D, 
+							x is_in S implies f(x) is_in S) implies
+					S = D; *)
 
 Theorem M1:
 	For all D : SSet,
