@@ -11,8 +11,6 @@ Precis Set_Theory;
 		For all T: Powerclass(S),
 			T: Powerset(S);
 
-	Definition (S : SSet) * (T : SSet) : SSet;
-	Definition (S : SSet) -> (T : SSet) : SSet;
 	Definition (S : SSet) union (T: SSet) : SSet;
     Definition (S : SSet) intersection (T: SSet) : SSet;
     Definition (e : Entity) is_in (S: SSet) : B;

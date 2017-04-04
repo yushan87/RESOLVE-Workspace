@@ -4,6 +4,8 @@ Precis Boolean_Theory;
     -- all definitions are syntactic place holders
 
 	Definition (a : B) implies (b : B) : B = not(a) or b;
+	
+	Definition (a : B) iff (b : B) : B = (a implies b) and (b implies a);
 
     (*Math Type B: SSet;
 
