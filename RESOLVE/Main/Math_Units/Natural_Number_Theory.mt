@@ -7,8 +7,7 @@ Categorical Definition introduces
 	suc : N -> N
 related by
 	Is_Monogeneric_for(N, 0, suc);
-	
-	
+
 Inductive Definition (m : N) + (n : N) : N is
 	(i.) m + 0 = m;
 	(ii.) m + suc(n) = suc(m + n);
@@ -112,8 +111,8 @@ Definition (m : N) <= (n : N) : B =
 	There exists i : N,
 		m + i = n;
 		
-Theorem N9:
-	Is_Total_Ordering(op <=);
+--Theorem N9:
+--	Is_Total_Ordering(op <=);
 	
 Theorem N10:
 	Is_Preserved_by(op +, op <=);

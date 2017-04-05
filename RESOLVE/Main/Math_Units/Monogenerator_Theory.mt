@@ -1,17 +1,30 @@
 Precis Monogenerator_Theory;
 	uses Basic_Properties;
 
-Definition Is_Injective(D: SSet, f: D -> D): B;
-
--- YS: The third property won't compile because it needs is_in
 Definition Is_Monogeneric_for(D : SSet, b : D, g : D -> D) : B =
 	For all x : D,
-		g(x) /= b and Is_Injective(D, g); (* and
-			For all S: Powerset(D), 
-				(a is_in D and 
-						For all x: D, 
-							x is_in S implies f(x) is_in S) implies
-					S = D; *)
+		g(x) /= b and Is_Injective(g) and
+			(For all S: Powerset(D), 
+				b is_in S and 
+					(For all x: D, 
+						x is_in S implies g(x) is_in S)
+				implies S = D);
+				
+	-- YS: Missing definition for Is_Infinite
+	(*Corollary Is_Monogeneric_for_1:
+		For all D : SSet,
+		For all b : D,
+		For all g : D -> D,
+		For all P : D -> B,
+			Is_Monogeneric_for(D, b, g) implies Is_Infinite(D);*)
+			
+	Corollary Is_Monogeneric_for_2:
+		For all D : SSet,
+		For all b : D,
+		For all g : D -> D,
+		For all P : D -> B,
+			( Is_Monogeneric_for(D, b, g) and P(b) and P(b) and 
+				(For all x : D, P(x) implies P(g(x))) implies (For all x : D, P(x)) );
 
 Theorem M1:
 	For all D : SSet,
@@ -28,6 +41,18 @@ Theorem M1:
 						(For all x : D,
 							i(t, g(x)) = s(t, i(p(t, x), x), x)));
 
+	Corollary M1_1:
+		For all D : SSet,
+		For all b : D,
+		For all g : D -> D,
+			Is_Monogeneric_for(D, b, g) implies
+				(For all U : SSet,
+				For all c : U,
+				For all s : U * D -> U,
+					There exists unique i : D -> U,
+						i(b) = c and 
+						(For all x : D,
+							i(g(x)) = s(i(x), x)));
 
 Theorem M2:
 	For all D1, D2 : SSet,
@@ -40,6 +65,13 @@ Theorem M2:
 				(h(b1) = b2) and (For all x : D1,
 					h(g1(x)) = g2(h(x)) and Is_Bijective(h))));
 
+Theorem M3:
+	There exists D : SSet,
+	There exists b : D,
+	There exists g : D -> D,
+		Is_Monogeneric_for(D, b, g);
+
+-- YS: Missing implicit definition IndFn and theorem M4.
 
 --Temporary fix for conditional functions
 Definition conditional(cond : B, a : Entity, b : Entity) : Entity;

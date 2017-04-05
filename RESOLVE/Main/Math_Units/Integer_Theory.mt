@@ -118,8 +118,9 @@ Theorem I10_Def:
 	For all m,n:Z,
 		m + n = n + m;
 		
-Corollary I10_1:
-	Is_Inverse_for(op +, op -);
+-- YS : That is not the correct use of Is_Inverse_for
+(*Corollary I10_1:
+	Is_Inverse_for(op +, op -);*)
 
 Corollary I10_1_def:
 	For all i:Z,
@@ -172,8 +173,8 @@ Corollary LTE_3a: --Is_Reflexive(<=) -- implied by Is_Total
     For all n:Z,
     	n <= n;
 
-Corollary LTE_4:
-    	Is_Total_Ordering(op <=); -- total_pre(trans, total) and antisymm
+--Corollary LTE_4:
+--    	Is_Total_Ordering(op <=); -- total_pre(trans, total) and antisymm
     	
 Corollary LTE_6:
 	Is_Preserved_by(op +,op <=);
