@@ -1,0 +1,44 @@
+Shared Concept Communally_Bounded_Stack_Template( type Entry; evaluates Max_Capacity: Integer );
+	uses String_Theory, Integer_Ext_Theory;
+	requires 1 <= Max_Capacity which_entails Max_Capacity : N;
+	
+	Shared Variables
+		Abstract_Var Total_Size: N;
+		
+		constraint Total_Size <= Max_Capacity;
+		initialization
+			ensures Total_Size = 0;
+	end Shared Variables;
+
+	Type Family Stack is modeled by Str(Entry);
+		exemplar S;
+		initialization
+			ensures S = Empty_String;
+		finalization
+			affects Total_Size;
+			ensures Total_Size = #Total_Size - |#S|;
+	end;
+
+	Operation Push(alters E: Entry; updates S: Stack);
+		affects Total_Size;
+		requires Total_Size <= Max_Capacity;
+		ensures S = <#E> o #S and
+				Total_Size = #Total_Size + 1;
+
+	Operation Pop(replaces R: Entry; updates S: Stack);
+		affects Total_Size;
+		requires 1 <= |S|;
+		ensures #S = <R> o S and
+				Total_Size = #Total_Size − 1; 
+	
+	Operation Is_Empty(restores S : Stack) : Boolean;
+		ensures Is_Empty = (S = Empty_String);
+	
+	Operation Rem_Capacity(): Integer;
+		ensures Rem_Capacity = (Max_Capacity − Total_Size);
+		
+	Operation Clear(clears S: Stack);
+		affects Total_Size;
+		ensures Total_Size = #Total_Size − |#S|;
+
+end Communally_Bounded_Stack_Template;
