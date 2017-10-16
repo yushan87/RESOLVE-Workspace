@@ -1,6 +1,6 @@
 Shared Concept Communally_Bounded_Stack_Template( type Entry; evaluates Max_Capacity: Integer );
 	uses String_Theory, Integer_Ext_Theory;
-	requires 1 <= Max_Capacity which_entails Max_Capacity : N;
+	requires 1 <= Max_Capacity which_entails Max_Capacity is_in N;
 	
 	Shared Variables
 		Abstract_Var Total_Size: N;
