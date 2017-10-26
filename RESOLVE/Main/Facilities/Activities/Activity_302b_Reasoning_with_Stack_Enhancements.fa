@@ -10,7 +10,7 @@ Facility Activity_302b_Reasoning_with_Stack_Enhancements;
 		C := Orig;
 	end Copy_Integer;
 
-	Facility Copy_Stack_Fac is Stack_Template(Integer, 5)
+	Facility Copy_Stack_Fac is Stack_Template(Integer, 3)
 			realized by Array_Realiz
 		enhanced by Copying_Capability
 			realized by Obvious_CC_Realiz(Copy_Integer)
