@@ -9,7 +9,7 @@ Facility Activity_301_Reasoning_with_Stack_Objects;
 	-- Uncomment one operation and its code at a time and explore
 
 	-- Following is the instantiation
-	Facility Stack_Fac is Stack_Template(Char_Str, 5)
+	Facility Stack_Fac is Stack_Template(Char_Str, 3)
 		realized by Array_Realiz;
 
 	Operation Do_Nothing(restores S: Stack);
@@ -48,7 +48,7 @@ Facility Activity_301_Reasoning_with_Stack_Objects;
 
 		Clear(S);
 		While ( 1 <= Rem_Capacity(S) )
-			decreasing 5 -|S|;
+			decreasing 3 -|S|;
 		do
 			Read(CS);
 			Push(CS, S);
