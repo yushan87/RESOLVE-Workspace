@@ -12,6 +12,13 @@ Precis Set_Theory;
 			T: Powerset(S);
 
 	Definition (S : SSet) union (T: SSet) : SSet;
+	
+	-- YS: Figure out if the following type theorem is needed or not.
+	(*Type Theorem Some_Theorem:
+		For all S: SSet,
+		For all T: S union S,
+			T: Powerset(S);*)
+		
     Definition (S : SSet) intersection (T: SSet) : SSet;
     Definition (e : Entity) is_in (S: SSet) : B;
     Definition (e : Entity) is_not_in (S: SSet) : B; -- = not (e is_in S);
