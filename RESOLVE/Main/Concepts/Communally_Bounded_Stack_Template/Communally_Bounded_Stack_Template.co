@@ -34,8 +34,8 @@ Shared Concept Communally_Bounded_Stack_Template( type Entry; evaluates Max_Capa
 	Operation Is_Empty(restores S : Stack) : Boolean;
 		ensures Is_Empty = (S = Empty_String);
 	
-	Operation Rem_Capacity(): Integer;
-		ensures Rem_Capacity = (Max_Capacity − Total_Size);
+	Operation Occupied_Size(): Integer;
+		ensures Occupied_Size = ( Total_Size );
 		
 	Operation Clear(clears S: Stack);
 		affects Total_Size;
