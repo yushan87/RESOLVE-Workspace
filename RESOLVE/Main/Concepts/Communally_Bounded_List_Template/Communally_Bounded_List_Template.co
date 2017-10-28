@@ -21,28 +21,29 @@ Shared Concept Communally_Bounded_List_Template( type Entry; evaluates Max_Capac
 			ensures Total_Size = #Total_Size - |P.Prec o P.Rem|;
 	end;
 
-	Operation Advance( updates P: List );
+	Operation Advance(updates P: List);
 		requires P.Rem /= Empty_String;
 		ensures P.Prec = #P.Prec o Prt_Btwn(0, 1, #P.Rem) and
 				P.Rem = Prt_Btwn(1, |#P.Rem|, #P.Rem);
 	
-	Operation Reset( updates P: List );
-		ensures P.Prec = Empty_String and P.Rem = #P.Prec o #P.Rem;
+	Operation Reset(updates P: List);
+		ensures P.Prec = Empty_String and 
+				P.Rem = #P.Prec o #P.Rem;
 	
-	Operation Length_of_Rem( restores P: List ): Integer;
+	Operation Length_of_Rem(restores P: List): Integer;
 		ensures Length_of_Rem = ( |P.Rem| );
 
-	Operation Insert( clears New_Entry: Entry; updates P: List );
+	Operation Insert(clears New_Entry: Entry; updates P: List);
 		affects Total_Size;
 		requires Total_Size < Max_Capacity;
 		ensures P.Prec = #P.Prec and 
 				P.Rem = <#New_Entry> o #P.Rem and
 				Total_Size = #Total_Size + 1;
 
-	Operation Occupied_Size( ) : Integer;
+	Operation Occupied_Size() : Integer;
 		ensures Occupied_Size = ( Total_Size );
 
-	Operation Remove( replaces Entry_Removed: Entry; updates P: List );
+	Operation Remove(replaces Entry_Removed: Entry; updates P: List);
 		affects Total_Size;
 		requires P.Rem /= Empty_String;
 		ensures P.Prec = #P.Prec and
@@ -50,17 +51,17 @@ Shared Concept Communally_Bounded_List_Template( type Entry; evaluates Max_Capac
 				P.Rem = Prt_Btwn(1, |#P.Rem|, #P.Rem) and
 				Total_Size = #Total_Size - 1;
 
-	Operation Advance_to_End( updates P: List );
+	Operation Advance_to_End(updates P: List);
 		ensures P.Prec = #P.Prec o #P.Rem and P.Rem = Empty_String;
 
-	Operation Swap_Remainders( updates P, Q: List );
+	Operation Swap_Remainders(updates P, Q: List);
 		ensures P.Prec = #P.Prec and Q.Prec = #Q.Prec and 
 				P.Rem = #Q.Rem and Q.Rem = #P.Rem;
 
-	Operation Length_of_Prec( restores P: List ): Integer;
+	Operation Length_of_Prec(restores P: List): Integer;
 		ensures Length_of_Prec = |P.Prec|;
 
-	Operation Clear( clears P: List );
+	Operation Clear(clears P: List);
 		affects Total_Size;
 		ensures Total_Size = #Total_Size - ( |#P.Prec| + |#P.Rem| );
 
