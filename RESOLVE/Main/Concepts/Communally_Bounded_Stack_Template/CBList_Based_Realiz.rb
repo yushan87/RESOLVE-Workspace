@@ -10,7 +10,7 @@ Realization CBList_Based_Realiz for Communally_Bounded_Stack_Template;
 			Conc.Total_Size = CB_List_Fac::Total_Size;
 	end Shared Variables;
 	
-	Type Stack = CB_List_Fac.List;
+	Type Stack = CB_List_Fac::List;
 		convention 
 			S.Prec = Empty_String;
 		correspondence 
