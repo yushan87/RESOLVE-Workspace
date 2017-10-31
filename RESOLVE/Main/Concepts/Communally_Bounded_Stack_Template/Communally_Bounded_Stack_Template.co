@@ -21,7 +21,7 @@ Shared Concept Communally_Bounded_Stack_Template( type Entry; evaluates Max_Capa
 
 	Operation Push(alters E: Entry; updates S: Stack);
 		affects Total_Size;
-		requires Total_Size <= Max_Capacity;
+		requires 1 + Total_Size <= Max_Capacity;
 		ensures S = <#E> o #S and
 				Total_Size = #Total_Size + 1;
 

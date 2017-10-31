@@ -18,7 +18,7 @@ Shared Concept Communally_Bounded_List_Template( type Entry; evaluates Max_Capac
 			ensures P.Prec = Empty_String and P.Rem = Empty_String;
 		finalization
 			affects Total_Size;
-			ensures Total_Size = #Total_Size - |P.Prec o P.Rem|;
+			ensures Total_Size = #Total_Size - ( |#P.Prec| + |#P.Rem| );
 	end;
 
 	Operation Advance(updates P: List);
@@ -35,7 +35,7 @@ Shared Concept Communally_Bounded_List_Template( type Entry; evaluates Max_Capac
 
 	Operation Insert(clears New_Entry: Entry; updates P: List);
 		affects Total_Size;
-		requires Total_Size < Max_Capacity;
+		requires 1 + Total_Size <= Max_Capacity;
 		ensures P.Prec = #P.Prec and 
 				P.Rem = <#New_Entry> o #P.Rem and
 				Total_Size = #Total_Size + 1;
