@@ -1,8 +1,8 @@
 Facility Invariant_Activity_3;
---This is an in-class activity for learning loop invariants
+	--This is an in-class activity for learning loop invariants
     uses Integer_Template, String_Theory;
 
-    Facility Queue_Fac is Queue_Template(Integer, 5)
+    Facility Queue_Fac is Queue_Template(Integer, 3)
 		realized by Circular_Array_Realiz;
 
     Operation Remove_Last(updates Q: Queue; replaces E: Integer);
