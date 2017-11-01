@@ -15,7 +15,7 @@ Facility Activity_302_Reasoning_with_Stack_Enhancements;
 
 		While ( 1 <= Depth(S) )
 			-- no maintaining clause is needed because negation of loop condition is sufficient
-            -- note that decreasing clause can never be omitted
+			-- note that decreasing clause can never be omitted
 			decreasing |S|;
 		do
 			Pop(CS, S);
@@ -39,7 +39,7 @@ Facility Activity_302_Reasoning_with_Stack_Enhancements;
 
 		--Remember;
 		Flip(S);
-        --  write a suitable Confirm assertion here for the value of S
+		--  write a suitable Confirm assertion here for the value of S
 		
 		Write_Stack(S);
 		Confirm S = Empty_String;
