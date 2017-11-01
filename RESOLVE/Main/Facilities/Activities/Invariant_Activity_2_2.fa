@@ -1,14 +1,14 @@
 Facility Invariant_Activity_2_2;
---This is an in-class activity for learning loop invariants
-    uses Integer_Template, String_Theory;
+	--This is an in-class activity for learning loop invariants
+	uses Integer_Template, String_Theory;
 
-    Facility Queue_Fac is Queue_Template(Integer, 5)
+	Facility Queue_Fac is Queue_Template(Integer, 3)
 		realized by Circular_Array_Realiz;
 
-    Operation Inject_at_Front(alters E: Integer; updates Q: Queue);
-        requires 1 + |Q| <= 5;
-        ensures Q = <#E> o #Q;
-    Procedure
+	Operation Inject_at_Front(alters E: Integer; updates Q: Queue);
+		requires 1 + |Q| <= 3;
+		ensures Q = <#E> o #Q;
+	Procedure
 		Var T: Queue;
 		
 		Enqueue (E, T);
