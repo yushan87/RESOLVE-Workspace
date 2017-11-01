@@ -1,6 +1,7 @@
 Facility Activity_302_Reasoning_with_Stack_Enhancements;
 	uses Integer_Template, Stack_Template;
 	-- Shows an example use of a reusable stack enhancement operation Flip instead of writing it locally
+	-- uncomment Remember and write a suitable confirm assertion after the Flip call in Main
 	-- Explore alternative enhancements
 
 	Facility Stack_Fac is Stack_Template(Char_Str, 3)
@@ -8,26 +9,13 @@ Facility Activity_302_Reasoning_with_Stack_Enhancements;
 		enhanced by Flipping_Capability
 			realized by Obvious_Flipping_Realiz;
 
-	Operation Read_Stack(replaces S: Stack);
-	Procedure
-		Var CS: Char_Str;
-
-		Clear(S);
-		While ( 1 <= Rem_Capacity(S) )
-			changing CS, S;
-			decreasing 3 -|S|;
-		do
-			Read(CS);
-			Push(CS, S);
-		end;
-	end Read_Stack;
-
 	Operation Write_Stack(clears S: Stack);
 	Procedure
 		Var CS: Char_Str;
 
 		While ( 1 <= Depth(S) )
-			changing CS, S;
+			-- no maintaining clause is needed because negation of loop condition is sufficient
+            -- note that decreasing clause can never be omitted
 			decreasing |S|;
 		do
 			Pop(CS, S);
@@ -38,9 +26,22 @@ Facility Activity_302_Reasoning_with_Stack_Enhancements;
 	Operation Main ();
 	Procedure
 		Var S: Stack;
+		Var CS: Char_Str;
 
-		Read_Stack(S);
+		Read(CS);
+		Push(CS, S);
+
+		Read(CS);
+		Push(CS, S);
+
+		Read(CS);
+		Push(CS, S);
+
+		--Remember;
 		Flip(S);
+        --  write a suitable Confirm assertion here for the value of S
+		
 		Write_Stack(S);
+		Confirm S = Empty_String;
 	end Main;
 end Activity_302_Reasoning_with_Stack_Enhancements;
