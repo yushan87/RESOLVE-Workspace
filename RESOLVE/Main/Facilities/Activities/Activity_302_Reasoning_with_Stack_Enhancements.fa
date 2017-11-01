@@ -1,5 +1,5 @@
 Facility Activity_302_Reasoning_with_Stack_Enhancements;
-	uses Integer_Template, Stack_Template;
+	uses Integer_Template, Char_Str_Template, Stack_Template;
 	-- Shows an example use of a reusable stack enhancement operation Flip instead of writing it locally
 	-- uncomment Remember and write a suitable confirm assertion after the Flip call in Main
 	-- Explore alternative enhancements
