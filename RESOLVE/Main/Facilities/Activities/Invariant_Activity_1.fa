@@ -13,7 +13,7 @@ Facility Invariant_Activity_1;
 		Var I: Integer;
 
 		While ( 1 <= Length(Q) )
-			maintaining |P| + |Q| <= 3 and true;
+			maintaining true;
 			decreasing |Q|;
 		do
 			Dequeue(I, Q);
