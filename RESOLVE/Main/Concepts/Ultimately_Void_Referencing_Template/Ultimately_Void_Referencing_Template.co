@@ -1,0 +1,102 @@
+Shared Concept Ultimately_Void_Referencing_Template(type Info);
+	uses Set_App_Op_Ext, Closure_Op_Ext, Terminal_Range_Op_Ext;
+
+	Defines Location: SSet;
+	Defines Void: Location;
+	
+	Shared Variables
+		Abstract_Var Ref: Location -> Location;
+		Abstract_Var Content: Location -> Info;
+		constraint Terminal_Range(Location, {Ref}, Location) is_subset_of {Void} 
+							which_entails Ref(Void) = Void;
+		initialization 
+			ensures SqBr(Ref, Location) = {Void} and 
+					SqBr(Info.Is_Initial, SqBr(Content, Location)) = {true};
+	end Shared Variables;
+	
+	Type Family Position is modeled by Location;
+		exemplar p;
+		
+		Def Var Accessible_Loc : FinPowerset(Location) = (
+			{Void} union Closure_for(Location, {Ref}, SqBr(Position.Val_in, Position.Receptacles)));
+			
+		Def Var Cast_Accessible_Loc : Powerset(Location) = Accessible_Loc;
+		
+		constraint Cast_Accessible_Loc = Accessible_Loc and SqBr(Info.Is_Initial, SqBr(Content, Location without Accessible_Loc)) is_in {true} and 
+				SqBr(Ref, Location without Accessible_Loc) is_in {Void} and ||Accessible_Loc|| is_in N;
+		initialization 
+			ensures p = Void;
+		finalization
+			affects Ref, Content, Accessible_Loc;
+			ensures Ref = lambda (q : Location).(
+							{{#Ref(q) if q is_in ({Void} union 
+											Closure_for(Location, {#Ref}, SqBr(#Position.Val_in, #Position.Receptacles without {recp.p})));
+							  Void otherwise;}}) 
+					and Fn_Restrict_to(Content, Cast_Accessible_Loc) = Fn_Restrict_to(#Content, Cast_Accessible_Loc)
+					-- and Fns_Same_at(Content, #Content, Accessible_Loc)
+						which_entails #p is_in ({Void} union Closure_for(Location, {Ref}, SqBr(#Position.Val_in, #Position.Receptacles without {recp.p}))) implies 
+							Ref = #Ref and Accessible_Loc = #Accessible_Loc and Content = #Content;
+	end;
+
+	Operation Give_New_Loc(updates p: Position);
+		affects Accessible_Loc;
+		requires p = Void;
+		ensures p is_not_in #Accessible_Loc;
+
+	Operation Rem_Loc_Capacity() : Integer;
+
+	Operation Redirect_Ref_at(preserves p: Position; updates referent: Position);
+		affects Ref;
+		requires p is_not_in Closure_for(Location, {Ref}, {referent});
+		ensures Ref = lambda (q : Location).({{#referent if q = p;
+											   #Ref(q) otherwise;}}) 
+				and referent = #Ref(p);
+
+	Operation Follow_Ref(updates p: Position);
+		affects Ref, Accessible_Loc, Content;
+		requires p /= Void;
+		ensures p = #Ref(#p) and Ref = lambda (q : Location).(
+											{{Void if q = #p and #p is_not_in Closure_for(Location, {#Ref}, SqBr(#Position.Val_in, #Position.Receptacles without {recp.p}));
+											  #Ref(q) otherwise;}}) 
+				--and Fn_Restrict_to(Content, Accessible_Loc) = Fn_Restrict_to(#Content, Accessible_Loc)
+					which_entails #p is_in Closure_for(Location, {Ref}, SqBr(#Position.Val_in, #Position.Receptacles without {recp.p})) implies
+						Ref = #Ref and Accessible_Loc = #Accessible_Loc and Content = #Content;
+		
+	Operation Swap_Content_of(preserves p: Position; updates I: Info);
+		affects Content;
+		requires p /= Void;
+		ensures I = #Content(p) and 
+				Content = lambda (q : Location).(
+							{{#I if q = p;
+							  #Content(q) otherwise;}});
+		
+	Operation Relocate_to(preserves New_L: Position; replaces p: Position);
+		affects Ref, Accessible_Loc, Content;
+		ensures p = New_L and 
+				Ref = lambda (q: Location).(
+						{{#Ref(q) if q is_in ({Void} union Closure_for(Location, {#Ref}, SqBr(#Position.Val_in, #Position.Receptacles without {recp.p})));
+						  Void otherwise;}})
+				--and Fn_Restrict_to(Content, Accessible_Loc) = Fn_Restrict_to(#Content, Accessible_Loc)
+					which_entails #p is_in Closure_for(Location, {Ref}, SqBr(#Position.Val_in, #Position.Receptacles without {recp.p})) implies
+						Ref = #Ref and Accessible_Loc = #Accessible_Loc and Content = #Content;
+		
+	Operation Are_Colocated(preserves p, q: Position): Boolean;
+		ensures Are_Colocated = (p = q);
+		
+	Operation Is_Almost_Inaccessible(preserves p: Position): Boolean;
+		ensures Is_Almost_Inaccessible = (
+			p is_not_in ({Void} union Closure_for(Location, {Ref}, SqBr(Position.Val_in, Position.Receptacles without {recp.p}))) );
+		
+	Operation Is_Void(preserves p: Position): Boolean;
+		ensures Is_Void = (p = Void);
+		
+	Operation Set_to_Void(clears p: Position);
+		affects Ref, Accessible_Loc, Content;
+		ensures Ref = lambda (q : Location).(
+						{{#Ref(q) if q is_in ({Void} union Closure_for(Location, {#Ref}, SqBr(#Position.Val_in, #Position.Receptacles without {recp.p})));
+						  Void otherwise;}}) 
+				--and Fn_Restrict_to(Content, Accessible_Loc) = Fn_Restrict_to(#Content, Accessible_Loc) 
+					which_entails #p is_in ({Void} union Closure_for(Location, {Ref}, SqBr(#Position.Val_in, #Position.Receptacles without {recp.p}))) implies 
+						Ref = #Ref and Accessible_Loc = #Accessible_Loc and Content = #Content;
+		
+end Ultimately_Void_Referencing_Template;
