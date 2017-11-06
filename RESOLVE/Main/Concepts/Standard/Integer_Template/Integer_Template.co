@@ -99,22 +99,22 @@ Concept Integer_Template;
         ensures Power = ( i**j );
 
     Operation Divide(evaluates i, j: Integer; replaces q: Integer);
-	requires if (j <= 0)
-		then ((j*(max_int + 1) < i) and i < (j * (min_int -1)))
-		else true;
+        requires if (j <= 0)
+                 then ((j*(max_int + 1) < i) and i < (j * (min_int -1)))
+                 else true;
         ensures (|j*q| <= |i|) and (|i + (- j*q)| < |j|);
 
     Operation Mod(evaluates i, j: Integer): Integer;
-	requires j /= 0;
-	ensures Mod = ( i mod j );
+        requires j /= 0;
+        ensures Mod = ( i mod j );
 
     Operation Rem(evaluates i, j: Integer): Integer;
 
     Operation Quotient(evaluates i, j: Integer): Integer;
 
     Operation Div(evaluates i, j: Integer): Integer;
-	requires j /= 0;
-	ensures Div = ( i/j );
+        requires j /= 0;
+        ensures Div = ( i/j );
 
     Operation Are_Equal(evaluates i, j: Integer): Boolean;
         ensures Are_Equal = (i = j);
