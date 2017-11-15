@@ -1,4 +1,4 @@
-Enhancement Def_Pop_Capability;
+Enhancement Def_Pop_Capability for Stack_Template;
 
     Operation Def_Pop (replaces R: Entry; updates S: Stack; replaces empty: Boolean);
         ensures empty = ( |#S| = 0 ) and 
