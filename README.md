@@ -1,5 +1,6 @@
 RESOLVE-Workspace
 ==============
+[![License](https://img.shields.io/badge/license-BSD-blue.svg)](https://raw.githubusercontent.com/ClemsonRSRG/RESOLVE-Workspace/master/LICENSE.txt)
 
 This is a collection of RESOLVE concepts, enhancements, realizations and theories used 
 in conjunction with the [RESOLVE Compiler](https://github.com/ClemsonRSRG/RESOLVE). 
