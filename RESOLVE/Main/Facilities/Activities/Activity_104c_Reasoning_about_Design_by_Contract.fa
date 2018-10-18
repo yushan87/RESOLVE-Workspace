@@ -14,7 +14,7 @@ Facility Activity_104c_Reasoning_about_Design_by_Contract;
 	-- Activity 2c: Fix up Do_Nothing_1 back to what it was
 
 	-- Activity 3a: Uncomment call to Do_Nothing in Main and attempt to prove
-	-- Activity 3a: Uncomment call to Do_Nothing_1 in Main and attempt to prove; explain
+	-- Activity 3b: Uncomment call to Do_Nothing_1 in Main and attempt to prove; explain
 	-- Activity 3c: Uncomment call the if statement in Main and attempt to prove; explain
 
 	-- Activity 4a: Change only the code for Do_Nothing_2 so it verifies
